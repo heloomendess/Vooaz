@@ -16,7 +16,7 @@ Este projeto visa desenvolver um **sistema de viagens** para pessoas com defici�
 
 Os dados extraídos oferecem insights valiosos sobre o perfil e as preferências dos clientes. Detalhando como transformar essas informações em estratégias eficazes para aprimorar serviços e personalizar experiências. Garantir que cada cliente se sinta valorizado e tenha uma experiência única, combinando tecnologia, personalização e empatia.
 
-*Estrutura do banco*
+**Estrutura do banco**
 
 Identidade do Cliente: Nome e contato.
 Características Pessoais: Tipo de deficiência e data de nascimento (para criar experiências inclusivas e adequadas à faixa etária).
@@ -29,7 +29,7 @@ Os dados permitem criar ofertas e comunicações sob medida.
 * Planos Personalizados: Oferecer planos alinhados às necessidades e preferências do cliente, como viagens culturais ou reservas adaptadas.
 * Reconhecimento de Fidelidade: Oferecer benefícios exclusivos para clientes recorrentes.
 
-*Uso do Histórico de Reservas*
+**Uso do Histórico de Reservas**
 
 * Oferecer descontos personalizados ou pacotes baseados no histórico de viagens.
 * nviar notificações sobre eventos e locais relevantes previamente visitados.
@@ -55,7 +55,7 @@ Os dados permitem criar ofertas e comunicações sob medida.
 ## Guias acessíveis
 Os guias locais são a peça-chave do nosso banco de dados. Cada guia é cuidadosamente selecionado para proporcionar aos usuários experiências autênticas, personalizadas e acessíveis, de acordo com seus destinos e necessidades.
 
-* Estrutura dos Dados*
+**Estrutura dos Dados**
 * Identificação: Nome, idioma e especialidade.
 * Localização: País, estado, cidade e bairro, facilitando a conexão com turistas em destinos específicos.
 * Idiomas Falados: Permite atender viajantes internacionais de forma eficaz.
@@ -95,7 +95,7 @@ Os guias locais são a peça-chave do nosso banco de dados. Cada guia é cuidado
 ## Destinos
 Nosso banco de destinos turísticos é projetado para oferecer experiências únicas e inclusivas aos viajantes. Com foco em acessibilidade e diversidade cultural, cada destino é cuidadosamente descrito para ajudar os usuários a escolherem locais que atendam às necessidades e preferências.
 
-*Estrutura dos Dados*
+**Estrutura dos Dados**
 
 * Destino: Nome do local que será exibido para o usuário.
 * Categoria: Classificação do destino (cultural, natural, histórico, etc.).
@@ -127,19 +127,19 @@ Deficiência Auditiva: Informações sobre adaptações como intérpretes de Lib
 ## Avaliações
 Este banco de dados armazena as avaliações feitas por usuários em relação aos guias e destinos visitados. Ele é uma fonte crucial para monitorar a qualidade dos serviços oferecidos, identificar oportunidades de melhoria e destacar os pontos fortes de guias e destinos.
 
-* Estrutura dos Dados*
+**Estrutura dos Dados**
 * ID do Usuário: Conecta a avaliação a um usuário específico, permitindo uma análise personalizada.
 * ID do Guia: Identifica o guia associado à experiência avaliada.
 * ID do Destino: Local vinculado à avaliação.
  
-*Informações da Avaliação*
+**Informações da Avaliação**
 
 * Tipo de Deficiência: Detalha a condição do usuário, ajudando a avaliar a adequação do serviço para diferentes necessidades.
 * Nota de Avaliação: Pontuação atribuída pelo usuário (geralmente em uma escala de 1 a 5).
 * Comentário: Feedback textual, que oferece insights qualitativos sobre a experiência.
 * Data: Registro da data em que a avaliação foi feita, útil para monitorar tendências ao longo do tempo.
 
-* Estratégias de Utilização*
+**Estratégias de Utilização**
 * Destaque de Guias e Destinos Bem Avaliados.
 * Identificação de Pontos de Melhoria.
  *Personalização de Experiência.
@@ -172,7 +172,7 @@ Este banco de dados armazena as avaliações feitas por usuários em relação a
 # Reservas
 O sistema de reservas é uma peça essencial para conectar usuários a guias e destinos, permitindo que experiências personalizadas sejam organizadas de forma eficiente e inclusiva. Este banco de dados documenta cada reserva, relacionando usuários, guias, destinos e planos.
 
-*Estrutura dos Dados*
+**Estrutura dos Dados**
 * ID da Reserva: Identifica unicamente cada reserva no sistema.
 * ID do Usuário: Associa a reserva a um usuário específico.
 * ID do Guia: Indica qual guia será responsável por acompanhar o usuário na experiência.
@@ -183,7 +183,7 @@ O sistema de reservas é uma peça essencial para conectar usuários a guias e d
 * Gestão de Agendas: Guias podem acessar reservas futuras e se preparar para oferecer um serviço de qualidade.
 *Notificações Automáticas: Alertas enviados aos usuários sobre a data da reserva e lembretes adicionais.
 
-*Personalização*
+**Personalização**
 
 * Associação ao Plano: Identificar os benefícios disponíveis ao usuário no momento da reserva, como transporte acessível ou guias especializados.
 * Histórico de Reservas: Facilitar a recomendação de destinos e serviços baseados em experiências anteriores do usuário.
