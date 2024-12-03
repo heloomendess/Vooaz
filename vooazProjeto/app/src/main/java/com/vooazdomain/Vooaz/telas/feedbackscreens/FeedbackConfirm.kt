@@ -17,9 +17,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import com.example.feedbackscreen.FeedbackScreen
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,13 +29,13 @@ fun FeedbackConfirmScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Feedback", color = Color.White, fontWeight = FontWeight.Bold) },
+                title = { Text( stringResource(R.string.feedback,"Feedback"), color = MaterialTheme.colorScheme.onSecondaryContainer, fontWeight = FontWeight.Bold, fontFamily = poppinsFontFamily) },
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back action */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 },
@@ -41,12 +43,12 @@ fun FeedbackConfirmScreen() {
                     IconButton(onClick = { /* Fechar ação */ }) {
                         Icon(
                             painter = painterResource(id = R.drawable.close), // Substitua pelo seu ícone de fechar
-                            contentDescription = "Fechar",
-                            tint = Color.White
+                            contentDescription = stringResource(R.string.fechar,"Fechar"),
+                            tint = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color(0xFF4059AD))
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor =MaterialTheme.colorScheme.onBackground )
             )
         },
         content = { paddingValues ->
@@ -54,7 +56,7 @@ fun FeedbackConfirmScreen() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(Color(0xFFEFEFEF)) // Cor do fundo
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow) // Cor do fundo
             ) {
                 Column(
                     modifier = Modifier
@@ -66,15 +68,16 @@ fun FeedbackConfirmScreen() {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color.White, shape = RoundedCornerShape(12.dp))
+                            .background(MaterialTheme.colorScheme.  onSecondaryContainer, shape = RoundedCornerShape(12.dp))
                             .padding(16.dp),
                     ) {
                         Text(
-                            text = "Agradecemos sinceramente pelo seu feedback! Sua opinião é muito importante para nós e nos ajuda a melhorar continuamente nossos serviços. Estamos sempre em busca de maneiras de oferecer a melhor experiência possível.\n\nSe tiver mais sugestões ou comentários, não hesite em entrar em contato!\n\nObrigado mais uma vez!",
+                            text = stringResource(R.string.mensagem,"Agradecemos sinceramente pelo seu feedback! Sua opinião é muito importante para nós e nos ajuda a melhorar continuamente nossos serviços. Estamos sempre em busca de maneiras de oferecer a melhor experiência possível.\n\nSe tiver mais sugestões ou comentários, não hesite em entrar em contato!\n\nObrigado mais uma vez!"),
                             style = TextStyle(
+                                fontFamily = poppinsFontFamily,
                                 fontSize = 16.sp,
                                 textAlign = TextAlign.Center,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme. onSecondary,
                                 lineHeight = 22.sp
                             )
                         )
@@ -84,7 +87,7 @@ fun FeedbackConfirmScreen() {
 
                     // Emoji
                     Text(
-                        text = "😊",
+                        text = stringResource(R.string.emoji,"😊"),
                         style = TextStyle(fontSize = 32.sp),
                     )
 
@@ -93,15 +96,17 @@ fun FeedbackConfirmScreen() {
                     // Botão Voltar
                     Button(
                         onClick = { /* Ação do botão */ },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4059AD)),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth(0.5f) // Botão ocupa metade da largura
                     ) {
                         Text(
                             text = "Voltar",
-                            color = Color.White,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             fontSize = 16.sp,
+                            fontFamily = poppinsFontFamily,
                             fontWeight = FontWeight.Bold
+
                         )
                     }
                 }

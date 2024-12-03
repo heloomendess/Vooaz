@@ -82,7 +82,7 @@ fun RegisterAccountContent(navController: NavController) {
             Text(
                 text = stringResource(id = R.string.create_account_with),
                 fontSize = 18.sp,
-                color = someThemes.onTertiary,  // Usando a cor amarela do tema
+                color = MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                 fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
             )
@@ -114,7 +114,7 @@ fun RegisterAccountContent(navController: NavController) {
             Text(
                 text = stringResource(id = R.string.or_else),
                 fontSize = 18.sp,
-                color = someThemes.onTertiary,  // Usando a cor amarela do tema
+                color = MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                 fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
             )
@@ -123,7 +123,7 @@ fun RegisterAccountContent(navController: NavController) {
         Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = stringResource(id = R.string.name),
-                color = someThemes.onTertiary,  // Usando a cor amarela do tema
+                color = MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                 modifier = Modifier.align(Alignment.Start).padding(start = 40.dp, top = 20.dp, bottom = 2.dp),
                 fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
             )
@@ -137,7 +137,7 @@ fun RegisterAccountContent(navController: NavController) {
                     Icon(
                         Icons.Filled.Person,
                         "",
-                        tint = someThemes.onTertiary,  // Usando a cor amarela do tema
+                        tint = MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -145,7 +145,7 @@ fun RegisterAccountContent(navController: NavController) {
 
             Text(
                 text = stringResource(id = R.string.email),
-                color = someThemes.onTertiary,  // Usando a cor amarela do tema
+                color = MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                 modifier = Modifier.align(Alignment.Start).padding(start = 40.dp, top = 20.dp, bottom = 2.dp),
                 fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
             )
@@ -159,7 +159,7 @@ fun RegisterAccountContent(navController: NavController) {
                     Icon(
                         Icons.Filled.Email,
                         "",
-                        tint = someThemes.onTertiary,  // Usando a cor amarela do tema
+                        tint =MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -167,7 +167,7 @@ fun RegisterAccountContent(navController: NavController) {
 
             Text(
                 text = stringResource(id = R.string.password),
-                color = someThemes.onTertiary,  // Usando a cor amarela do tema
+                color =MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                 modifier = Modifier.align(Alignment.Start).padding(start = 40.dp, top = 20.dp, bottom = 2.dp),
                 fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
             )
@@ -183,7 +183,7 @@ fun RegisterAccountContent(navController: NavController) {
                     Icon(
                         Icons.Filled.Lock,
                         "",
-                        tint = someThemes.onTertiary,  // Usando a cor amarela do tema
+                        tint =MaterialTheme.colorScheme.onTertiary,  // Usando a cor amarela do tema
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -205,23 +205,23 @@ fun RegisterAccountContent(navController: NavController) {
                         text = buildAnnotatedString {
                             withStyle(
                                 SpanStyle(
-                                    color = someThemes.onTertiary  // Usando a cor amarela do tema
+                                    color = MaterialTheme.colorScheme.onTertiary  // Usando a cor amarela do tema
                                 )
                             ) {
                                 append(stringResource(id = R.string.agree_terms))
                             }
-                            withStyle(SpanStyle(color = someThemes.onSecondaryContainer)) {
+                            withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSecondaryContainer)) {
                                 append(stringResource(id = R.string.terms_of_use))
                             }
                             withStyle(
                                 SpanStyle(
-                                    color = someThemes.onTertiary  // Usando a cor amarela do tema
+                                    color = MaterialTheme.colorScheme.onTertiary  // Usando a cor amarela do tema
                                 )
                             ) {
                                 append(stringResource(id = R.string.terms_of_use_e_nosso))
                             }
 
-                            withStyle(SpanStyle(color = someThemes.onSecondaryContainer)) {
+                            withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSecondaryContainer)) {
                                 append(stringResource(id = R.string.and_privacy_policy))
                             }
                         },
@@ -233,7 +233,7 @@ fun RegisterAccountContent(navController: NavController) {
                     onClick = {  navController.navigate(route = "InputFullRegisterScreen")},
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier.padding(top = 10.dp).width(310.dp).height(50.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = someThemes.onTertiary),  // Usando a cor amarela do tema
+                    colors = ButtonDefaults.buttonColors(containerColor =MaterialTheme.colorScheme.onTertiary),  // Usando a cor amarela do tema
                 ) {
                     Text(
                         text = stringResource(id = R.string.enter),

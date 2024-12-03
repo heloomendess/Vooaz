@@ -35,7 +35,9 @@ Planos!</string>
 
 
     <!--  Payment -->
+
     <string name="brasil">Brasil</string>
+    <string name="paris">França</string>
     <string name="united_states">United States</string>
     <string name="portugal">Portugal</string>
     <string name="japan">日本</string>
@@ -58,6 +60,7 @@ Planos!</string>
     <string name="imagem_fixa">Imagem Fixa</string>
 
 
+
     <!--  SucessPayment -->
     <string name="pagamento_feito_desc">Pagamento Concluído</string>
     <string name="entrar">Entrar</string>
@@ -69,6 +72,7 @@ Planos!</string>
     <string name="google">Google logo</string>
     <string name="instagram">Instagram logo</string>
     <string name="facebook">Facebook logo</string>
+    <string name="whatsApp">WhatsApp logo</string>
 
     <!--  PlansScreenSuggestion -->
 
@@ -106,4 +110,57 @@ Planos!</string>
     <string name="airplane">Airplane</string>
     <string name="tour_guides">Tour guides</string>
     <string name="settings">Settings</string>
+    <string name="nome">$nome</string>
+    <string name="LogoAz">logo Do Vooaz</string>
+    <string name="icone">Aparelho auditivo</string>
+    <string name="local">Localização</string>
+    <string name="descrição">Descrição Guias</string>
+    <string name="sobre">$nome</string>
+    <string name="contato">Entre em contato</string>
+    <string name="az">Az conecta</string>
+    <string name="pesquisar">Pesquisar Destinos</string>
+    <string name="imagem">Descrição de imagem </string>
+    <string name="confirmação">confirmação </string>
+    <string name="mensagem">aviso </string>
+    <string name="telefone">$phone </string>
+    <string name="horários">$time </string>
+    <string name="seta">seta </string>
+    <string name="agenda">horários </string>
+    <string name="avaliações">avaliações </string>
+    <string name="roteiro">roteiro </string>
+    <string name="visita">realizar visita </string>
+    <string name="site">site </string>
+    <string name="endereço">enderelo do local</string>
+    <string name="comentário">Comentário do usuário </string>
+    <string name="informação">descrição do destino</string>
+    <string name="duração">duração</string>
+    <string name="titulo">$titulo</string>
+    <string name="feedback">feedback</string>
+    <string name="emoji">emoji</string>
+    <string name="pergunta">mensagem</string>
+    <string name="enviar">enviar</string>
+    <string name="back">back</string>
+    <string name="guias">guias</string>
+    <string name="iconNotificações">icone de notificações</string>
+    <string name="iconPerfil">icone de perfil</string>
+    <string name="genero">pesquisa genero</string>
+    <string name="Dropdown">Dropdown</string>
+    <string name="localização">Localizção</string>
+    <string name="conexões">conexões</string>
+    <string name="apresentação">apresentação</string>
+    <string name="editar">editar</string>
+    <string name="configurações">configurações</string>
+    <string name="infoPessoais">informações pessoais</string>
+    <string name="viagens">viagens</string>
+    <string name="ajustes">ajustes</string>
+    <string name="ajuda">central de ajuda</string>
+    <string name="perfil">perfil</string>
+
+
+
+
+
+
+
+
 </resources>

@@ -47,7 +47,9 @@ import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 @Composable
-fun BackgroundColorChangePassword(someThemes: ColorScheme) {
+fun BackgroundColorChangePassword(someThemes: ColorScheme)
+
+{
     Box(
         modifier = Modifier
             .background(

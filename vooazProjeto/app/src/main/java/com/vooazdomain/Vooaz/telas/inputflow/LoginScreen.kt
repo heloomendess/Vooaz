@@ -44,7 +44,7 @@ import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 fun BackgroundLoginScreen(someTheme: ColorScheme) {
     Box(
         modifier = Modifier
-            .background(color = someTheme.onBackground)
+            .background(MaterialTheme.colorScheme.onBackground)
             .fillMaxSize()
     )
     Box(
@@ -101,7 +101,7 @@ fun LoginScreen(navController: NavController) {
                 Icon(
                     Icons.Filled.Email,
                     "",
-                    tint = someTheme.onTertiary,
+                    tint = MaterialTheme.colorScheme.onTertiary,
                     modifier = Modifier.size(30.dp)
                 )
             }
@@ -121,7 +121,7 @@ fun LoginScreen(navController: NavController) {
                 Icon(
                     Icons.Filled.Lock,
                     "",
-                    tint = someTheme.onTertiary,
+                    tint = MaterialTheme.colorScheme.onTertiary,
                     modifier = Modifier.size(30.dp)
                 )
             }
@@ -131,7 +131,7 @@ fun LoginScreen(navController: NavController) {
             fontSize = 12.sp,
             textDecoration = TextDecoration.Underline,
             fontWeight = FontWeight.Bold,
-            color = someTheme.onTertiary,
+            color = MaterialTheme.colorScheme.onTertiary,
             modifier = Modifier
                 .padding(end = 170.dp)
                 .clickable { navController.navigate("ForgotPassword") },
@@ -146,7 +146,7 @@ fun LoginScreen(navController: NavController) {
                 .padding(top = 30.dp)
                 .width(310.dp)
                 .height(50.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = someTheme.onTertiary),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary),
         ) {
             Text(
                 stringResource(id = R.string.entrar),
@@ -159,7 +159,7 @@ fun LoginScreen(navController: NavController) {
         Text(
             stringResource(id = R.string.ou_faca_login),
             fontWeight = FontWeight.Bold,
-            color = someTheme.onTertiary,
+            color = MaterialTheme.colorScheme.onTertiary,
             modifier = Modifier.padding(top = 80.dp),
             fontFamily = poppinsFontFamily
         )

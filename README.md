@@ -35,9 +35,15 @@ Fechar parceria com algumas empresas e fundações que têm a mesma visão de ac
 
 Expandir a acessibilidade a outros públicos, onde começamos com a inclusão de pessoas em cadeira de rodas.
 
-## Equipe 🚀
+# Equipe 🚀
+
+<span style="font-size: 24px;">Conheça os reponsáveis pelo projeto:</span>
 
 Conheça os reponsáveis pelo projeto:
+
+
+![Foto da Equipe](equipe/Equipe_Vooaz.jpg)
+
 
 [Heloisa Mendes: Product Owner/Social media](https://github.com/heloomendess)
 

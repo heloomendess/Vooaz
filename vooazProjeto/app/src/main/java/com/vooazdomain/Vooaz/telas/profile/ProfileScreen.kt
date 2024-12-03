@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,6 +27,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
@@ -48,7 +50,7 @@ fun ProfileScreen(navController: NavHostController) {
                     modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint = Color.Black
+                    tint = MaterialTheme.colorScheme.onSecondary
                 )
 
 
@@ -95,14 +97,14 @@ fun ProfileScreen(navController: NavHostController) {
                             // Imagem de perfil
                             Image(
                                 painter = profileImagePlaceholder,
-                                contentDescription = "image description",
+                                contentDescription = stringResource(R.string.imagem,"image description"),
                                 contentScale = ContentScale.FillBounds,
                                 modifier = Modifier
                                     .width(128.dp)
                                     .height(120.dp)
                                     .border(
                                         width = 2.dp,
-                                        color = Color(0xFF4059AD),
+                                        color = MaterialTheme.colorScheme. onBackground,
                                         shape = RoundedCornerShape(size = 158.dp)
                                     )
                             )
@@ -113,11 +115,12 @@ fun ProfileScreen(navController: NavHostController) {
                             Column(modifier = Modifier.width(210.dp)) {
                                 Row() {
                                     Text(
-                                        text = "Fabio Nascimento",
+                                        text = stringResource(R.string.nome, "Fabio Nascimento"),
                                         style = TextStyle(
+                                            fontFamily = poppinsFontFamily,
                                             fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
@@ -127,26 +130,24 @@ fun ProfileScreen(navController: NavHostController) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
                                         painter = flagIcon,
-                                        contentDescription = "Localização",
+                                        contentDescription = stringResource(R.string.localização,"Localização"),
                                         modifier = Modifier.size(30.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "São Paulo, Brasil",
-                                        style = TextStyle(fontSize = 14.sp, color = Color.White)
+                                        text = stringResource(R.string.localização,"São Paulo, Brasil"),
+                                        style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 14.sp, color =MaterialTheme.colorScheme.onSecondaryContainer)
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Button(
                                     onClick = { /* Ação conectar */ },
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(
-                                            0xFFF4B942
-                                        )
+                                        containerColor = MaterialTheme.colorScheme.onTertiary
                                     ),
                                     modifier = Modifier.padding(start = 20.dp)
                                 ) {
-                                    Text(text = "Conexões", color = Color.White)
+                                    Text(text = stringResource(R.string.conexões,"Conexões"), color = MaterialTheme.colorScheme.onSecondaryContainer)
                                 }
                             }
 
@@ -166,7 +167,7 @@ fun ProfileScreen(navController: NavHostController) {
                             .width(411.dp)
                             .height(453.dp)
                             .background(
-                                color = Color(0xFFEFF2F1),
+                                color = MaterialTheme.colorScheme.surfaceContainerHighest,
                                 shape = RoundedCornerShape(size = 3.dp)
                             ),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -177,17 +178,18 @@ fun ProfileScreen(navController: NavHostController) {
                             style = TextStyle(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black
+                                color = MaterialTheme.colorScheme.onSecondary
                             )
                         )
                         Spacer(modifier = Modifier.height(28.dp))
                         Text(
-                            text = "Olá! Sou Laís Ribeiro, tenho 20 anos e moro em São Paulo. Sou uma pessoa apaixonada por natureza e amo explorar os parques da cidade. Gosto de sentir a energia dos lugares e as diferentes texturas e sons ao meu redor – é uma experiência única! Além disso, sou curiosa e estou sempre buscando novas formas de aproveitar a cidade. Acredito que cada passeio é uma oportunidade de me conectar mais com o mundo e com as pessoas ao meu redor.",
+                            text = stringResource(R.string.apresentação,"Olá! Sou Laís Ribeiro, tenho 20 anos e moro em São Paulo. Sou uma pessoa apaixonada por natureza e amo explorar os parques da cidade. Gosto de sentir a energia dos lugares e as diferentes texturas e sons ao meu redor – é uma experiência única! Além disso, sou curiosa e estou sempre buscando novas formas de aproveitar a cidade. Acredito que cada passeio é uma oportunidade de me conectar mais com o mundo e com as pessoas ao meu redor."),
                             style = TextStyle(
+                                fontFamily = poppinsFontFamily,
                                 fontSize = 19.sp,
                                 lineHeight = 18.36.sp,
                                 fontWeight = FontWeight(400),
-                                color = Color(0xFF000000),
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Justify,
 
                                 ),
@@ -205,12 +207,13 @@ fun ProfileScreen(navController: NavHostController) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
 
-                                text = "Entre em contato",
+                                text = stringResource(R.string.mensagem,"Entre em contato"),
                                 style = TextStyle(
+                                    fontFamily = poppinsFontFamily,
                                     fontSize = 21.sp,
                                     lineHeight = 17.28.sp,
                                     fontWeight = FontWeight(700),
-                                    color = Color(0xFFFFFFFF),
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     textAlign = TextAlign.Justify,
                                 )
                             )
@@ -223,7 +226,7 @@ fun ProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação WhatsApp */ }) {
                                     Icon(
                                         painter = whatsappIcon,
-                                        contentDescription = "WhatsApp",
+                                        contentDescription = stringResource(R.string.whatsApp,"WhatsApp"),
                                         modifier = Modifier.size(30.dp),
                                         tint = Color.Unspecified
                                     )
@@ -232,7 +235,7 @@ fun ProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação Instagram */ }) {
                                     Icon(
                                         painter = instagramIcon,
-                                        contentDescription = "Instagram",
+                                        contentDescription =stringResource(R.string.instagram, "Instagram"),
                                         modifier = Modifier.size(55.dp),
                                         tint = Color.Unspecified
                                     )
@@ -242,7 +245,7 @@ fun ProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação Facebook */ }) {
                                     Icon(
                                         painter = facebookIcon,
-                                        contentDescription = "Facebook",
+                                        contentDescription = stringResource(R.string.facebook,"Facebook"),
                                         modifier = Modifier.size(30.dp),
                                         tint = Color.Unspecified
                                     )

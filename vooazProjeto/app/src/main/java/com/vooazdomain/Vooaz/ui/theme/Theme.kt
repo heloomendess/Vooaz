@@ -26,6 +26,26 @@ private val DarkColorScheme = darkColorScheme(
     background= StrongBlue80,
     onBackground = Blue80,
     onSecondary = Black,
+    onPrimaryContainer = offWhite,
+    primaryContainer = blue60,
+    surfaceBright = cinza,
+    surfaceTint = white40,
+    surfaceContainer = cinza40,
+    onTertiaryContainer = white60,
+    scrim = blue40,
+    onPrimary = blue20,
+    onSurfaceVariant = yellow60,
+    outline = white80,
+    surfaceContainerLow = white100,
+    secondaryContainer = cinza20,
+    tertiaryContainer = blue100,
+    surfaceContainerHigh = white120,
+    outlineVariant = white140,
+    onSurface = blue120,
+    surfaceContainerHighest = white160,
+    surfaceContainerLowest = yellow80,
+    surface = white10,
+    inverseOnSurface = white110
 
 )
 
@@ -38,6 +58,34 @@ private val LightColorScheme = lightColorScheme(
     background= StrongBlue80,
     onBackground = Blue80,
     onSecondary = Black,
+    onPrimaryContainer = offWhite,
+    primaryContainer = blue60,
+    surfaceBright = cinza,
+    surfaceTint = white40,
+    surfaceContainer = cinza40,
+    onTertiaryContainer = white60,
+    onPrimary = blue20,
+    onSurfaceVariant = yellow60,
+    outline = white80,
+    secondaryContainer = cinza20,
+    tertiaryContainer = blue100,
+    surfaceContainerLow = white100,
+    scrim = blue40,
+    surfaceContainerHigh = white120,
+    outlineVariant = white140,
+    onSurface = blue120,
+    surfaceContainerHighest = white160,
+    surfaceContainerLowest = yellow80,
+    surface = white10,
+    inverseOnSurface = white110
+
+
+
+
+
+
+
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

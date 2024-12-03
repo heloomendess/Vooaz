@@ -40,7 +40,7 @@ import com.vooazdomain.Vooaz.ui.theme.*  // Importando as cores do tema
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Pagamento(navController: NavController) {
-    var someTheme=MaterialTheme.colorScheme
+
     val nome = remember { mutableStateOf("") }
     val numeroCartao = remember { mutableStateOf("") }
     val dataExpedicao = remember { mutableStateOf("") }
@@ -58,11 +58,11 @@ fun Pagamento(navController: NavController) {
         stringResource(id = R.string.russia)
     )
     Scaffold(modifier = Modifier.fillMaxSize(),
-        containerColor = someTheme.onBackground,
+        containerColor = MaterialTheme.colorScheme.onBackground,
         topBar = {
             TopAppBar(
                 title = { Text(text = "") },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = someTheme.onBackground),
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.onBackground),
                 navigationIcon = {
                     IconButton(onClick = { }) {
                         Image(
@@ -95,7 +95,7 @@ fun Pagamento(navController: NavController) {
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 40.sp,
-                    color = someTheme.onTertiary,
+                    color = MaterialTheme.colorScheme.onTertiary,
                     modifier = Modifier.padding(top = 16.dp),
                     textAlign = TextAlign.Center
                 )
@@ -104,7 +104,7 @@ fun Pagamento(navController: NavController) {
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 40.sp,
-                    color = someTheme.onTertiary,
+                    color = MaterialTheme.colorScheme.onTertiary,
                     modifier = Modifier.padding(top = 0.dp),
                     textAlign = TextAlign.Center
                 )
@@ -119,7 +119,7 @@ fun Pagamento(navController: NavController) {
                         fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color = someTheme.onTertiary,
+                        color = MaterialTheme.colorScheme.onTertiary,
                         modifier = Modifier.padding(bottom = 0.dp)
                     )
                     OutlinedTextField(
@@ -134,10 +134,10 @@ fun Pagamento(navController: NavController) {
                             )
                         },
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = someTheme.onSecondaryContainer,
-                            focusedTextColor = someTheme.onSecondary,
-                            focusedBorderColor =  someTheme.onTertiary,
-                            unfocusedBorderColor =  someTheme.tertiary,
+                            containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                            focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.tertiary,
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -147,7 +147,7 @@ fun Pagamento(navController: NavController) {
                         fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color = someTheme.onTertiary,
+                        color =MaterialTheme.colorScheme.onTertiary,
                         modifier = Modifier.padding(top = 15.dp, bottom = 0.dp)
                     )
                     OutlinedTextField(
@@ -162,10 +162,10 @@ fun Pagamento(navController: NavController) {
                             )
                         },
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = someTheme.onSecondaryContainer,
-                            focusedTextColor = someTheme.onSecondary,
-                            focusedBorderColor =  someTheme.onTertiary,
-                            unfocusedBorderColor =  someTheme.tertiary
+                            containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                            focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                            unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -185,7 +185,7 @@ fun Pagamento(navController: NavController) {
                                 fontFamily = poppinsFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 15.sp,
-                                color = someTheme.onTertiary,
+                                color = MaterialTheme.colorScheme.onTertiary,
                                 modifier = Modifier.padding(top = 15.dp, bottom = 0.dp)
                             )
                             OutlinedTextField(
@@ -200,10 +200,10 @@ fun Pagamento(navController: NavController) {
                                     )
                                 },
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                                    containerColor = someTheme.onSecondaryContainer,
-                                    focusedTextColor = someTheme.onSecondary,
-                                    focusedBorderColor =  someTheme.onTertiary,
-                                    unfocusedBorderColor =  someTheme.tertiary,
+                                    containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                                    focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                                    unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary,
                                 ),
                                 modifier = Modifier
                                     .width(150.dp)
@@ -221,7 +221,7 @@ fun Pagamento(navController: NavController) {
                                 fontFamily = poppinsFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp,
-                                color = someTheme.onTertiary,
+                                color = MaterialTheme.colorScheme.onTertiary,
                                 modifier = Modifier.padding(top = 15.dp, bottom = 0.dp)
                             )
                             OutlinedTextField(
@@ -236,10 +236,10 @@ fun Pagamento(navController: NavController) {
                                     )
                                 },
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                                    containerColor = someTheme.onSecondaryContainer,
-                                    focusedTextColor = someTheme.onSecondary,
-                                    focusedBorderColor =  someTheme.onTertiary,
-                                    unfocusedBorderColor =  someTheme.tertiary,
+                                    containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                                    focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                                    unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary,
                                 ),
                                 modifier = Modifier
                                     .width(150.dp)
@@ -253,17 +253,17 @@ fun Pagamento(navController: NavController) {
                         fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color = someTheme.onTertiary,
+                        color = MaterialTheme.colorScheme.onTertiary,
                         modifier = Modifier.padding(top = 15.dp, bottom = 4.dp)
                     )
                     OutlinedTextField(
                         value = cpfcnpj.value,
                         onValueChange = { cpfcnpj.value = it },
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = someTheme.onSecondaryContainer,
-                            focusedTextColor = someTheme.onSecondary,
-                            focusedBorderColor =  someTheme.onTertiary,
-                            unfocusedBorderColor =  someTheme.tertiary,
+                            containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                            focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                            unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary,
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -273,7 +273,7 @@ fun Pagamento(navController: NavController) {
                         fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color =someTheme.onTertiary,
+                        color =MaterialTheme.colorScheme.onTertiary,
                         modifier = Modifier.padding(top = 15.dp, bottom = 0.dp)
                     )
                     OutlinedTextField(
@@ -288,10 +288,10 @@ fun Pagamento(navController: NavController) {
                             )
                         },
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = someTheme.onSecondaryContainer,
-                            focusedTextColor = someTheme.onSecondary,
-                            focusedBorderColor =  someTheme.onTertiary,
-                            unfocusedBorderColor =  someTheme.tertiary,
+                            containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                            focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                            unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary,
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -317,10 +317,10 @@ fun Pagamento(navController: NavController) {
                             }
                         },
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = someTheme.onSecondaryContainer,
-                            focusedTextColor = someTheme.onSecondary,
-                            focusedBorderColor =  someTheme.onTertiary,
-                            unfocusedBorderColor =  someTheme.tertiary,
+                            containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                            focusedBorderColor =  MaterialTheme.colorScheme.onTertiary,
+                            unfocusedBorderColor =  MaterialTheme.colorScheme.tertiary,
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )

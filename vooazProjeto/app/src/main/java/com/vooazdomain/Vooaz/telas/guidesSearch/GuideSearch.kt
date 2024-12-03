@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key.Companion.Guide
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,8 +38,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.telas.destinationsScreen.TopBar
-import navigationBar
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
+import navigationBar
 
 @Composable
 fun GuidesScreen(navController: NavController) {
@@ -53,7 +55,7 @@ fun GuidesScreen(navController: NavController) {
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) { innerpadding ->
         Box(
-            modifier = Modifier.fillMaxSize().background(Color(0xFFF5F5F5)).padding(innerpadding),
+            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme. outlineVariant).padding(innerpadding),
         ) {
             Column(
                 modifier = Modifier
@@ -77,9 +79,8 @@ fun GuidesScreen(navController: NavController) {
                     Spacer(
                         modifier = Modifier.height(16.dp))
                     Row (modifier = Modifier.padding(end = 30.dp)){
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back", modifier = Modifier.padding(end = 30.dp).size(40.dp).clickable {
-                            navController.popBackStack()
-                        })
+
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back, "back"), modifier = Modifier.padding(end = 30.dp).size(40.dp))
                         HeaderGuidesFilter(MaterialTheme.colorScheme.onTertiary)
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -157,13 +158,14 @@ fun HeaderGuidesFilter(primaryColor: Color) {
     Box(modifier = Modifier
         .width(240.dp)
         .height(55.dp)
-        .background(color = Color(0xFF0E2C8F), shape = RoundedCornerShape(size = 20.dp)).clickable { 
+        .background(color= MaterialTheme.colorScheme.onSurface, shape = RoundedCornerShape(size = 20.dp)).clickable {
             
             expanded= !expanded
         }, contentAlignment = Alignment.Center) {
         Text(
-            text = "Guias",
+            text = stringResource(R.string.guias,"Guias"),
             style = TextStyle(
+                fontFamily = poppinsFontFamily,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = primaryColor
@@ -178,7 +180,7 @@ fun HeaderGuidesFilter(primaryColor: Color) {
             onDismissRequest = { expanded = false },
             modifier = Modifier.width(240.dp).padding(start = 20.dp)
                 .height(90.dp)
-                .background(color = Color(0xFFEFF2F1), shape = RoundedCornerShape(size = 15.dp))
+                .background(color = MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp))
         ) {
             listOf("Masculino", "Feminino", "Outro").forEach { gender ->
                 DropdownMenuItem(
@@ -202,22 +204,22 @@ fun TopBar() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.logoaz),
-            contentDescription = "Logo",
+            contentDescription = stringResource(R.string.logo,"Logo"),
             modifier = Modifier.size(68.dp)
         )
         Spacer(modifier = Modifier.weight(1f))
         IconButton(onClick = { /* Bell Action */ }) {
             Icon(
                 painter = painterResource(id = R.drawable.ico_bell_blue),
-                contentDescription = "Notificações",
-                tint = Color.Black,
+                contentDescription = stringResource(R.string.iconNotificações ,"Notificações"),
+                tint = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier.size(30.dp)
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
         Image(
             painter = painterResource(id = R.drawable.ico_profile_blue),
-            contentDescription = "Perfil",
+            contentDescription = stringResource(R.string.iconPerfil,"Perfil"),
             modifier = Modifier
                 .size(30.dp)
                 .clip(CircleShape)
@@ -230,7 +232,7 @@ fun GuideCard(guide: Guide) {
     Row(
         modifier = Modifier
             .fillMaxWidth().border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
-            .background(Color.White, RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme. onSecondaryContainer, RoundedCornerShape(12.dp))
             .padding(16.dp),
 
         verticalAlignment = Alignment.CenterVertically
@@ -250,9 +252,10 @@ fun GuideCard(guide: Guide) {
         ) {
             Text(
                 text = guide.name,
+                fontFamily = poppinsFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.onSecondary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Row() {
@@ -262,19 +265,22 @@ fun GuideCard(guide: Guide) {
                 Text(
                     text = "${guide.rating} (${guide.feedbackCount} avaliações)",
                     fontSize = 14.sp,
-                    color = Color(0xFFFFA000)
+                    fontFamily = poppinsFontFamily,
+                    color= MaterialTheme.colorScheme.surfaceContainerLowest
                 )
             }
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "Idade: ${guide.age}",
                 fontSize = 14.sp,
-                color = Color.Gray
+                fontFamily = poppinsFontFamily,
+                color = MaterialTheme.colorScheme.tertiary
             )
             Text(
                 text = "Local: ${guide.location}",
                 fontSize = 14.sp,
-                color = Color.Gray
+                fontFamily = poppinsFontFamily,
+                color = MaterialTheme.colorScheme.tertiary
             )
         }
     }

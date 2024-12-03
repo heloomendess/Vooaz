@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,11 +51,13 @@ fun PersonalInfoScreen(navController: NavController) {
                             fontSize = 24.sp,
                             lineHeight = 31.32.sp,
                             fontWeight = FontWeight(900),
-                            color = Color(0xFFEFF2F1),
+                            color =MaterialTheme.colorScheme.surfaceContainerHighest,
                         ),
                     )
                     Spacer(modifier = Modifier.width(20.dp))
-                    Text("editar", modifier = Modifier.padding(top = 4.dp), fontSize = 20.sp)
+                    Text(
+                        stringResource(R.string.editar,
+                        "editar"), modifier = Modifier.padding(top = 4.dp), fontSize = 20.sp, fontFamily = poppinsFontFamily)
                 }
             }
         }
@@ -62,7 +65,7 @@ fun PersonalInfoScreen(navController: NavController) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFF5F5F5)) // Fundo mais claro
+                .background(MaterialTheme.colorScheme.outlineVariant) // Fundo mais claro
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -100,15 +103,15 @@ fun PersonalInfoScreen(navController: NavController) {
                 Button(
                     onClick = { /* Handle back action */ },
                     modifier =Modifier
-                        .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                        .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme. surfaceContainer, ambientColor = MaterialTheme.colorScheme. surfaceContainer)
                         .width(143.dp)
                         .height(49.dp).padding(top = 15.dp),
 
                     shape = RoundedCornerShape(15.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4059AD )),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
 
                 ) {
-                    Text("Voltar")
+                    Text(stringResource(R.string.voltar,"Voltar"))
                 }
             }
             item {
@@ -124,7 +127,7 @@ fun SectionTitleProfileInfo(text: String) {
         text = text,
         fontSize = 16.sp,
         fontWeight = FontWeight.Bold,
-        color = Color(0xFF3B5998),
+        color = MaterialTheme.colorScheme. onPrimary,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 3.dp)
@@ -140,12 +143,12 @@ fun InputField(
     TextField(
         value = "",
         onValueChange = {},
-        placeholder = { Text(placeholder, color = Color.Gray) },
+        placeholder = { Text(placeholder, color = MaterialTheme.colorScheme.tertiary) },
 
         modifier = Modifier
             .width(350.dp)
             .padding(horizontal = 16.dp, vertical = 4.dp)
-            .border(1.dp, Color.Gray, RoundedCornerShape(8.dp)) // Borda mais fina
+            .border(1.dp, MaterialTheme.colorScheme.tertiary, RoundedCornerShape(8.dp)) // Borda mais fina
             .background(Color.White, RoundedCornerShape(8.dp)), // Fundo branco
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent, // Fundo do campo
@@ -166,7 +169,7 @@ fun DropdownField(options: List<String>) {
         modifier = Modifier
             .width(350.dp)
             .padding(horizontal = 16.dp, vertical = 4.dp)
-            .border(1.dp, Color.Gray, RoundedCornerShape(8.dp)) // Borda ao redor do dropdown
+            .border(1.dp, MaterialTheme.colorScheme.tertiary, RoundedCornerShape(8.dp)) // Borda ao redor do dropdown
             .background(Color.White, RoundedCornerShape(8.dp))
             .clickable { expanded = true }
     ) {

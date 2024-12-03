@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,6 +27,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
 fun AzConnectProfileScreen(navController: NavHostController) {
@@ -44,11 +46,11 @@ fun AzConnectProfileScreen(navController: NavHostController) {
 
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Voltar",
+                    contentDescription = stringResource(R.string.voltar),
                     modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint = Color.Black
+                    tint =MaterialTheme.colorScheme.onSecondaryContainer
                 )
 
 
@@ -59,7 +61,7 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                     Box(modifier = Modifier.padding(end = 60.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = "image description",
+                            contentDescription = stringResource(R.string.LogoAz),
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
                                 .width(75.dp)
@@ -95,14 +97,14 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                             // Imagem de perfil
                             Image(
                                 painter = profileImagePlaceholder,
-                                contentDescription = "image description",
+                                contentDescription = stringResource(R.string.imagem_usuario),
                                 contentScale = ContentScale.FillBounds,
                                 modifier = Modifier
                                     .width(128.dp)
                                     .height(120.dp)
                                     .border(
                                         width = 2.dp,
-                                        color = Color(0xFF4059AD),
+                                        color = MaterialTheme.colorScheme. onBackground,
                                         shape = RoundedCornerShape(size = 158.dp)
                                     )
                             )
@@ -113,26 +115,32 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                             Column(modifier = Modifier.width(210.dp)) {
                                 Row() {
                                     Text(
-                                        text = "Fabio Nascimento",
+                                        text = stringResource(R.string.nome,"Fabio Nascimento"),
                                         style = TextStyle(
+                                            fontFamily =poppinsFontFamily,
                                             fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White
+                                            color =MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Image(painterResource(R.drawable.hearingaidicon), contentDescription = "Aparelho auditivo", modifier =Modifier.size(30.dp))
+                                    Image(painterResource(R.drawable.hearingaidicon),
+                                        contentDescription = stringResource(R.string.icone),
+                                        modifier =Modifier.size(30.dp))
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
                                         painter = flagIcon,
-                                        contentDescription = "Localização",
+                                        contentDescription = stringResource(R.string.local),
                                         modifier = Modifier.size(30.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "Paris, França",
-                                        style = TextStyle(fontSize = 14.sp, color = Color.White)
+                                        text = stringResource(R.string.paris,"Paris, França"),
+                                        fontFamily =poppinsFontFamily,
+                                        style = TextStyle(fontSize = 14.sp,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                        )
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
@@ -145,7 +153,9 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                                     ),
                                     modifier = Modifier.padding(start = 20.dp)
                                 ) {
-                                    Text(text = "Conectar", color = Color.White)
+                                    Text(text = "Conectar",
+                                        fontFamily = poppinsFontFamily,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer)
                                 }
                             }
 
@@ -165,28 +175,30 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                             .width(411.dp)
                             .height(453.dp)
                             .background(
-                                color = Color(0xFFEFF2F1),
+                                color = MaterialTheme.colorScheme.  tertiary,
                                 shape = RoundedCornerShape(size = 3.dp)
                             ),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Sobre Fabio:",
+                            text = stringResource(R.string.sobre,"Sobre Fabio:"),
+                            fontFamily = poppinsFontFamily,
                             style = TextStyle(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black
+                                color =MaterialTheme.colorScheme.onSecondary
                             )
                         )
                         Spacer(modifier = Modifier.height(28.dp))
                         Text(
-                            text = "Olá! Meu nome é Fábio Nascimento, sou um apaixonado por arte e cultura, vivendo atualmente em Paris, França. Natural do Brasil, encontrei na Cidade Luz um lar inspirador, onde exploro constantemente museus, cafés e a rica história que permeia cada esquina. Sou designer gráfico e adoro combinar minha paixão pela criatividade com a beleza urbana de Paris. Nos meus tempos livres, gosto de escrever sobre minhas experiências e compartilhar dicas sobre a cidade. Estou animado para conectar e trocar ideias com todos vocês!",
+                            text = stringResource(R.string.descrição,"Olá! Meu nome é Fábio Nascimento, sou um apaixonado por arte e cultura, vivendo atualmente em Paris, França. Natural do Brasil, encontrei na Cidade Luz um lar inspirador, onde exploro constantemente museus, cafés e a rica história que permeia cada esquina. Sou designer gráfico e adoro combinar minha paixão pela criatividade com a beleza urbana de Paris. Nos meus tempos livres, gosto de escrever sobre minhas experiências e compartilhar dicas sobre a cidade. Estou animado para conectar e trocar ideias com todos vocês!"),
                             style = TextStyle(
+                                fontFamily = poppinsFontFamily,
                                 fontSize = 19.sp,
                                 lineHeight = 18.36.sp,
                                 fontWeight = FontWeight(400),
-                                color = Color(0xFF000000),
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Justify,
 
                                 ),
@@ -204,12 +216,13 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
 
-                                text = "Entre em contato",
+                                text = stringResource(R.string.contato,"Entre em contato"),
+                                fontFamily = poppinsFontFamily,
                                 style = TextStyle(
                                     fontSize = 21.sp,
                                     lineHeight = 17.28.sp,
                                     fontWeight = FontWeight(700),
-                                    color = Color(0xFFFFFFFF),
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                                     textAlign = TextAlign.Justify,
                                 )
                             )
@@ -222,7 +235,7 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação WhatsApp */ }) {
                                     Icon(
                                         painter = whatsappIcon,
-                                        contentDescription = "WhatsApp",
+                                        contentDescription = stringResource(R.string.whatsApp,"WhatsApp"),
                                         modifier = Modifier.size(30.dp),
                                         tint = Color.Unspecified
                                     )
@@ -231,7 +244,7 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação Instagram */ }) {
                                     Icon(
                                         painter = instagramIcon,
-                                        contentDescription = "Instagram",
+                                        contentDescription = stringResource(R.string.instagram,"Instagram"),
                                         modifier = Modifier.size(55.dp),
                                         tint = Color.Unspecified
                                     )
@@ -241,7 +254,7 @@ fun AzConnectProfileScreen(navController: NavHostController) {
                                 IconButton(onClick = { /* Ação Facebook */ }) {
                                     Icon(
                                         painter = facebookIcon,
-                                        contentDescription = "Facebook",
+                                        contentDescription = stringResource(R.string.facebook,"Facebook"),
                                         modifier = Modifier.size(30.dp),
                                         tint = Color.Unspecified
                                     )

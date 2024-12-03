@@ -201,7 +201,7 @@ fun Plans(navController: NavController) {
                             Button(
                                 onClick = {},
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xFF6B9AC4),
+                                    containerColor = someThemes.secondary,
                                     contentColor = someThemes.onSecondary
                                 ),
                                 shape = RoundedCornerShape(30.dp),

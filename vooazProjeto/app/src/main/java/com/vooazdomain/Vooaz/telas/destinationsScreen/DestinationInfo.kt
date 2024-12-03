@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.telas.destinationsScreen.TravelItineraryScreen
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
 fun DestinationDetailsScreen(
@@ -54,7 +56,7 @@ fun DestinationDetailsScreen(
     expandRouteTravel: MutableState<Boolean> = remember { mutableStateOf(false) },
             expanded_hours: MutableState<Boolean> = remember { mutableStateOf(false) },
 ) {
-    Column(modifier = Modifier.fillMaxSize().background(Color(0xFFF7F7F7))) {
+    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.onTertiaryContainer)) {
         Box() {
             Image(
                 painter = painterResource(imageRes),
@@ -77,14 +79,15 @@ fun DestinationDetailsScreen(
             Box(modifier = Modifier
                 .width(240.dp)
                 .height(55.dp)
-                .background(color = Color(0xFFF4B942), shape = RoundedCornerShape(size = 20.dp)).clickable {
+                .background(color = MaterialTheme.colorScheme.onTertiary, shape = RoundedCornerShape(size = 20.dp)).clickable {
                 }, contentAlignment = Alignment.Center) {
                 Text(
                     text = title,
                     style = TextStyle(
+                        fontFamily = poppinsFontFamily,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
 
                     ),
                     textAlign = TextAlign.Center,
@@ -94,18 +97,18 @@ fun DestinationDetailsScreen(
                 )}
 
 
-Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = RoundedCornerShape(size = 20.dp)).fillMaxWidth()) {
+Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorScheme.tertiary , shape = RoundedCornerShape(size = 20.dp)).fillMaxWidth()) {
     Box(modifier = Modifier.padding(20.dp)) {
         Column {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = website,
-                color = Color(0xFF1E88E5),
+                color = MaterialTheme.colorScheme.scrim,
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = address)
-            Text(text = "Telefone: $phone")
-            Text(text = "Horários: $hours")
+            Text(text = stringResource(R.string.telefone,"Telefone: $phone"))
+            Text(text = stringResource(R.string.horários, "Horários: $hours"))
             Box(modifier = Modifier.fillMaxWidth().clickable {
                 expanded_hours.value =!expanded_hours.value
             }, contentAlignment = Alignment.Center) {
@@ -115,7 +118,8 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = Rou
                         Icons.Default.KeyboardArrowUp
                     } else {
                         Icons.Default.KeyboardArrowDown
-                    }, contentDescription = "seta", modifier = Modifier.size(30.dp)
+                    }, contentDescription = stringResource(R.string.seta,"seta"),
+                    modifier = Modifier.size(30.dp)
                 )
             }
         }
@@ -130,15 +134,13 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = Rou
            Box(modifier = Modifier.padding(20.dp)) {
                Row {
                    Text(
-                       text = "Terça-feira: 09:00 - 16:00\nQuarta-feira: 09:00 - 16:00\nQuinta-feira: 09:00 - 16:00\nSexta-feira: 09:00 - 16:00\nSábado: 09:00 - 16:00\nDomingo: 13:00 - 16:00\nSegunda-feira: 09:00 - 16:00",
+                       text = stringResource(R.string.agenda,"Terça-feira: 09:00 - 16:00\nQuarta-feira: 09:00 - 16:00\nQuinta-feira: 09:00 - 16:00\nSexta-feira: 09:00 - 16:00\nSábado: 09:00 - 16:00\nDomingo: 13:00 - 16:00\nSegunda-feira: 09:00 - 16:00"),
                        style = TextStyle(
                            fontSize = 12.sp,
                            fontWeight = FontWeight(700),
-                           color = Color(0xFF000000),
+                           color = MaterialTheme.colorScheme.onSecondary
                        )
                    )
-
-
                }
            }
        }
@@ -148,15 +150,16 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = Rou
             Box(modifier =Modifier.border(2.dp, Color.Gray, shape = RoundedCornerShape(size = 20.dp)).fillMaxWidth()) {
                 Box(modifier = Modifier.padding(10.dp)) {// Informações principais
                     Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally){
-                        Text("Avaliações")
+                        Text(stringResource(R.string.avaliações,"Avaliações"))
                         Image(painterResource(R.drawable.ico_coruja) ,contentDescription = "empresa", modifier = Modifier.size(80.dp))
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = "4/5\nTripadvisor\n(364 avaliações)",
                             style = TextStyle(
+                                fontFamily = poppinsFontFamily,
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight(700),
-                                color = Color(0xFF000000),
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 textDecoration = TextDecoration.Underline,
                             )
@@ -175,9 +178,10 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = Rou
                             text = description,
                             modifier =Modifier.padding(10.dp),
                             style = TextStyle(
+                                fontFamily = poppinsFontFamily,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight(700),
-                                color = Color(0xFF000000),
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 textDecoration = TextDecoration.Underline,
                             )
@@ -200,26 +204,26 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp, Color.Gray, shape = Rou
                     expandRouteTravel.value = !expandRouteTravel.value
                 },
                 modifier = Modifier
-                    .border(width = 1.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 20.dp))
+                    .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 20.dp))
                     .width(192.dp)
                     .height(44.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3B5998)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onPrimary),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                Text("Roteiro")
+                Text(stringResource(R.string.roteiro,"Roteiro"))
             }
             Spacer(modifier = Modifier.height(14.dp))
 
             Button(
                 onClick = onVisitClick,
                 modifier = Modifier
-                    .border(width = 1.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 20.dp))
+                    .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 20.dp))
                 .width(272.dp)
                 .height(54.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF4B942)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                Text("Realizar visita")
+                Text(stringResource(R.string.visita,"Realizar visita"))
             }
         }
     } else {
@@ -238,7 +242,7 @@ fun RatingSection(rating: Float, reviewsCount: Int) {
             imageVector = Icons.Default.Star,
             contentDescription = null,
             modifier = Modifier.size(32.dp),
-            tint = Color(0xFFFFC107) // Cor da estrela (amarela)
+            tint = MaterialTheme.colorScheme.onSurfaceVariant // Cor da estrela (amarela)
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
@@ -247,7 +251,7 @@ fun RatingSection(rating: Float, reviewsCount: Int) {
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = "($reviewsCount avaliações)",
-            color = Color.Gray
+            color = MaterialTheme.colorScheme.tertiary
         )
     }
 }
@@ -255,12 +259,13 @@ fun RatingSection(rating: Float, reviewsCount: Int) {
 @Composable
 fun UserCommentsSection(comments: List<UserComment>) {
     Text(
-        text = "Comentario dos Usuarios",
+        text = stringResource(R.string.comentário,"Comentario dos Usuarios"),
         style = TextStyle(
+            fontFamily = poppinsFontFamily,
             fontSize = 20.sp,
             lineHeight = 27.37.sp,
             fontWeight = FontWeight(900),
-            color = Color(0xFF000000),
+            color = MaterialTheme.colorScheme.onSecondary,
             textAlign = TextAlign.Center,
         )
     )
@@ -276,7 +281,7 @@ fun UserCommentItem(comment: UserComment) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, Color(0xFFDDDDDD), RoundedCornerShape(8.dp))
+            .border(1.dp,MaterialTheme.colorScheme. outline, RoundedCornerShape(8.dp))
             .background(Color.White, RoundedCornerShape(8.dp))
             .padding(12.dp),
         verticalAlignment = Alignment.Top
@@ -285,7 +290,7 @@ fun UserCommentItem(comment: UserComment) {
             imageVector = Icons.Default.Person,
             contentDescription = null,
             modifier = Modifier.size(40.dp),
-            tint = Color.Gray
+            tint = MaterialTheme.colorScheme.tertiary
         )
         Spacer(modifier = Modifier.width(12.dp))
         Column {
@@ -297,18 +302,18 @@ fun UserCommentItem(comment: UserComment) {
                     imageVector = Icons.Default.Star,
                     contentDescription = null,
                     modifier = Modifier.size(16.dp),
-                    tint = Color(0xFFFFC107)
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = comment.rating.toString(),
-                    color = Color.Gray
+                    color =  MaterialTheme.colorScheme.tertiary
                 )
             }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = comment.comment,
-                color = Color(0xFF555555))
+                color =MaterialTheme.colorScheme.secondaryContainer )
 
         }
     }
@@ -326,24 +331,24 @@ data class UserComment(
 fun PreviewDestinationDetails() {
     DestinationDetailsScreen(
         imageRes = R.drawable.museuimg,
-        title = "Museu do Ipiranga",
-        website = "museudoipiranga.org.br",
-        address = "Parque da Independência - Ipiranga, São Paulo - SP, 04263-000",
-        phone = "(11) 2065-8000",
-        hours = "10:00 – 17:00",
+        title = stringResource(R.string.destination,"Museu do Ipiranga"),
+        website =stringResource(R.string.site,"museudoipiranga.org.br"),
+        address = stringResource(R.string.endereço,"Parque da Independência - Ipiranga, São Paulo - SP, 04263-000"),
+        phone = stringResource(R.string.telefone,"(11) 2065-8000"),
+        hours = stringResource(R.string.horários,"10:00 – 17:00"),
         rating = 4.8f,
         reviewsCount = 512,
-        description = "O Museu do Ipiranga em São Paulo reabriu recentemente após uma reforma, apresentando artefatos que narram a história do Brasil, com ênfase na Independência. A arquitetura grandiosa, inspirada no Palácio de Versalhes, é uma atração imperdível.",
+        description = stringResource(R.string.informação,"O Museu do Ipiranga em São Paulo reabriu recentemente após uma reforma, apresentando artefatos que narram a história do Brasil, com ênfase na Independência. A arquitetura grandiosa, inspirada no Palácio de Versalhes, é uma atração imperdível."),
         userComments = listOf(
             UserComment(
-                userName = "Caroline Amaral",
+                userName = stringResource(R.string.nome,"Caroline Amaral"),
                 rating = 4.5f,
-                comment = "Visitei o Museu do Ipiranga e adorei! O acervo é muito interessante e a estrutura está linda após a reforma. Recomendo a todos que gostam de história!"
+                comment = stringResource(R.string.comentário,"Visitei o Museu do Ipiranga e adorei! O acervo é muito interessante e a estrutura está linda após a reforma. Recomendo a todos que gostam de história!"),
             ),
             UserComment(
-                userName = "José Ferreira",
+                userName = stringResource(R.string.nome,"José Ferreira"),
                 rating = 4.0f,
-                comment = "Excelente visita ao Museu do Ipiranga! As exposições são bem organizadas e a história do Brasil ganha vida ali. Vale a pena conhecer!"
+                comment =stringResource(R.string.comentário, "Excelente visita ao Museu do Ipiranga! As exposições são bem organizadas e a história do Brasil ganha vida ali. Vale a pena conhecer!")
             )
         ),
         onVisitClick = { /* Ação para realizar a visita */ }

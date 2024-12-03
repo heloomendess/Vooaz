@@ -32,7 +32,7 @@ fun BackgroundInputScreen(someTheme: ColorScheme) {
     Box(
         modifier = Modifier
             .background(
-                color = someTheme.onBackground
+                color = MaterialTheme.colorScheme.onBackground
             )
             .fillMaxWidth()
             .fillMaxHeight()
@@ -69,7 +69,7 @@ fun InputScreen(navController: NavController) {
                 .width(300.dp)
                 .height(90.dp)
                 .padding(bottom = 10.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = someTheme.background),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background),
             shape = RoundedCornerShape(20.dp),
         ) {
             Text(
@@ -85,7 +85,7 @@ fun InputScreen(navController: NavController) {
                 .width(300.dp)
                 .height(90.dp)
                 .padding(top = 10.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = someTheme.onTertiary),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(
@@ -116,7 +116,7 @@ fun InputScreen(navController: NavController) {
 
             Text(
                 text = stringResource(id = R.string.about_us),
-                color = someTheme.onTertiary,
+                color = MaterialTheme.colorScheme.onTertiary,
                 fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFontFamily,
                 modifier = Modifier.clickable {

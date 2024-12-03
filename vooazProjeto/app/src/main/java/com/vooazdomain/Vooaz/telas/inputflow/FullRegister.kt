@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,9 +46,9 @@ fun InputFullRegisterScreen(navController: NavController) {
 
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
-                                contentDescription = "Voltar",
+                                contentDescription = stringResource(R.string.voltar, "Voltar"),
                                 modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp),
-                                tint = Color.Black
+                                tint = MaterialTheme.colorScheme.onSecondary
                             )
 
 
@@ -57,7 +59,7 @@ fun InputFullRegisterScreen(navController: NavController) {
                             Box(modifier = Modifier.padding(end = 60.dp)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.logoaz),
-                                    contentDescription = "image description",
+                                    contentDescription = stringResource(R.string.imagem,"image description"),
                                     contentScale = ContentScale.FillBounds,
                                     modifier = Modifier
                                         .width(105.dp)
@@ -83,13 +85,14 @@ fun InputFullRegisterScreen(navController: NavController) {
 
             // Texto de boas-vindas
             Text(
-                text = "Queremos\nte conhecer melhor!",
+                text = stringResource(R.string.pergunta, "Queremos\nte conhecer melhor!"),
                 style = TextStyle(
+                    fontFamily = poppinsFontFamily,
                     fontSize = 32.sp,
                     lineHeight = 37.32.sp,
 
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFF4B942),
+                    color =MaterialTheme.colorScheme.onTertiary ,
                     textAlign = TextAlign.Center,
                 ),
                     modifier = Modifier
@@ -134,15 +137,16 @@ fun InputFullRegisterScreen(navController: NavController) {
                     .width(329.dp)
                     .height(60.dp),
                 shape = RoundedCornerShape(size = 15.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFC107))
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onSurfaceVariant)
 
             ) {
                 Text(
-                    text = "Entrar",
+                    text = stringResource(R.string.entrar, "Entrar"),
                     style = TextStyle(
+                        fontFamily = poppinsFontFamily,
                         fontSize = 24.sp,
                         fontWeight = FontWeight(900),
-                        color = Color(0xFFEBEBED),
+                        color = MaterialTheme.colorScheme.surface,
                         textAlign = TextAlign.Center,
                     ),
                         modifier = Modifier
@@ -170,9 +174,10 @@ fun TextFieldWithLabel(
             Text(
                 text = label,
                 style = TextStyle(
+                    fontFamily = poppinsFontFamily,
                     fontSize = 16.sp,
                     fontWeight = FontWeight(700),
-                    color = Color(0xFFF4B942),
+                    color = MaterialTheme.colorScheme.onTertiary,
                     textAlign = TextAlign.Start,
                 ),
                 modifier = Modifier
@@ -186,14 +191,14 @@ fun TextFieldWithLabel(
             onValueChange = { text = it },
             placeholder = { Text(text = placeholder) },
             leadingIcon = {
-                Icon(imageVector = leadingIcon, contentDescription = label, tint = Color(0xFFF4B942))
+                Icon(imageVector = leadingIcon, contentDescription = label, tint =MaterialTheme.colorScheme.onTertiary )
             },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             singleLine = true,
             modifier =Modifier
-                .border(width = 1.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 15.dp)).width(330.dp)
+                .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 15.dp)).width(330.dp)
                 .height(60.dp)
-                .background(color = Color(0xFFEFF2F1), shape = RoundedCornerShape(size = 15.dp)))
+                .background(color =MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp)))
         Spacer(modifier = Modifier.height(10.dp))
     }
 }
@@ -205,11 +210,12 @@ fun GenderDropdown() {
 
     Column {
         Text(
-            text = "Gênero",
+            text = stringResource(R.string.genero, "Gênero"),
             style = TextStyle(
+                fontFamily = poppinsFontFamily,
                 fontSize = 16.sp,
                 fontWeight = FontWeight(700),
-                color = Color(0xFFF4B942),
+                color = MaterialTheme.colorScheme. onTertiary,
                 textAlign = TextAlign.Center,
             ),
                 modifier = Modifier
@@ -219,20 +225,20 @@ fun GenderDropdown() {
         )
         Box(
             Modifier
-                .border(width = 1.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 15.dp)).clickable {
+                .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 15.dp)).clickable {
                     expanded = true
                 }
             .width(330.dp)
             .height(54.dp)
-            .background(color = Color(0xFFEFF2F1), shape = RoundedCornerShape(size = 15.dp))
+            .background(color =MaterialTheme.colorScheme. surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp))
         ) {
             Row(
                 modifier = Modifier.fillMaxSize().padding(start = 15.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = selectedGender, color = Color.Black)
-                Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "Dropdown")
+                Text(text = selectedGender, color =MaterialTheme.colorScheme.onSecondary)
+                Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = stringResource(R.string.Dropdown, "Dropdown"))
             }
         }
 
@@ -241,7 +247,7 @@ fun GenderDropdown() {
                     onDismissRequest = { expanded = false },
                     modifier = Modifier.width(330.dp)
                     .height(90.dp)
-                    .background(color = Color(0xFFEFF2F1), shape = RoundedCornerShape(size = 15.dp))
+                    .background(color = MaterialTheme.colorScheme. surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp))
                 ) {
                     listOf("Masculino", "Feminino", "Outro").forEach { gender ->
                         DropdownMenuItem(

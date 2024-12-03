@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,17 +36,17 @@ fun FeedbackScreen() {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Feedback",
-                        color = Color.White,
-                        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                        text = stringResource(R.string.titulo,"Feedback"),
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, fontFamily = poppinsFontFamily)
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back action */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Voltar",
-                            tint = Color.White
+                            contentDescription = stringResource(R.string.voltar, "Voltar"),
+                            tint = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 },
@@ -82,23 +83,24 @@ fun FeedbackScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .border(
                         width = 4.dp,
-                        color = Color(0xFF4059AD),
+                        color = MaterialTheme.colorScheme.onBackground,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Nos conta, como podemos melhorar?",
+                    text = stringResource(R.string.pergunta, "Nos conta, como podemos melhorar?"),
                     style = TextStyle(
+                        fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color = Color(0xFF4059AD),
+                        color =MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center
                     )
                 )
@@ -113,14 +115,14 @@ fun FeedbackScreen() {
                 onValueChange = { feedbackText = it },
                 placeholder = { Text("Feedback...") },
                 modifier = Modifier
-                    .border(width = 2.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 19.dp))
+                    .border(width = 2.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 19.dp))
                 .width(370.dp)
                 .height(243.dp)
-                .background(color = Color(0xFFE4E1E1), shape = RoundedCornerShape(size = 19.dp)),
+                .background(color =MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(size = 19.dp)),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    containerColor = Color.White,
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black
+                    containerColor= MaterialTheme.colorScheme.onSecondaryContainer,
+                    focusedBorderColor = MaterialTheme.colorScheme.onSecondary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.onSecondary
                 ),
 
             )
@@ -131,15 +133,15 @@ fun FeedbackScreen() {
             Button(
                 onClick = { /* Handle send action */ },
                 modifier =Modifier
-                    .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                    .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
                     .width(223.dp)
                     .height(39.dp)
-                    .background(color = Color(0xFF4059AD), shape = RoundedCornerShape(size = 28.dp))
+                    .background(color =MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(size = 28.dp))
             ) {
                 Text(
-                    text = "Enviar",
-                    color = Color.White,
-                    style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    text = stringResource(R.string.enviar,"Enviar"),
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 )
             }
 
@@ -149,15 +151,15 @@ fun FeedbackScreen() {
             Button(
                 onClick = { /* Handle back action */ },
                 modifier = Modifier
-                    .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                    .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
                     .width(143.dp)
                     .height(39.dp)
-                    .background(color = Color(0xFF4059AD), shape = RoundedCornerShape(size = 28.dp))
+                    .background(color = MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(size = 28.dp))
             ) {
                 Text(
-                    text = "Voltar",
-                    color = Color.White,
-                    style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    text = stringResource(R.string.voltar,"Voltar"),
+                    color =MaterialTheme.colorScheme.onSecondaryContainer,
+                    style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 )
             }
         }

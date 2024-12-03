@@ -24,8 +24,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.vooazdomain.Vooaz.R
 
 @Composable
 fun TravelItineraryScreen(expanded_Travel: MutableState<Boolean>) {
@@ -37,48 +39,48 @@ fun TravelItineraryScreen(expanded_Travel: MutableState<Boolean>) {
             .verticalScroll(rememberScrollState())
     ) {
         Text(
-            text = "Mini roteiro:",
+            text = stringResource(R.string.roteiro,"Mini roteiro:"),
 
             modifier = Modifier.padding(bottom = 4.dp)
         )
         Text(
-            text = "Duração: Aprox. 3–4 horas",
-            color = Color.Gray,
+            text = stringResource(R.string.duração, "Duração: Aprox. 3–4 horas"),
+            color = MaterialTheme.colorScheme.tertiary,
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
         TravelStep(
-            title = "Chegada",
-            time = "10h",
-            description = "Transporte: A combinar com o guia ou uso de transporte público. Se optar por carro, verificar opções de estacionamento."
+            title =stringResource(R.string.titulo,  "Chegada"),
+            time = stringResource(R.string.horários, "10h"),
+            description = stringResource(R.string.descrição, "Transporte: A combinar com o guia ou uso de transporte público. Se optar por carro, verificar opções de estacionamento.")
         )
         TravelStep(
-            title = "Entrada",
-            time = "10h15",
-            description = "Dica: Informe-se sobre acessibilidade na bilheteria, como guias ou audioguias adaptados."
+            title =stringResource(R.string.titulo,  "Entrada"),
+            time = stringResource(R.string.horários, "10h15"),
+            description = stringResource(R.string.descrição, "Dica: Informe-se sobre acessibilidade na bilheteria, como guias ou audioguias adaptados.")
         )
         TravelStep(
-            title = "Visita às Exposições",
-            time = "10h30",
-            description = "Atividades: Explore salas e exposições. Não perca a sala 'Grito do Ipiranga' e itens históricos.",
-            duration = "1h30"
+            title =stringResource(R.string.titulo,  "Visita às Exposições"),
+            time = stringResource(R.string.horários, "10h30"),
+            description =stringResource(R.string.descrição,  "Atividades: Explore salas e exposições. Não perca a sala 'Grito do Ipiranga' e itens históricos."),
+            duration =stringResource(R.string.duração,  "1h30")
         )
         TravelStep(
-            title = "Pausa para Café",
-            time = "12h00",
-            description = "Local: Café do Museu. Duração: 30 min."
+            title = stringResource(R.string.titulo, "Pausa para Café"),
+            time =stringResource(R.string.horários,  "12h00"),
+            description =stringResource(R.string.duração,  "Local: Café do Museu. Duração: 30 min.")
         )
         TravelStep(
-            title = "Passeio pelos Jardins",
-            time = "12h30",
-            description = "Atividades: Aproveite os jardins para tirar fotos.",
-            duration = "30 min"
+            title =stringResource(R.string.titulo,  "Passeio pelos Jardins"),
+            time = stringResource(R.string.horários, "12h30"),
+            description =stringResource(R.string.descrição,  "Atividades: Aproveite os jardins para tirar fotos."),
+            duration = stringResource(R.string.duração, "30 min")
         )
         TravelStep(
-            title = "Visita à Loja de Souvenirs",
-            time = "13h00",
-            description = "Atividades: Confira itens relacionados ao museu e à história do Brasil.",
-            duration = "30 min"
+            title =stringResource(R.string.titulo,  "Visita à Loja de Souvenirs"),
+            time = stringResource(R.string.horários, "13h00"),
+            description =stringResource(R.string.descrição,  "Atividades: Confira itens relacionados ao museu e à história do Brasil."),
+            duration =stringResource(R.string.duração,  "30 min")
         )
         Divider(modifier = Modifier.padding(vertical = 16.dp))
         AdditionalTips()
@@ -88,7 +90,7 @@ fun TravelItineraryScreen(expanded_Travel: MutableState<Boolean>) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF4B942))
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary)
         ) {
             Text("Sair do Modo Roteiro")
         }
@@ -102,16 +104,16 @@ fun TravelStep(title: String, time: String, description: String, duration: Strin
             text = title,
         )
         Row (verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Default.LocationOn, contentDescription = null, tint = Color.Gray)
+            Icon(Icons.Default.LocationOn, contentDescription = null, tint =MaterialTheme.colorScheme.tertiary)
             Text(
-                text = "Horário: $time",
+                text = stringResource(R.string.horários,"Horário: $time"),
                 modifier = Modifier.padding(start = 4.dp)
             )
         }
         if (duration != null) {
             Text(
-                text = "Duração: $duration",
-                color = Color.Gray,
+                text =stringResource(R.string.duração, "Duração: $duration"),
+                color =MaterialTheme.colorScheme.tertiary,
                 modifier = Modifier.padding(top = 2.dp)
             )
         }
@@ -127,20 +129,20 @@ fun TravelStep(title: String, time: String, description: String, duration: Strin
 fun AdditionalTips() {
     Column {
         Text(
-            text = "Dicas Adicionais",
+            text = stringResource(R.string.mensagem,"Dicas Adicionais"),
         )
         Text(
-            text = "Planejamento: Entre em contato com o museu para verificar recursos disponíveis.",
+            text =stringResource(R.string.mensagem, "Planejamento: Entre em contato com o museu para verificar recursos disponíveis."),
 
             modifier = Modifier.padding(top = 4.dp)
         )
         Text(
-            text = "Acompanhante: Esteja acompanhado para melhor navegação.",
+            text = stringResource(R.string.mensagem,"Acompanhante: Esteja acompanhado para melhor navegação."),
 
             modifier = Modifier.padding(top = 4.dp)
         )   
         Text(
-            text = "Material tátil: Pergunte por materiais táteis ou experiências sensoriais.",
+            text =stringResource(R.string.mensagem, "Material tátil: Pergunte por materiais táteis ou experiências sensoriais."),
             
             modifier = Modifier.padding(top = 4.dp)
         )

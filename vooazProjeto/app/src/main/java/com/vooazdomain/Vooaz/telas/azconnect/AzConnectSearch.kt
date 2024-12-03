@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,16 +43,16 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
 
     Scaffold(
         topBar = {
-            Row(modifier = Modifier.background(Color.White).padding(top=20.dp)) {
+            Row(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer).padding(top=20.dp)) {
 
 
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Voltar",
+                    contentDescription = stringResource(R.string.voltar),
                     modifier = Modifier.size(60.dp).padding(start = 20.dp, top = 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint = Color.Black
+                    tint =MaterialTheme.colorScheme.onSecondary
                 )
 
 
@@ -61,7 +63,7 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
                     Box(modifier = Modifier.padding(end = 60.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = "image description",
+                            contentDescription = stringResource(R.string.logo_description,"image description"),
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
                                 .width(75.dp)
@@ -83,12 +85,13 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
             }
             item {
                 Text(
-                    text = "AZ Conecta",
+                    text = stringResource(R.string.az,"AZ Conecta"),
                     style = TextStyle(
+                        fontFamily = poppinsFontFamily,
                         fontSize = 29.sp,
                         lineHeight = 28.24.sp,
                         fontWeight = FontWeight(800),
-                        color = Color(0xFF000000),
+                        color = MaterialTheme.colorScheme.onSecondary,
                         textAlign = TextAlign.Center,
 
                         ),
@@ -185,12 +188,12 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
             modifier = Modifier
                 .size(80.dp)
                 .clip(CircleShape)
-                .background(Color.Gray),
+                .background(MaterialTheme.colorScheme.tertiary),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 painter = painterResource(id = connections.img),
-                contentDescription = "image description",
+                contentDescription = stringResource(R.string.imagem,"image description"),
                 contentScale = ContentScale.FillBounds
             , modifier = Modifier
                     .width(150.dp)
@@ -203,12 +206,13 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
         // Nome do destino
         Text(
             text = connections.name,
+            fontFamily = poppinsFontFamily,
             style = TextStyle(
                 fontSize = 16.sp,
                 lineHeight = 14.56.sp,
 
                 fontWeight = FontWeight(700),
-                color = Color(0xFFFFFFFF),
+                color=MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = TextAlign.Center,
             ),
                 modifier = Modifier
@@ -220,7 +224,8 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
         // Localização do destino
         Text(
             text = connections.location,
-            color = Color.White.copy(alpha = 0.8f),
+            fontFamily = poppinsFontFamily,
+            color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
             style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center
         )

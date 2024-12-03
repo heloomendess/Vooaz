@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 @Composable
@@ -68,14 +70,14 @@ fun TopBar(primaryColor: Color) {
     Row(
         modifier = Modifier
             .fillMaxWidth().height(100.dp)
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.onSecondaryContainer)
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = Icons.Default.ArrowBack,
-            contentDescription = "Voltar",
-            tint = Color.Black,
+            contentDescription = stringResource(R.string.voltar,"Voltar"),
+            tint = MaterialTheme.colorScheme.onSecondary,
             modifier = Modifier.size(35.dp).clickable {
 
             }
@@ -85,7 +87,7 @@ fun TopBar(primaryColor: Color) {
 
         Image(
             painter = painterResource(id = R.drawable.logoaz),
-            contentDescription = "Logo",
+            contentDescription = stringResource(R.string.logo,"Logo"),
             modifier = Modifier
                 .size(80.dp)
                 .clip(CircleShape)
@@ -95,7 +97,7 @@ fun TopBar(primaryColor: Color) {
 
         Image(
             painterResource(R.drawable.ico_bell_blue),
-            contentDescription = "image description",
+            contentDescription =stringResource(R.string.imagem, "image description"),
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.padding()
                 .size(40.dp).fillMaxHeight()
@@ -107,7 +109,7 @@ fun TopBar(primaryColor: Color) {
         Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
             Image(
                 painterResource(R.drawable.ico_profileblue),
-                contentDescription = "image description",
+                contentDescription = stringResource(R.string.imagem,"image description"),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.padding()
                     .size(40.dp).fillMaxHeight()
@@ -123,10 +125,11 @@ fun HeaderText(primaryColor: Color) {
     Box(modifier = Modifier
         .width(240.dp)
         .height(55.dp)
-        .background(color = Color(0xFF0E2C8F), shape = RoundedCornerShape(size = 20.dp)), contentAlignment = Alignment.Center) {
+        .background(color = MaterialTheme.colorScheme.tertiaryContainer, shape = RoundedCornerShape(size = 20.dp)), contentAlignment = Alignment.Center) {
         Text(
             text = "SP - Capital",
             style = TextStyle(
+                fontFamily = poppinsFontFamily,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = primaryColor
@@ -166,10 +169,11 @@ horizontalAlignment = Alignment.CenterHorizontally
             Text(
                 text = destination.title,
                 style = TextStyle(
+                    fontFamily = poppinsFontFamily,
                     fontSize = 24.sp,
                     lineHeight = 19.48.sp,
                     fontWeight = FontWeight(600),
-                    color = Color(0xFFFFFFFF),
+                    color =MaterialTheme.colorScheme.onPrimaryContainer,
                     textAlign = TextAlign.Center,
 
                 ),

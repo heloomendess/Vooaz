@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +26,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 import navigationBar
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,8 +43,9 @@ fun SettingsScreen(navController: NavController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Configurações",
-                        color = white,
+                        text = stringResource(R.string.configurações, "Configurações"),
+                        color = MaterialTheme.colorScheme. onSecondaryContainer,
+                        fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold
                     )
                 },
@@ -49,8 +53,8 @@ fun SettingsScreen(navController: NavController) {
                     IconButton(onClick = { /* Ação ao voltar */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Voltar",
-                            tint = white
+                            contentDescription = stringResource(R.string.voltar,"Voltar"),
+                            tint =MaterialTheme.colorScheme. onSecondaryContainer
                         )
                     }
                 },
@@ -80,7 +84,7 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = "Informações pessoais",
+                    label =stringResource(R.string.infoPessoais, "Informações pessoais"),
                     image = painterResource(id = R.drawable.profileicon),
                     navigation = navController,
                     navroute = "PersonalInfoScreen"
@@ -89,7 +93,7 @@ fun SettingsScreen(navController: NavController) {
             // Ícone fictício substituído por outro válido
             item {
                 SettingsOption(
-                    label = "Viagens",
+                    label =stringResource(R.string.viagens, "Viagens"),
                     image = painterResource(id = R.drawable.malaviagem),
                     navigation = navController,
                     navroute = "ForgotPasswordPin"
@@ -97,7 +101,7 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = "Ajustes",
+                    label =stringResource(R.string.ajustes, "Ajustes"),
                     image = painterResource(id = R.drawable.adjustsicon),
                     navigation = navController,
                     navroute = "ForgotPasswordPin"
@@ -112,7 +116,7 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = "Sobre nós",
+                    label = stringResource(R.string.sobre,"Sobre nós"),
                     image = painterResource(id = R.drawable.ico_check),
                     navigation = navController,
                     navroute = "ForgotPasswordPin"
@@ -127,7 +131,7 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = "Central de ajuda",
+                    label = stringResource(R.string.ajuda,"Central de ajuda"),
                     image = painterResource(id = R.drawable.sinalinterrogacao),
                     navigation = navController,
                     navroute = "ForgotPasswordPin"
@@ -135,7 +139,7 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = "Enviar seu feedback",
+                    label = stringResource(R.string.feedback,"Enviar seu feedback"),
                     image = painterResource(id = R.drawable.lapis),
                     navigation = navController,
                     navroute = "ForgotPasswordPin"
@@ -163,7 +167,9 @@ fun HeaderSection(navController: NavController) {
                     .width(87.dp)
                     .height(87.dp),
                 painter = painterResource(id = R.drawable.examplepeopleprofile),
-                contentDescription = "",
+
+                contentDescription = stringResource(R.string.imagem,"image description"),
+
                 contentScale = ContentScale.FillBounds
             )
 
@@ -174,22 +180,24 @@ fun HeaderSection(navController: NavController) {
 navController.navigate("ProfileScreen")
         }) {
             Text(
-                text = "Lais Ribeiro",
-                color = Color.Black,
+                text = stringResource(R.string.nome,"Lais Ribeiro"),
+                color = MaterialTheme.colorScheme.onSecondary,
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "Mostrar perfil",
-                color = Color.Black,
+
+                text = stringResource(R.string.perfil,"Mostrar perfil"),
+                color = MaterialTheme.colorScheme.onSecondary,
+              
 
             )
         }
 
         Image(
             painterResource(R.drawable.walkingstickicon),
-            contentDescription = "walking stick",
+            contentDescription = stringResource(R.string.icone,"walking stick"),
             modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(12.dp))
@@ -198,8 +206,8 @@ navController.navigate("ProfileScreen")
         }) {
             Icon(
                 imageVector = Icons.Default.ArrowForward,
-                contentDescription = "Ver perfil",
-                tint = Color(0xFF3B5998)
+                contentDescription = stringResource(R.string.perfil,"Ver perfil"),
+                tint = MaterialTheme.colorScheme.onPrimary
             )
         }
     }
@@ -210,8 +218,9 @@ fun SectionTitle(title: String) {
     Text(
         text = title,
         fontSize = 20.sp,
+        fontFamily = poppinsFontFamily,
         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-        color = Color.Black,
+        color = MaterialTheme.colorScheme.onSecondary,
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
     )
 }
@@ -223,7 +232,7 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
             .width(350.dp)
             .padding(start = 30.dp, top = 10.dp)
             .height(70.dp)
-            .background(color = Color(0xFF4059AD), shape = RoundedCornerShape(size = 15.dp)).clickable {
+            .background(color = MaterialTheme.colorScheme.onBackground , shape = RoundedCornerShape(size = 15.dp)).clickable {
     navigation.navigate(navroute)
             },
         verticalAlignment = Alignment.CenterVertically
@@ -232,7 +241,7 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
         Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
             Image(
                 painter = image,
-                contentDescription = "image description",
+                contentDescription = stringResource(R.string.imagem, "image description"),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.padding(start = 20.dp)
                     .size(30.dp).fillMaxHeight()
@@ -244,9 +253,10 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
             Text(
                 text = label,
                 style = TextStyle(
+                    fontFamily = poppinsFontFamily,
                     fontSize = 20.sp,
                     fontWeight = FontWeight(500),
-                    color = Color(0xFFECECEE),
+                    color =MaterialTheme.colorScheme.inverseOnSurface,
 
                     ),
             )
