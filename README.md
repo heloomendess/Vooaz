@@ -37,12 +37,27 @@ Expandir a acessibilidade a outros públicos, onde começamos com a inclusão de
 
 # Equipe 🚀
 
-<span style="font-size: 24px;">Conheça os reponsáveis pelo projeto:</span>
-
 Conheça os reponsáveis pelo projeto:
 
 
 ![Foto da Equipe](equipe/Equipe_Vooaz.jpg)
+
+
+<div style="text-align: center;">
+  <img src="equipe/rota_avião.png" alt="Rota">
+</div>
+
+
+<div align='center'>
+  <a href="https://www.linkedin.com/in/heloisamendess/" target="_blank"><img src="equipe/Helo.png" alt='Heloisa Mendes' width="200px"></a>
+  <a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Danilo.png" alt='Danilo Alcantara' width="250px"></a>
+  <a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavo.png" alt='Gustavo Cunha' width="200px"></a>
+  <a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iury.png" alt='Iury Sven' width="200px"></a>
+  <a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawan.png" alt='Kawan Turchiai' width="200px"></a>
+  <a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Célio.png" alt='Célio Amorim' width="200px"></a>
+  <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazi.png" alt='Grazielly Cavalcante' width="200px"></a>
+  <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Mari.png" alt='Mariana Paiva' width="200px"></a>
+</div>
 
 
 [Heloisa Mendes: Product Owner/Social media](https://github.com/heloomendess)
