@@ -1,4 +1,4 @@
-# Banco de dados- VOOAZ 
+# Banco de dados do projeto VOOAZ 
 
 
 Este projeto visa desenvolver um **sistema de viagens** para pessoas com deficiênficias visuais ou auditiva. Nosso banco de dados,tem o objetivo de recolher informações de usuários e serviços prestados, criando um ambiente colaborativo e acolhedor.
@@ -9,7 +9,6 @@ Este projeto visa desenvolver um **sistema de viagens** para pessoas com defici�
 - Controle de **Reservas**.
 - Conexão entre usuários e serviços.
 - Descrição de locais acessíveis.
--
 
 ---
 
