@@ -180,7 +180,7 @@ O sistema de reservas é uma peça essencial para conectar usuários a guias e d
 *ID do Plano: Refere-se ao plano contratado pelo usuário, indicando benefícios e serviços incluídos.
 *Organização e Planejamento*
 
-*Gestão de Agendas: Guias podem acessar reservas futuras e se preparar para oferecer um serviço de qualidade.
+* Gestão de Agendas: Guias podem acessar reservas futuras e se preparar para oferecer um serviço de qualidade.
 *Notificações Automáticas: Alertas enviados aos usuários sobre a data da reserva e lembretes adicionais.
 
 *Personalização*
