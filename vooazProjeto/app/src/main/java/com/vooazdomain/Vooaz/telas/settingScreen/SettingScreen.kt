@@ -73,7 +73,7 @@ fun SettingsScreen(navController: NavController) {
         ) {
             // Header
             item {
-                HeaderSection()
+                HeaderSection(navController)
             }
             item {
                 Spacer(modifier = Modifier.height(16.dp))
@@ -87,7 +87,7 @@ fun SettingsScreen(navController: NavController) {
                     label =stringResource(R.string.infoPessoais, "Informações pessoais"),
                     image = painterResource(id = R.drawable.profileicon),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "PersonalInfoScreen"
                 )
             }
             // Ícone fictício substituído por outro válido
@@ -152,7 +152,7 @@ fun SettingsScreen(navController: NavController) {
 }
 
 @Composable
-fun HeaderSection() {
+fun HeaderSection(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -176,7 +176,9 @@ fun HeaderSection() {
         Spacer(modifier = Modifier.width(12.dp))
 
         // Nome e botão
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(1f).clickable {
+navController.navigate("ProfileScreen")
+        }) {
             Text(
                 text = stringResource(R.string.nome,"Lais Ribeiro"),
                 color = MaterialTheme.colorScheme.onSecondary,
@@ -185,9 +187,11 @@ fun HeaderSection() {
                 fontWeight = FontWeight.Bold
             )
             Text(
+
                 text = stringResource(R.string.perfil,"Mostrar perfil"),
                 color = MaterialTheme.colorScheme.onSecondary,
-                style = MaterialTheme.typography.bodySmall
+              
+
             )
         }
 
@@ -197,7 +201,9 @@ fun HeaderSection() {
             modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(12.dp))
-        IconButton(onClick = { /* Ação do botão */ }) {
+        IconButton(onClick = {
+            navController.navigate("ProfileScreen")
+        }) {
             Icon(
                 imageVector = Icons.Default.ArrowForward,
                 contentDescription = stringResource(R.string.perfil,"Ver perfil"),

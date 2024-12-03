@@ -196,10 +196,13 @@ fun NavigationFlowSettings() {
 
                     ConnectionsSearchScreen(navController, sampleconnections)
                 }
-                composable("Lais") {
+                // tela de perfil
+                composable("ProfileScreen") {
                     ProfileScreen(navController)
                 }
-                composable("Fabio") {
+
+                // tela de perfil de terceiros
+                composable("AzConnectProfileScreen") {
                     AzConnectProfileScreen(navController)
                 }
                 composable("InputFullRegisterScreen") {
