@@ -26,14 +26,14 @@ Reservas: Histórico de interações e preferências de viagem.
 Os dados permitem criar ofertas e comunicações sob medida.
 
 * Recomendações Baseadas no Perfil: Sugestões de destinos acessíveis ou adaptados.
-*Planos Personalizados: Oferecer planos alinhados às necessidades e preferências do cliente, como viagens culturais ou reservas adaptadas.
-*Reconhecimento de Fidelidade: Oferecer benefícios exclusivos para clientes recorrentes.
+* Planos Personalizados: Oferecer planos alinhados às necessidades e preferências do cliente, como viagens culturais ou reservas adaptadas.
+* Reconhecimento de Fidelidade: Oferecer benefícios exclusivos para clientes recorrentes.
 
 *Uso do Histórico de Reservas*
 
-*Oferecer descontos personalizados ou pacotes baseados no histórico de viagens.
-*Enviar notificações sobre eventos e locais relevantes previamente visitados.
-*Incentivar feedback do cliente para adaptar e melhorar continuamente os serviços oferecidos.
+* Oferecer descontos personalizados ou pacotes baseados no histórico de viagens.
+* nviar notificações sobre eventos e locais relevantes previamente visitados.
+* Incentivar feedback do cliente para adaptar e melhorar continuamente os serviços oferecidos.
 ```js
 {
   "_id": {
@@ -55,17 +55,17 @@ Os dados permitem criar ofertas e comunicações sob medida.
 ## Guias acessíveis
 Os guias locais são a peça-chave do nosso banco de dados. Cada guia é cuidadosamente selecionado para proporcionar aos usuários experiências autênticas, personalizadas e acessíveis, de acordo com seus destinos e necessidades.
 
-*Estrutura dos Dados*
-*Identificação: Nome, idioma e especialidade.
-*Localização: País, estado, cidade e bairro, facilitando a conexão com turistas em destinos específicos.
-*Idiomas Falados: Permite atender viajantes internacionais de forma eficaz.
-*Avaliação: Pontuação média baseada no feedback de usuários, garantindo a qualidade do serviço.
-*Especialidade e Tipo de Guia: Informações sobre foco de atuação (autônomo ou vinculado a empresas) e especialização em deficiências.
+* Estrutura dos Dados*
+* Identificação: Nome, idioma e especialidade.
+* Localização: País, estado, cidade e bairro, facilitando a conexão com turistas em destinos específicos.
+* Idiomas Falados: Permite atender viajantes internacionais de forma eficaz.
+* Avaliação: Pontuação média baseada no feedback de usuários, garantindo a qualidade do serviço.
+* Especialidade e Tipo de Guia: Informações sobre foco de atuação (autônomo ou vinculado a empresas) e especialização em deficiências.
 
-*Benefícios para o Usuário*
-*Autenticidade: Guias locais com profundo conhecimento cultural e regional.
-*Confiança: Sistema de avaliações para garantir qualidade.
-*Personalização: Guias disponíveis em diferentes idiomas e especializados em necessidades específicas, incluindo acessibilidade.
+* Benefícios para o Usuário*
+* Autenticidade: Guias locais com profundo conhecimento cultural e regional.
+* Confiança: Sistema de avaliações para garantir qualidade.
+* Personalização: Guias disponíveis em diferentes idiomas e especializados em necessidades específicas, incluindo acessibilidade.
 
 ```js
 {
@@ -97,11 +97,11 @@ Nosso banco de destinos turísticos é projetado para oferecer experiências ún
 
 *Estrutura dos Dados*
 
-*Destino: Nome do local que será exibido para o usuário.
-*Categoria: Classificação do destino (cultural, natural, histórico, etc.).
-*Localização: País, estado e cidade, permitindo segmentação geográfica e fácil busca.
-*Descrição: Uma descrição atraente que captura a essência do destino, destacando seus atrativos e experiências únicas.
-*Acessibilidade: Os usuários podem filtrar destinos que oferecem recursos adaptados para deficiência visual e auditiva, garantindo experiências inclusivas.
+* Destino: Nome do local que será exibido para o usuário.
+* Categoria: Classificação do destino (cultural, natural, histórico, etc.).
+* Localização: País, estado e cidade, permitindo segmentação geográfica e fácil busca.
+* Descrição: Uma descrição atraente que captura a essência do destino, destacando seus atrativos e experiências únicas.
+* Acessibilidade: Os usuários podem filtrar destinos que oferecem recursos adaptados para deficiência visual e auditiva, garantindo experiências inclusivas.
 
 Deficiência Visual: Indicação se o local possui infraestrutura e recursos adequados, como placas em braille ou guias táteis.
 Deficiência Auditiva: Informações sobre adaptações como intérpretes de Libras ou guias visuais.
@@ -128,21 +128,21 @@ Deficiência Auditiva: Informações sobre adaptações como intérpretes de Lib
 Este banco de dados armazena as avaliações feitas por usuários em relação aos guias e destinos visitados. Ele é uma fonte crucial para monitorar a qualidade dos serviços oferecidos, identificar oportunidades de melhoria e destacar os pontos fortes de guias e destinos.
 
 * Estrutura dos Dados*
-*ID do Usuário: Conecta a avaliação a um usuário específico, permitindo uma análise personalizada.
-*ID do Guia: Identifica o guia associado à experiência avaliada.
-*ID do Destino: Local vinculado à avaliação.
+* ID do Usuário: Conecta a avaliação a um usuário específico, permitindo uma análise personalizada.
+* ID do Guia: Identifica o guia associado à experiência avaliada.
+* ID do Destino: Local vinculado à avaliação.
  
 *Informações da Avaliação*
 
-*Tipo de Deficiência: Detalha a condição do usuário, ajudando a avaliar a adequação do serviço para diferentes necessidades.
-*Nota de Avaliação: Pontuação atribuída pelo usuário (geralmente em uma escala de 1 a 5).
-*Comentário: Feedback textual, que oferece insights qualitativos sobre a experiência.
-*Data: Registro da data em que a avaliação foi feita, útil para monitorar tendências ao longo do tempo.
+* Tipo de Deficiência: Detalha a condição do usuário, ajudando a avaliar a adequação do serviço para diferentes necessidades.
+* Nota de Avaliação: Pontuação atribuída pelo usuário (geralmente em uma escala de 1 a 5).
+* Comentário: Feedback textual, que oferece insights qualitativos sobre a experiência.
+* Data: Registro da data em que a avaliação foi feita, útil para monitorar tendências ao longo do tempo.
 
-*Estratégias de Utilização*
-*Destaque de Guias e Destinos Bem Avaliados.
-*Identificação de Pontos de Melhoria.
-*Personalização de Experiência.
+* Estratégias de Utilização*
+* Destaque de Guias e Destinos Bem Avaliados.
+* Identificação de Pontos de Melhoria.
+ *Personalização de Experiência.
 ```js
 {
   "_id": {
@@ -173,11 +173,11 @@ Este banco de dados armazena as avaliações feitas por usuários em relação a
 O sistema de reservas é uma peça essencial para conectar usuários a guias e destinos, permitindo que experiências personalizadas sejam organizadas de forma eficiente e inclusiva. Este banco de dados documenta cada reserva, relacionando usuários, guias, destinos e planos.
 
 *Estrutura dos Dados*
-*ID da Reserva: Identifica unicamente cada reserva no sistema.
-*ID do Usuário: Associa a reserva a um usuário específico.
-*ID do Guia: Indica qual guia será responsável por acompanhar o usuário na experiência.
-*ID do Destino: Define o local reservado pelo usuário.
-*ID do Plano: Refere-se ao plano contratado pelo usuário, indicando benefícios e serviços incluídos.
+* ID da Reserva: Identifica unicamente cada reserva no sistema.
+* ID do Usuário: Associa a reserva a um usuário específico.
+* ID do Guia: Indica qual guia será responsável por acompanhar o usuário na experiência.
+* ID do Destino: Define o local reservado pelo usuário.
+* ID do Plano: Refere-se ao plano contratado pelo usuário, indicando benefícios e serviços incluídos.
 *Organização e Planejamento*
 
 * Gestão de Agendas: Guias podem acessar reservas futuras e se preparar para oferecer um serviço de qualidade.
@@ -185,10 +185,10 @@ O sistema de reservas é uma peça essencial para conectar usuários a guias e d
 
 *Personalização*
 
-*Associação ao Plano: Identificar os benefícios disponíveis ao usuário no momento da reserva, como transporte acessível ou guias especializados.
-*Histórico de Reservas: Facilitar a recomendação de destinos e serviços baseados em experiências anteriores do usuário.
-*Simplicidade e Conveniência: Reservas feitas com poucos cliques, com informações claras e detalhadas.
-*Segurança: Garantia de que suas experiências estão organizadas e confirmadas.
+* Associação ao Plano: Identificar os benefícios disponíveis ao usuário no momento da reserva, como transporte acessível ou guias especializados.
+* Histórico de Reservas: Facilitar a recomendação de destinos e serviços baseados em experiências anteriores do usuário.
+* Simplicidade e Conveniência: Reservas feitas com poucos cliques, com informações claras e detalhadas.
+* Segurança: Garantia de que suas experiências estão organizadas e confirmadas.
 ```js
 {
   "_id": {
