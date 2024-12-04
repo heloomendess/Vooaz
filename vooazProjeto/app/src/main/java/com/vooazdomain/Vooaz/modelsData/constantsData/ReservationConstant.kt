@@ -4,7 +4,7 @@ import com.vooazdomain.Vooaz.modelsData.datas.Reservation
 import java.util.Date
 
 var usersReservation = UsersConts.users
-var touristguidesReservation = TouristGuides.guides
+var touristguidesReservation = GuidesContants.guidesObj
 var destinationsReservation = Destination.destinations
 
 

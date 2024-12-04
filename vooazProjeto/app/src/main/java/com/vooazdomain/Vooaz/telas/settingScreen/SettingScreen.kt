@@ -116,10 +116,10 @@ fun SettingsScreen(navController: NavController) {
             }
             item {
                 SettingsOption(
-                    label = stringResource(R.string.sobre,"Sobre nós"),
+                    label = stringResource(R.string.about_us),
                     image = painterResource(id = R.drawable.ico_check),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "AboutUsScreen"
                 )
             }
             item {
@@ -142,7 +142,7 @@ fun SettingsScreen(navController: NavController) {
                     label = stringResource(R.string.feedback,"Enviar seu feedback"),
                     image = painterResource(id = R.drawable.lapis),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "FeedbackScreen"
                 )
             }
 

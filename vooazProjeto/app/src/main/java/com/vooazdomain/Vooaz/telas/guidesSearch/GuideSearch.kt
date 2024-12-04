@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.Key.Companion.Guide
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -36,14 +39,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
-import com.vooazdomain.Vooaz.telas.destinationsScreen.TopBar
+import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
+
 import navigationBar
+import java.net.URLEncoder
 
 @Composable
 fun GuidesScreen(navController: NavController) {
+    var expanded = remember { mutableStateOf(false) }
+    var selectedGender = remember { mutableStateOf("Selecione seu gênero") }
     Scaffold(
 
         topBar = {
@@ -65,81 +73,62 @@ fun GuidesScreen(navController: NavController) {
             ) {
 
 
-
-
                 // Lista de Guias
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState()),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
                     Spacer(
-                        modifier = Modifier.height(16.dp))
-                    Row (modifier = Modifier.padding(end = 30.dp)){
+                        modifier = Modifier.height(16.dp)
+                    )
+                    Row(modifier = Modifier.padding(end = 30.dp)) {
 
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back, "back"), modifier = Modifier.padding(end = 30.dp).size(40.dp))
-                        HeaderGuidesFilter(MaterialTheme.colorScheme.onTertiary)
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back, "back"),
+                            modifier = Modifier.padding(end = 30.dp).size(40.dp)
+                        )
+                        HeaderGuidesFilter(
+                            MaterialTheme.colorScheme.onTertiary,
+                            expanded,
+                            selectedGender
+                        )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-
-                    val guides = listOf(
-                        Guide(
-                            "Marina Guimarães",
-                            5.0,
-                            550,
-                            32,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        ),
-                        Guide(
-                            "Priscila Furlan",
-                            5.0,
-                            200,
-                            28,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        ),
-                        Guide(
-                            "Henrique Costa",
-                            4.9,
-                            679,
-                            45,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        ),
-                        Guide(
-                            "Valentina Almeida",
-                            4.9,
-                            143,
-                            22,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        ),
-                        Guide(
-                            "Justino",
-                            4.7,
-                            130,
-                            26,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        ),
-                        Guide(
-                            "Rose Santos",
-                            4.7,
-                            30,
-                            23,
-                            "São Paulo - Capital",
-                            R.drawable.ic_profile_placeholder2
-                        )
-                    )
+                    val guides = GuidesContants.guidesObj
 
                     guides.forEach { guide ->
-                        GuideCard(guide)
-                        Spacer(modifier = Modifier.height(12.dp))
+                        when (selectedGender.value) {
+                            "Selecione seu gênero" -> {
+                                GuideCard(guide, navController)
+                                Spacer (modifier = Modifier.height(12.dp))
+                            }
+                            "Outro" -> {
+                                GuideCard(guide, navController)
+                                Spacer (modifier = Modifier.height(12.dp))
+                            }
+                            "Masculino" -> {
+
+                                if (guide.gender == "Masculino"){
+                                    GuideCard(guide, navController)
+                                    Spacer (modifier = Modifier.height(12.dp))
+                                }
+                            }
+                            "Feminino" -> {
+                                if (guide.gender == "Feminino"){
+                                    GuideCard(guide, navController)
+                                    Spacer (modifier = Modifier.height(12.dp))
+                                }
+                            }
+
+
+
+                        }
                     }
                 }
             }
@@ -151,22 +140,21 @@ fun GuidesScreen(navController: NavController) {
 
 
 @Composable
-fun HeaderGuidesFilter(primaryColor: Color) {
-    var expanded by remember { mutableStateOf(false) }
-    var selectedGender by remember { mutableStateOf("Selecione seu gênero") }
+fun HeaderGuidesFilter(primaryColor: Color, expanded:MutableState<Boolean>, selectedGender:MutableState<String>) {
+
     Spacer(modifier = Modifier.height(3.dp))
     Box(modifier = Modifier
         .width(240.dp)
         .height(55.dp)
         .background(color= MaterialTheme.colorScheme.onSurface, shape = RoundedCornerShape(size = 20.dp)).clickable {
-            
-            expanded= !expanded
+
+            expanded.value= !expanded.value
         }, contentAlignment = Alignment.Center) {
         Text(
             text = stringResource(R.string.guias,"Guias"),
             style = TextStyle(
                 fontFamily = poppinsFontFamily,
-                fontSize = 24.sp,
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
                 color = primaryColor
             ),
@@ -176,8 +164,8 @@ fun HeaderGuidesFilter(primaryColor: Color) {
                 .padding(vertical = 16.dp)
         )
         DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false },
+            expanded = expanded.value,
+            onDismissRequest = { expanded.value = false },
             modifier = Modifier.width(240.dp).padding(start = 20.dp)
                 .height(90.dp)
                 .background(color = MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp))
@@ -186,8 +174,8 @@ fun HeaderGuidesFilter(primaryColor: Color) {
                 DropdownMenuItem(
                     text = { Text(gender) },
                     onClick = {
-                        selectedGender = gender
-                        expanded = false
+                        selectedGender.value = gender
+                        expanded.value = false
                     }
                 )
             }
@@ -228,12 +216,17 @@ fun TopBar() {
 }
 
 @Composable
-fun GuideCard(guide: Guide) {
+fun GuideCard(guide: TourismGuide, navController: NavController) {
+
+    val guideJson = URLEncoder.encode(Gson().toJson(guide), "UTF-8")
+
     Row(
         modifier = Modifier
             .fillMaxWidth().border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme. onSecondaryContainer, RoundedCornerShape(12.dp))
-            .padding(16.dp),
+            .padding(16.dp).clickable {
+                navController. navigate("AzConnectProfileScreen/$guideJson")
+            },
 
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -274,27 +267,17 @@ fun GuideCard(guide: Guide) {
                 text = "Idade: ${guide.age}",
                 fontSize = 14.sp,
                 fontFamily = poppinsFontFamily,
-                color = MaterialTheme.colorScheme.tertiary
+                color = MaterialTheme.colorScheme.onSecondary
             )
             Text(
-                text = "Local: ${guide.location}",
+                text = "Local: ${guide.state}",
                 fontSize = 14.sp,
                 fontFamily = poppinsFontFamily,
-                color = MaterialTheme.colorScheme.tertiary
+                color = MaterialTheme.colorScheme.onSecondary
             )
         }
     }
 }
-
-// Modelo de dados para guia
-data class Guide(
-    val name: String,
-    val rating: Double,
-    val feedbackCount: Int,
-    val age: Int,
-    val location: String,
-    val imageRes: Int
-)
 
 @Preview(showBackground = true)
 @Composable

@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.code.gson:gson:2.10") // usado para serializar dados ao navegar no navigate
     implementation("com.google.accompanist:accompanist-navigation-animation:0.32.0")
     implementation("com.airbnb.android:lottie-compose:6.1.0")
     implementation("androidx.navigation:navigation-compose:2.8.4")

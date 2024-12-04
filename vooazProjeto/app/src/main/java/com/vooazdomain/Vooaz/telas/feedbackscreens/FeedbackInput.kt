@@ -21,12 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FeedbackScreen() {
+fun FeedbackScreen(navController: NavController) {
     val topBarColor = Color(0xFF4059AD)
     val buttonColor = Color(0xFF4059AD)
     val bodyBackgroundColor = Color(0xFFD9D9D9)
@@ -131,7 +133,7 @@ fun FeedbackScreen() {
 
             // Botão "Enviar"
             Button(
-                onClick = { /* Handle send action */ },
+                onClick = { navController.navigate("FeedbackConfirmScreen")},
                 modifier =Modifier
                     .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
                     .width(223.dp)
@@ -149,7 +151,7 @@ fun FeedbackScreen() {
 
             // Botão "Voltar"
             Button(
-                onClick = { /* Handle back action */ },
+                onClick = { navController.popBackStack()},
                 modifier = Modifier
                     .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
                     .width(143.dp)
@@ -169,5 +171,5 @@ fun FeedbackScreen() {
 @Preview(showBackground = true)
 @Composable
 fun FeedbackScreenPreview() {
-    FeedbackScreen()
+    FeedbackScreen(rememberNavController())
 }
