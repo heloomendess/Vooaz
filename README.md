@@ -36,7 +36,7 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 
 **Conexão**: Estabelecer uma rede de apoio entre viajantes e guias especializados para experiências personalizadas.
 
-**Respeito** à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
+**Respeito à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
 
 ## Próximos passos 
 
