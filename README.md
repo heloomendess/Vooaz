@@ -39,24 +39,20 @@ Expandir a acessibilidade a outros públicos, onde começamos com a inclusão de
 
 Conheça os reponsáveis pelo projeto:
 
+<div align="center">
+	<a href="https://www.linkedin.com/in/heloisamendess/" target="_blank"><img src="equipe/Heloo.png" height="230"></a>
+	<a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Daniloo.png" height="230"></a>
+	<a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavoo.png" height="230"></a>
+	<a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iuryy.png" height="230"></a>
+	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawann.png" alt='Kawan Turchiai' width="230"></a>
+ 	<a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Celioo.png" alt='Célio Amorim' width="230"></a>
+        <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazii.png" alt='Grazielly Cavalcante' width="230"></a>
+        <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Marii.png" alt='Mariana Paiva' width="230"></a>
+	</div>
 
-<div style="text-align: center;">
+ <div style="text-align: center;">
   <img src="equipe/rota_avião.png" alt="Rota">
 </div>
-
-<div align="center">
-	<a href="https://www.linkedin.com/in/heloisamendess/" target="_blank"><img src="equipe/Helo_final.png" alt='Heloisa Mendes' width="250px"></a>
-  <a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Danilo_final.png" alt='Danilo Alcantara' width="250px"></a>
-  <a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavo_final.png" alt='Gustavo Cunha' width="250px"></a>
-  <a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iury_final.png" alt='Iury Sven' width="250px"></a>
-	</div>
- <br>
-	<div align="center">
-	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawan_final.png" alt='Kawan Turchiai' width="250px"></a>
-  <a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Celio_final.png" alt='Célio Amorim' width="250px"></a>
-  <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazi_final.png" alt='Grazielly Cavalcante' width="250px"></a>
-  <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Mariana_final.png" alt='Mariana Paiva' width="250px"></a>
-	</div>
 
 
 ## Links Úteis 👨🏻‍💻
