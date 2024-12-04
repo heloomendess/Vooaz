@@ -1,10 +1,11 @@
 package com.vooazdomain.Vooaz.modelsData.constantsData
 
 import com.vooazdomain.Vooaz.modelsData.datas.Assessment
+import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import java.util.Date
 
 var users = UsersConts.users
-var touristguides = TouristGuides.guides
+var touristguides = GuidesContants.guidesObj
 var destinations = Destination.destinations
 
 object assessmentConstants {

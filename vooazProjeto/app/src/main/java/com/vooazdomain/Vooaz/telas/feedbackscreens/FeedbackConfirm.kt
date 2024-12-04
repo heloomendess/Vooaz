@@ -19,19 +19,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.feedbackscreen.FeedbackScreen
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FeedbackConfirmScreen() {
+fun FeedbackConfirmScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text( stringResource(R.string.feedback,"Feedback"), color = MaterialTheme.colorScheme.onSecondaryContainer, fontWeight = FontWeight.Bold, fontFamily = poppinsFontFamily) },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back action */ }) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
@@ -95,13 +97,13 @@ fun FeedbackConfirmScreen() {
 
                     // Botão Voltar
                     Button(
-                        onClick = { /* Ação do botão */ },
+                        onClick = { navController.navigate("SettingsScreen") },
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth(0.5f) // Botão ocupa metade da largura
                     ) {
                         Text(
-                            text = "Voltar",
+                            text = "Finalizar",
                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                             fontSize = 16.sp,
                             fontFamily = poppinsFontFamily,
@@ -118,5 +120,5 @@ fun FeedbackConfirmScreen() {
 @Preview(showBackground = true)
 @Composable
 fun FeedbackConfirmPreview() {
-    FeedbackScreen()
+    FeedbackScreen(rememberNavController())
 }

@@ -1,5 +1,6 @@
 package com.vooazdomain.Vooaz.navigationflow
 
+import AzConnectProfileScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 
@@ -10,17 +11,19 @@ import androidx.navigation.NavType
 
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.app.ui.screens.AzConnectProfileScreen
+import com.example.feedbackscreen.FeedbackScreen
+import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import com.vooazdomain.Vooaz.telas.aboutus.AboutUsScreen
 import com.vooazdomain.Vooaz.telas.azconnect.Conexoes
 import com.vooazdomain.Vooaz.telas.azconnect.ConnectionsSearchScreen
 import com.vooazdomain.Vooaz.telas.azconnect.connections
 import com.vooazdomain.Vooaz.telas.destinationsScreen.CapitalScreen
 import com.vooazdomain.Vooaz.telas.destinationsScreen.DestinationCard
+import com.vooazdomain.Vooaz.telas.feedbackscreens.FeedbackConfirmScreen
 import com.vooazdomain.Vooaz.telas.guidesSearch.GuidesScreen
 import com.vooazdomain.Vooaz.telas.home.HomePageScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputFullRegisterScreen
@@ -36,6 +39,7 @@ import com.vooazdomain.Vooaz.telas.resetpassword.ForgotPasswordScreen
 import com.vooazdomain.Vooaz.telas.settingScreen.PersonalInfoScreen
 import com.vooazdomain.Vooaz.telas.settingScreen.SettingsScreen
 import com.vooazdomain.Vooaz.telas.splashpage.addSplashPage
+import java.net.URLDecoder
 
 @Composable
 fun NavigationFlowSettings() {
@@ -56,6 +60,13 @@ fun NavigationFlowSettings() {
                 composable("GuidesScreen") {
                     GuidesScreen(navController)
                 }
+                composable("FeedbackScreen") {
+                    FeedbackScreen(navController)
+                }
+                composable("FeedbackConfirmScreen") {
+                    FeedbackConfirmScreen(navController)
+                }
+
                 composable("Conexoes") {
                     Conexoes(navController)
                 }
@@ -201,10 +212,23 @@ fun NavigationFlowSettings() {
                     ProfileScreen(navController)
                 }
 
+
+
                 // tela de perfil de terceiros
-                composable("AzConnectProfileScreen") {
-                    AzConnectProfileScreen(navController)
+                composable("AzConnectProfileScreen/{guideJson}",
+                    arguments = listOf(navArgument("guideJson") {
+                        type = NavType.StringType
+                    })) {
+                    val guideJson = it.arguments?.getString("guideJson")?.let { json ->
+                        URLDecoder.decode(json, "UTF-8")
+                    }
+
+                    val guide = guideJson.let { json ->
+                        Gson().fromJson(json, TourismGuide::class.java) // Desserializa o JSON de volta para o objeto
+                    }
+                    AzConnectProfileScreen(navController, guideinfo = guide)
                 }
+
                 composable("InputFullRegisterScreen") {
                     InputFullRegisterScreen(navController)
                 }

@@ -115,13 +115,12 @@ Planos!</string>
     <string name="icone">Aparelho auditivo</string>
     <string name="local">Localização</string>
     <string name="descrição">Descrição Guias</string>
-    <string name="sobre">$nome</string>
     <string name="contato">Entre em contato</string>
     <string name="az">Az conecta</string>
     <string name="pesquisar">Pesquisar Destinos</string>
     <string name="imagem">Descrição de imagem </string>
     <string name="confirmação">confirmação </string>
-    <string name="mensagem">aviso </string>
+    <string name="mensagem">$aviso</string>
     <string name="telefone">$phone </string>
     <string name="horários">$time </string>
     <string name="seta">seta </string>
@@ -136,7 +135,7 @@ Planos!</string>
     <string name="duração">duração</string>
     <string name="titulo">$titulo</string>
     <string name="feedback">feedback</string>
-    <string name="emoji">emoji</string>
+    <string name="emoji">$emoji</string>
     <string name="pergunta">mensagem</string>
     <string name="enviar">enviar</string>
     <string name="back">back</string>
