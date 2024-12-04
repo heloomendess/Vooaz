@@ -38,14 +38,14 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 
 ### Curto prazo
 
-- [] Criar uma página web do Vooaz para ter um maior alcance.
+- [ ] Criar uma página web do Vooaz para ter um maior alcance.
 
 ### Médio prazo
-- [] Fechar parcerias com empresas e fundações que compartilham a visão de acessibilidade do Vooaz.
+- [ ] Fechar parcerias com empresas e fundações que compartilham a visão de acessibilidade do Vooaz.
 
 ### Longo Prazo
 
-- [] Expandir a acessibilidade a outros públicos, começando com a inclusão de pessoas em cadeira de rodas.
+- [ ] Expandir a acessibilidade a outros públicos, começando com a inclusão de pessoas em cadeira de rodas.
 
 # Equipe 
 
