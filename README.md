@@ -29,10 +29,14 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 
 ## Valores
 **Inclusão**: Assegurar acesso igualitário a experiências culturais e turísticas para pessoas cegas e surdas.
+
 **Autonomia**: Promover a independência dos usuários com recursos que garantem viagens seguras e enriquecedoras.
+
 **Acessibilidade**: Criar uma plataforma intuitiva e adaptada às necessidades de viajantes com deficiência.
+
 **Conexão**: Estabelecer uma rede de apoio entre viajantes e guias especializados para experiências personalizadas.
-**Respeito à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
+
+**Respeito** à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
 
 ## Próximos passos 
 
