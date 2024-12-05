@@ -126,11 +126,3 @@ fun InputScreen(navController: NavController) {
         }
     }
 }
-
-@Preview(showBackground = true, widthDp = 390, heightDp = 800)
-@Composable
-fun InputScreenPreview() {
-    VooazTheme {
-        InputScreen(navController = rememberNavController())
-    }
-}

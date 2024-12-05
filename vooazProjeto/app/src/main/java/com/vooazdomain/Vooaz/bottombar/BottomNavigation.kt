@@ -8,20 +8,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.bottombar.BottomNavItem
 import com.vooazdomain.Vooaz.bottombar.ConstantsBottomNavItem
+import com.vooazdomain.Vooaz.modelsData.datas.User
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 
 @Composable
-fun navigationBar(navController: NavController) {
+fun BottomNavigation(navController: NavController, user: User?) {
     val items = ConstantsBottomNavItem
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -43,6 +42,7 @@ fun navigationBar(navController: NavController) {
         ) {
             items.BottomNavItems.forEach { item ->
                 val isSelected = currentRoute == item.route
+
                 NavigationItem(
                     item = item,
                     isSelected = isSelected,
@@ -86,11 +86,4 @@ fun NavigationItem(item: BottomNavItem, isSelected: Boolean, onClick: () -> Unit
             )
         }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun PreviewNavigationBar() {
-    val navController = rememberNavController()
-    navigationBar(navController = navController)
 }

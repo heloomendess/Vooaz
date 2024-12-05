@@ -1,5 +1,6 @@
 package com.vooazdomain.Vooaz.telas.azconnect
 
+import BottomNavigation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 
 import androidx.compose.material.icons.filled.Search
@@ -26,41 +26,34 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
+import java.net.URLEncoder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConnectionsSearchScreen(navController: NavController, connections: List<connections>) {
-
+fun ChatSearchConectsScreen(navController: NavController, shareModel:  SharedModel) {
+var user = shareModel.selectedUser
     val primaryColor = Color(0xFFFFC107) // Amarelo
 
 
     Scaffold(
+        bottomBar ={BottomNavigation(navController, user)},
+
         topBar = {
-            Row(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer).padding(top=20.dp)) {
-
-
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(R.string.voltar),
-                    modifier = Modifier.size(60.dp).padding(start = 20.dp, top = 15.dp).clickable {
-                        navController.popBackStack()
-                    },
-                    tint =MaterialTheme.colorScheme.onSecondary
-                )
-
+            Row(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer).padding(top=20.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
 
                 Box(
                     modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Box(modifier = Modifier.padding(end = 60.dp)) {
+                    Box {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
                             contentDescription = stringResource(R.string.logo_description,"image description"),
@@ -85,7 +78,7 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
             }
             item {
                 Text(
-                    text = stringResource(R.string.az,"AZ Conecta"),
+                    text = stringResource(R.string.conexoes, "Suas Conexões"),
                     style = TextStyle(
                         fontFamily = poppinsFontFamily,
                         fontSize = 29.sp,
@@ -96,7 +89,7 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
 
                         ),
                     modifier = Modifier
-                        .width(173.dp)
+                        .fillMaxWidth()
                         .height(28.dp)
                 )
             }
@@ -112,7 +105,7 @@ fun ConnectionsSearchScreen(navController: NavController, connections: List<conn
             }
             // Lista de destinos dinâmica
             item {
-                ConnectionsGrid(connections = connections, primaryColor = primaryColor, navController)
+                ConnectionsGrid(user, shareModel,primaryColor = primaryColor, navController)
             }
             }
 
@@ -154,15 +147,15 @@ fun SearchField() {
 }
 
 @Composable
-fun ConnectionsGrid(connections: List<connections>, primaryColor: Color, controller: NavController) {
+fun ConnectionsGrid(user: User?, shared:SharedModel, primaryColor: Color, controller: NavController) {
     Column {
-        connections.chunked(2).forEach { rowItems ->
+        user?.conected_users?.chunked(2)?.forEach { rowItems ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                rowItems.forEach { connections ->
-                    ConnectionsCard(connections = connections, primaryColor = primaryColor, controller = controller)
+                rowItems.forEach { otherUsers ->
+                    ConnectionsCard(otherUsers = otherUsers,shared, primaryColor = primaryColor, controller = controller)
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -171,14 +164,15 @@ fun ConnectionsGrid(connections: List<connections>, primaryColor: Color, control
 }
 
 @Composable
-fun ConnectionsCard(connections: connections, primaryColor: Color, controller: NavController) {
+fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, controller: NavController) {
     Column(
         modifier = Modifier
             .width(158.dp).height(191.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(primaryColor)
             .clickable {
-                controller.navigate(connections.route)
+                shared.setSelectedOtherUser(otherUsers)
+                controller.navigate("OtherProfile")
             }
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -192,7 +186,7 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = connections.img),
+                painter = painterResource(id = otherUsers.imageRes),
                 contentDescription = stringResource(R.string.imagem,"image description"),
                 contentScale = ContentScale.FillBounds
             , modifier = Modifier
@@ -205,7 +199,7 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
 
         // Nome do destino
         Text(
-            text = connections.name,
+            text = otherUsers.name,
             fontFamily = poppinsFontFamily,
             style = TextStyle(
                 fontSize = 16.sp,
@@ -223,7 +217,7 @@ fun ConnectionsCard(connections: connections, primaryColor: Color, controller: N
         Spacer(modifier = Modifier.height(4.dp))
         // Localização do destino
         Text(
-            text = connections.location,
+            text = otherUsers.country,
             fontFamily = poppinsFontFamily,
             color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
             style = MaterialTheme.typography.bodySmall,
@@ -240,16 +234,3 @@ data class connections(
     val route: String
 )
 
-// Pré-visualização da tela
-@Preview(showBackground = true)
-@Composable
-fun ConnectionsSearchScreenPreview() {
-    val sampleDestinations = listOf(
-        connections("Fabio Nascimento", "Paris, França", R.drawable.ic_profile_placeholder, ""),
-        connections("Maria Valentina", "São Paulo, Brasil", R.drawable.examplepeopleprofile, ""),
-        connections("Lucas Amorim", "Santa Catarina, Brasil", R.drawable.ic_profile_placeholder3, ""),
-        connections("Alessandra Luz", "Veneza, Itália", R.drawable.ic_profile_placeholder4, ""),
-        connections("João Silva", "Lisboa, Portugal", R.drawable.ic_profile_placeholder5, "")
-    )
-    ConnectionsSearchScreen(rememberNavController(),connections = sampleDestinations)
-}

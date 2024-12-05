@@ -11,45 +11,36 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.key.Key.Companion.Guide
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
-import navigationBar
-import java.net.URLEncoder
+import BottomNavigation
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 
 @Composable
-fun GuidesScreen(navController: NavController) {
+fun GuideSearch(navController: NavController, shareModel: SharedModel) {
+    var user  = shareModel.selectedUser
     var expanded = remember { mutableStateOf(false) }
     var selectedGender = remember { mutableStateOf("Selecione seu gênero") }
     Scaffold(
@@ -58,7 +49,7 @@ fun GuidesScreen(navController: NavController) {
             TopBar()
         },
         bottomBar = {
-            navigationBar(navController)
+            BottomNavigation(navController, user)
         },
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) { innerpadding ->
@@ -86,12 +77,7 @@ fun GuidesScreen(navController: NavController) {
                         modifier = Modifier.height(16.dp)
                     )
                     Row(modifier = Modifier.padding(end = 30.dp)) {
-
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.back, "back"),
-                            modifier = Modifier.padding(end = 30.dp).size(40.dp)
-                        )
+                        Spacer(modifier = Modifier.width(20.dp))
                         HeaderGuidesFilter(
                             MaterialTheme.colorScheme.onTertiary,
                             expanded,
@@ -105,23 +91,23 @@ fun GuidesScreen(navController: NavController) {
                     guides.forEach { guide ->
                         when (selectedGender.value) {
                             "Selecione seu gênero" -> {
-                                GuideCard(guide, navController)
+                                GuideCard(guide, shareModel, navController)
                                 Spacer (modifier = Modifier.height(12.dp))
                             }
                             "Outro" -> {
-                                GuideCard(guide, navController)
+                                GuideCard(guide,shareModel,  navController)
                                 Spacer (modifier = Modifier.height(12.dp))
                             }
                             "Masculino" -> {
 
                                 if (guide.gender == "Masculino"){
-                                    GuideCard(guide, navController)
+                                    GuideCard(guide,shareModel,  navController)
                                     Spacer (modifier = Modifier.height(12.dp))
                                 }
                             }
                             "Feminino" -> {
                                 if (guide.gender == "Feminino"){
-                                    GuideCard(guide, navController)
+                                    GuideCard(guide,shareModel,  navController)
                                     Spacer (modifier = Modifier.height(12.dp))
                                 }
                             }
@@ -216,16 +202,17 @@ fun TopBar() {
 }
 
 @Composable
-fun GuideCard(guide: TourismGuide, navController: NavController) {
+fun GuideCard(guide: TourismGuide,shared:SharedModel, navController: NavController) {
 
-    val guideJson = URLEncoder.encode(Gson().toJson(guide), "UTF-8")
+
 
     Row(
         modifier = Modifier
             .fillMaxWidth().border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme. onSecondaryContainer, RoundedCornerShape(12.dp))
             .padding(16.dp).clickable {
-                navController. navigate("AzConnectProfileScreen/$guideJson")
+            shared.setSelectedGuide(guide)
+                navController. navigate("GuidesProfile")
             },
 
         verticalAlignment = Alignment.CenterVertically
@@ -277,10 +264,4 @@ fun GuideCard(guide: TourismGuide, navController: NavController) {
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GuidesScreenPreview() {
-    GuidesScreen(rememberNavController())
 }

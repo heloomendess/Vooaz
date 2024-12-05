@@ -34,18 +34,21 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
-import navigationBar
+import BottomNavigation
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 
 
 @Composable
-fun HomePageScreen(navController: NavController) {
+fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
+    var user = sharedModel.selectedUser
     Scaffold(
         topBar = {
             // Cabeçalho com logo e notificações
-            HeaderSection()
+            HeaderSection(user)
         },
         bottomBar = {
-            navigationBar(navController)
+            BottomNavigation(navController, user)
         },
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) {
@@ -78,7 +81,7 @@ fun HomePageScreen(navController: NavController) {
 }
 
 @Composable
-fun HeaderSection() {
+fun HeaderSection(user: User?) {
     Row(
         modifier = Modifier
             .fillMaxWidth().background(MaterialTheme.colorScheme.tertiary)
@@ -102,8 +105,9 @@ fun HeaderSection() {
                 modifier = Modifier.size(28.dp)
             )
             Spacer(modifier = Modifier.width(12.dp))
+            val imageRes = user?.imageRes ?: R.drawable.ico_emoji
             Image(
-                painter = painterResource(id = R.drawable.ico_profileblue),
+                painter = painterResource(imageRes),
                 contentDescription = "Avatar",
                 modifier = Modifier
                     .size(40.dp)
@@ -297,10 +301,4 @@ fun PlaceCard(imageRes: Int, title: String) {
             Spacer(modifier = Modifier.height(15.dp))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewHomePageScreen() {
-    HomePageScreen(rememberNavController())
 }

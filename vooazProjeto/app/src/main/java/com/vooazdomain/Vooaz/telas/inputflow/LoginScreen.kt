@@ -24,7 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -38,6 +37,9 @@ import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.VooazTheme
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
@@ -62,7 +64,7 @@ fun BackgroundLoginScreen(someTheme: ColorScheme) {
 }
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, shared:SharedModel) {
     var someTheme = MaterialTheme.colorScheme
     var email by remember { mutableStateOf("") }
     var senha by remember { mutableStateOf("") }
@@ -137,9 +139,14 @@ fun LoginScreen(navController: NavController) {
                 .clickable { navController.navigate("ForgotPassword") },
             fontFamily = poppinsFontFamily
         )
+
         Button(
             onClick = {
-                navController.navigate(route = "LoadingScreen/HomePageScreen")
+                val user = UsersConts.users.find { it.email == email && it.password == senha }
+                if (user != null) {
+                    shared.setSelectedUser(user)
+                    navController.navigate(route = "LoadingScreen/HomePageScreen")
+                }
             },
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier
@@ -191,13 +198,5 @@ fun LoginScreen(navController: NavController) {
                     .padding(start = 30.dp, bottom = 20.dp)
             )
         }
-    }
-}
-
-@Preview(showBackground = true, widthDp = 390, heightDp = 800)
-@Composable
-fun LoginPreview() {
-    VooazTheme {
-        LoginScreen(rememberNavController())
     }
 }

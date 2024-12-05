@@ -1,12 +1,12 @@
 package com.vooazdomain.Vooaz.navigationflow
 
-import AzConnectProfileScreen
+
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 
 import androidx.navigation.compose.NavHost
@@ -14,17 +14,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.feedbackscreen.FeedbackScreen
-import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
-import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.telas.aboutus.AboutUsScreen
+import com.vooazdomain.Vooaz.telas.azchat.PrivateChatScreen
 import com.vooazdomain.Vooaz.telas.azconnect.Conexoes
-import com.vooazdomain.Vooaz.telas.azconnect.ConnectionsSearchScreen
-import com.vooazdomain.Vooaz.telas.azconnect.connections
+import com.vooazdomain.Vooaz.telas.azconnect.ChatSearchConectsScreen
+import com.vooazdomain.Vooaz.telas.azconnect.GuidesProfile
 import com.vooazdomain.Vooaz.telas.destinationsScreen.CapitalScreen
 import com.vooazdomain.Vooaz.telas.destinationsScreen.DestinationCard
 import com.vooazdomain.Vooaz.telas.feedbackscreens.FeedbackConfirmScreen
-import com.vooazdomain.Vooaz.telas.guidesSearch.GuidesScreen
+import com.vooazdomain.Vooaz.telas.guidesSearch.GuideSearch
+//import com.vooazdomain.Vooaz.telas.guidesSearch.GuidesScreen
 import com.vooazdomain.Vooaz.telas.home.HomePageScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputFullRegisterScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputScreen
@@ -32,21 +33,31 @@ import com.vooazdomain.Vooaz.telas.inputflow.LoginScreen
 import com.vooazdomain.Vooaz.telas.plan.PlanSuggestionScreen
 import com.vooazdomain.Vooaz.telas.inputflow.RegisterAccountContent
 import com.vooazdomain.Vooaz.telas.plan.Plans
+import com.vooazdomain.Vooaz.telas.profile.OthersProfile
 import com.vooazdomain.Vooaz.telas.profile.ProfileScreen
 import com.vooazdomain.Vooaz.telas.resetpassword.ChangePasswordScreen
 import com.vooazdomain.Vooaz.telas.resetpassword.ForgotPasswordPinScreen
 import com.vooazdomain.Vooaz.telas.resetpassword.ForgotPasswordScreen
+import com.vooazdomain.Vooaz.telas.settingScreen.AdjustsScreen
+import com.vooazdomain.Vooaz.telas.settingScreen.HelpCenterActivity
+import com.vooazdomain.Vooaz.telas.settingScreen.HelpCenterScreen
 import com.vooazdomain.Vooaz.telas.settingScreen.PersonalInfoScreen
 import com.vooazdomain.Vooaz.telas.settingScreen.SettingsScreen
+import com.vooazdomain.Vooaz.telas.settingScreen.TravelHistoryScreen
 import com.vooazdomain.Vooaz.telas.splashpage.addSplashPage
-import java.net.URLDecoder
 
 @Composable
 fun NavigationFlowSettings() {
     val navController = rememberNavController()
 
-    val userAutentic: Boolean = false // caso true usuario esta autenticado, aso false não esta
+    val userAutentic = false // caso true usuario esta autenticado, aso false não esta
     val destination = if (userAutentic) "HomePageScreen" else "InputScreen"
+    val sharedViewModelUser: SharedModel = viewModel()
+
+
+    val selectedModel = sharedViewModelUser
+
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         content = { innerPadding ->
@@ -56,9 +67,21 @@ fun NavigationFlowSettings() {
                 startDestination = "addSplashPage"
             ) {
 
+                composable("HelpCenterScreen") {
+                    var help_funcs = HelpCenterActivity()
+                    HelpCenterScreen(navController, onEmailClick = {help_funcs.openEmail()}, onChatClick = {help_funcs.openChat()}, onFAQClick = {help_funcs.openFAQ()})
+                }
 
-                composable("GuidesScreen") {
-                    GuidesScreen(navController)
+//
+                composable("GuidesScreen"){
+
+                    GuideSearch(navController, selectedModel)
+                }
+                composable("TravelHistoryScreen") {
+                    TravelHistoryScreen(navController)
+                }
+                composable("AdjustsScreen") {
+                    AdjustsScreen(navController)
                 }
                 composable("FeedbackScreen") {
                     FeedbackScreen(navController)
@@ -71,13 +94,13 @@ fun NavigationFlowSettings() {
                     Conexoes(navController)
                 }
                 composable(
-                    "LoadingScreen/{route}",  // Definindo o argumento
-                    arguments = listOf(navArgument("route") {
-                        type = NavType.StringType
-                    })  // Tipo de dado
+                    "LoadingScreen/{route}",
+                    arguments = listOf(
+                        navArgument("route") { type = NavType.StringType },
+                    )
                 ) {
                     val route = it.arguments?.getString("route") ?: "Mensagem padrão"
-                    LoadingScreen(navController, route)
+                    LoadingScreen(navController, route)  // Passando os argumentos para a tela
                 }
 
                 val sampleDestinations = listOf(
@@ -102,131 +125,42 @@ fun NavigationFlowSettings() {
                     CapitalScreen(navController, sampleDestinations)
                 }
                 composable("HomePageScreen") {
-                    HomePageScreen(navController)
-                }
+
+
+                        HomePageScreen(navController, selectedModel)
+                    }
+
                 composable("PersonalInfoScreen") {
                     PersonalInfoScreen(navController)
                 }
                 composable("PlanScreenSuggestion") {
                     PlanSuggestionScreen(navController)
                 }
-                composable("ConnectionsSearchScreen") {
-                    val sampleconnections = listOf(
-                        connections(
-                            "Fabio Nascimento",
-                            "Paris, França",
-                            R.drawable.ic_profile_placeholder,
-                            "Fabio"
-                        ),
-                        connections(
-                            "Lais\n" +
-                                    "Ribeiro",
-                            "São Paulo, Brasil",
-                            R.drawable.examplepeopleprofile,
-                            "Lais"
-                        ),
-                        connections(
-                            "Lucas Amorim",
-                            "Santa Catarina, Brasil",
-                            R.drawable.ic_profile_placeholder3,
-                            ""
-                        ),
-                        connections(
-                            "Alessandra Luz",
-                            "Veneza, Itália",
-                            R.drawable.ic_profile_placeholder4,
-                            ""
-                        ),
-                        connections(
-                            "João Silva",
-                            "Lisboa, Portugal",
-                            R.drawable.ic_profile_placeholder5,
-                            ""
-                        ),
-                        connections(
-                            "Fabio Nascimento",
-                            "Paris, França",
-                            R.drawable.ic_profile_placeholder,
-                            ""
-                        ),
-                        connections(
-                            "Maria Valentina",
-                            "São Paulo, Brasil",
-                            R.drawable.ic_profile_placeholder2,
-                            ""
-                        ),
-                        connections(
-                            "Lucas Amorim",
-                            "Santa Catarina, Brasil",
-                            R.drawable.ic_profile_placeholder3,
-                            ""
-                        ),
-                        connections(
-                            "Alessandra Luz",
-                            "Veneza, Itália",
-                            R.drawable.ic_profile_placeholder4,
-                            ""
-                        ),
-                        connections(
-                            "João Silva",
-                            "Lisboa, Portugal",
-                            R.drawable.ic_profile_placeholder5,
-                            ""
-                        ),
-                        connections(
-                            "Fabio Nascimento",
-                            "Paris, França",
-                            R.drawable.ic_profile_placeholder,
-                            ""
-                        ),
-                        connections(
-                            "Maria Valentina",
-                            "São Paulo, Brasil",
-                            R.drawable.ic_profile_placeholder2,
-                            ""
-                        ),
-                        connections(
-                            "Lucas Amorim",
-                            "Santa Catarina, Brasil",
-                            R.drawable.ic_profile_placeholder3,
-                            ""
-                        ),
-                        connections(
-                            "Alessandra Luz",
-                            "Veneza, Itália",
-                            R.drawable.ic_profile_placeholder4,
-                            ""
-                        ),
-                        connections(
-                            "João Silva",
-                            "Lisboa, Portugal",
-                            R.drawable.ic_profile_placeholder5,
-                            ""
-                        )
-                    )
+                composable("ChatSearchConectsScreen") {
 
-                    ConnectionsSearchScreen(navController, sampleconnections)
+
+                    ChatSearchConectsScreen(navController, selectedModel)
                 }
                 // tela de perfil
-                composable("ProfileScreen") {
-                    ProfileScreen(navController)
+                composable("ProfileScreen"){
+
+                    ProfileScreen(navController, selectedModel)
+                }
+                composable("PrivateChatScreen"){
+
+                    PrivateChatScreen(navController, selectedModel)
                 }
 
 
 
-                // tela de perfil de terceiros
-                composable("AzConnectProfileScreen/{guideJson}",
-                    arguments = listOf(navArgument("guideJson") {
-                        type = NavType.StringType
-                    })) {
-                    val guideJson = it.arguments?.getString("guideJson")?.let { json ->
-                        URLDecoder.decode(json, "UTF-8")
-                    }
 
-                    val guide = guideJson.let { json ->
-                        Gson().fromJson(json, TourismGuide::class.java) // Desserializa o JSON de volta para o objeto
-                    }
-                    AzConnectProfileScreen(navController, guideinfo = guide)
+                composable("OthersProfile") {
+
+                    OthersProfile(navController,  selectedModel )
+                }
+                composable("GuidesProfile") {
+
+                    GuidesProfile(navController, selectedModel)
                 }
 
                 composable("InputFullRegisterScreen") {
@@ -246,17 +180,20 @@ fun NavigationFlowSettings() {
                     ChangePasswordScreen(navController)
                 }
                 composable("LoginScreen") {
-                    LoginScreen(navController)
+                    LoginScreen(navController, selectedModel)
                 }
                 composable("RegisterAccountScreen") {
                     RegisterAccountContent(navController)
                 }
+
                 composable("InputScreen") {
 
                     InputScreen(navController)
                 }
-                composable("SettingsScreen") {
-                    SettingsScreen(navController)
+                composable("SettingsScreen"){
+
+                    SettingsScreen(navController,  selectedModel)
+
                 }
 
             }
