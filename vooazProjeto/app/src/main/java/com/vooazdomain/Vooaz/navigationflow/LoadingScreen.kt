@@ -16,6 +16,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.airbnb.lottie.compose.*
+import com.google.gson.Gson
+import com.vooazdomain.Vooaz.modelsData.datas.User
+import java.net.URLEncoder
 
 
 @Composable
@@ -24,12 +27,11 @@ fun LoadingScreen(navController: NavHostController, screen: String) {
     val progress by animateLottieCompositionAsState(composition = composition, speed = 15f)
 
     LaunchedEffect(progress) {
-        if (progress == 1f) { // Animação concluída
-            navController.navigate(screen) {
-                popUpTo("SplashScreen") { inclusive = true }
-            }
+        if (progress == 1f) {
+            navController.navigate(screen)
         }
-    }
+        }
+
 
     // Exibição da animação na tela inteira
     Box(

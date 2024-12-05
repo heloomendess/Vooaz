@@ -1,4 +1,4 @@
-package com.vooazdomain.Vooaz.telas.profile
+package com.vooazdomain.Vooaz.telas.azconnect
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -20,38 +22,37 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
-import com.vooazdomain.Vooaz.modelsData.datas.User
+import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
-fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
-    val backgroundColor = Color(0xFF4059AD)
-    val flagIcon = painterResource(R.drawable.ic_flag_brazil)
-    val whatsappIcon = painterResource(R.drawable.ic_whatsapp)
-    val instagramIcon = painterResource(R.drawable.instagram)
-    val facebookIcon = painterResource(R.drawable.facebook)
-    val containerColor = Color(0xFFF5F5F5)
-    var user = shared.selectedUser
+fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
+
+    val backgroundColor = Color(0xFFF4B942) // Amarelo para o fundo do cabeçalho
+    val whatsappIcon = painterResource(R.drawable.ic_whatsapp) // Ícone WhatsApp substituível
+    val instagramIcon = painterResource(R.drawable.instagram) // Ícone Instagram substituível
+    val facebookIcon = painterResource(R.drawable.facebook) // Ícone Facebook substituível
+    val containerColor = Color(0xFFF5F5F5) // Fundo da tela (cinza claro)
+    var guideinfo =shared.selectedGuides
+
     Scaffold(
+        containerColor = backgroundColor  ,
         topBar = {
             Row(modifier = Modifier.background(containerColor).padding(top=20.dp)) {
 
 
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Voltar",
+                    contentDescription = stringResource(R.string.voltar),
                     modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint = MaterialTheme.colorScheme.onSecondary
+                    tint =MaterialTheme.colorScheme.onSecondary
                 )
 
 
@@ -62,7 +63,7 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                     Box(modifier = Modifier.padding(end = 60.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = "image description",
+                            contentDescription = stringResource(R.string.LogoAz),
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
                                 .width(75.dp)
@@ -84,7 +85,7 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(170.dp)
+                            .fillMaxHeight()
                             .background(backgroundColor,shape = RoundedCornerShape(
                                 topStart = 16.dp,
                                 topEnd = 16.dp,
@@ -96,20 +97,20 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                         ) {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                             // Imagem de perfil
-                            val imageRes = user?.imageRes ?: R.drawable.ico_profileblue
                             Image(
-                                painter = painterResource(imageRes),
-                                contentDescription = stringResource(R.string.imagem,"image description"),
-                                contentScale = ContentScale.FillBounds,
+                                painter = painterResource(guideinfo?.imageRes?: R.drawable.profileicon),
+                                contentDescription = stringResource(R.string.imagem_usuario),
+                                contentScale = ContentScale.Crop,
                                 modifier = Modifier
-                                    .width(128.dp)
-                                    .height(120.dp)
+                                    .size(128.dp)
+                                    .clip(CircleShape)
                                     .border(
-                                        width = 2.dp,
-                                        color = MaterialTheme.colorScheme. onBackground,
-                                        shape = RoundedCornerShape(size = 158.dp)
+                                        width = 1.dp,
+                                        color = MaterialTheme.colorScheme.onBackground,
+                                        shape = CircleShape
                                     )
                             )
+
 
                             Spacer(modifier = Modifier.width(16.dp))
 
@@ -117,39 +118,47 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                             Column(modifier = Modifier.width(210.dp)) {
                                 Row() {
                                     Text(
-                                        text = stringResource(R.string.nome, user?.name ?: "UserInfo"),
+                                        text = guideinfo?.name ?: "Default1",
                                         style = TextStyle(
-                                            fontFamily = poppinsFontFamily,
+                                            fontFamily =poppinsFontFamily,
                                             fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                            color =MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Image(painterResource(R.drawable.walking_stick_white
-                                    ), contentDescription = "walkingstick" ,modifier =Modifier.size(30.dp))
+                                    Image(painterResource(R.drawable.hearingaidicon),
+                                        contentDescription = stringResource(R.string.icone),
+                                        modifier =Modifier.size(30.dp))
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
-                                        painter = painterResource(user?.flagCountry ?: R.drawable.ic_flag_brazil),
-                                        contentDescription = stringResource(R.string.localização,"Localização"),
+                                        painter = painterResource(guideinfo?.flagCountry?: R.drawable.ic_flag_brazil),
+                                        contentDescription = stringResource(R.string.local),
                                         modifier = Modifier.size(30.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = stringResource(R.string.localização,user?.country?:"Brasil"),
-                                        style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 14.sp, color =MaterialTheme.colorScheme.onSecondaryContainer)
+                                        text = guideinfo?.country ?:"Brasil",
+                                        fontFamily =poppinsFontFamily,
+                                        style = TextStyle(fontSize = 14.sp,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                        )
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Button(
                                     onClick = { /* Ação conectar */ },
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = MaterialTheme.colorScheme.onTertiary
+                                        containerColor = Color(
+                                            0xFF3366FF
+                                        )
                                     ),
                                     modifier = Modifier.padding(start = 20.dp)
                                 ) {
-                                    Text(text = stringResource(R.string.conexões,"Conexões"), color = MaterialTheme.colorScheme.onSecondaryContainer)
+                                    Text(text = "Conectar",
+                                        fontFamily = poppinsFontFamily,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer)
                                 }
                             }
 
@@ -161,31 +170,32 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                     }
                 }
 
-
+                // Seção "Sobre Fabio"
                 item {
 
                     Column(
                         modifier = Modifier
                             .width(411.dp)
-                            .height(453.dp)
+                            .heightIn(453.dp)
                             .background(
-                                color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                                color = MaterialTheme.colorScheme.  tertiary,
                                 shape = RoundedCornerShape(size = 3.dp)
                             ),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Sobre mim:",
+                            text ="Sobre ${guideinfo?.name?: "Nomme Padrao"}:",
+                            fontFamily = poppinsFontFamily,
                             style = TextStyle(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSecondary
+                                color =MaterialTheme.colorScheme.onSecondary
                             )
                         )
                         Spacer(modifier = Modifier.height(28.dp))
                         Text(
-                            text = stringResource(R.string.apresentação,user?.AboutUser?: "Sobre mim"),
+                            text = guideinfo?.AboutGuide ?: "Profissional dedicado",
                             style = TextStyle(
                                 fontFamily = poppinsFontFamily,
                                 fontSize = 19.sp,
@@ -197,8 +207,9 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                                 ),
                             modifier = Modifier
                                 .width(270.dp)
-                                .height(351.dp)
+                                .heightIn(351.dp, 900.dp)
                         )
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
 
@@ -209,13 +220,13 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
 
-                                text = stringResource(R.string.mensagem,"Entre em contato"),
+                                text = stringResource(R.string.contato,"Entre em contato"),
+                                fontFamily = poppinsFontFamily,
                                 style = TextStyle(
-                                    fontFamily = poppinsFontFamily,
                                     fontSize = 21.sp,
                                     lineHeight = 17.28.sp,
                                     fontWeight = FontWeight(700),
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                                     textAlign = TextAlign.Justify,
                                 )
                             )
@@ -237,7 +248,7 @@ fun ProfileScreen(navController: NavHostController, shared:SharedModel) {
                                 IconButton(onClick = { /* Ação Instagram */ }) {
                                     Icon(
                                         painter = instagramIcon,
-                                        contentDescription =stringResource(R.string.instagram, "Instagram"),
+                                        contentDescription = stringResource(R.string.instagram,"Instagram"),
                                         modifier = Modifier.size(55.dp),
                                         tint = Color.Unspecified
                                     )

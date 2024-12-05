@@ -6,7 +6,7 @@ object ConstantsBottomNavItem {
         BottomNavItem(
             label = "Chat",
             icon = R.drawable.chatbubble,
-            route = "Conexoes",
+            route = "ChatSearchConectsScreen",
             size = 32
         ),
         BottomNavItem(

@@ -25,7 +25,7 @@ fun addSplashPage(navController: NavHostController, destination:String) {
         if (progress == 1f) { // Animação concluída
             delay(3000)
             navController.navigate(destination) {
-                popUpTo("SplashScreen") { inclusive = true }
+                popUpTo("addSplashPage") { inclusive = true }
             }
         }
     }

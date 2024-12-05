@@ -101,7 +101,7 @@ fun PersonalInfoScreen(navController: NavController) {
 
             item {
                 Button(
-                    onClick = { /* Handle back action */ },
+                    onClick = { navController.popBackStack() },
                     modifier =Modifier
                         .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme. surfaceContainer, ambientColor = MaterialTheme.colorScheme. surfaceContainer)
                         .width(143.dp)
@@ -111,7 +111,7 @@ fun PersonalInfoScreen(navController: NavController) {
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
 
                 ) {
-                    Text(stringResource(R.string.voltar,"Voltar"))
+                    Text(stringResource(R.string.voltar), color = Color.White)
                 }
             }
             item {
@@ -151,9 +151,9 @@ fun InputField(
             .border(1.dp, MaterialTheme.colorScheme.tertiary, RoundedCornerShape(8.dp)) // Borda mais fina
             .background(Color.White, RoundedCornerShape(8.dp)), // Fundo branco
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = Color.Transparent, // Fundo do campo
-            focusedIndicatorColor = Color.Transparent, // Remove indicador ao focar
-            unfocusedIndicatorColor = Color.Transparent // Remove indicador ao desfocar
+            containerColor = Color.Transparent,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
         ),
         shape = RoundedCornerShape(8.dp),
 

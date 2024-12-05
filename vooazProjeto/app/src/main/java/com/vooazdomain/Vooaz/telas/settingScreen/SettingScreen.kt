@@ -27,16 +27,20 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
-import navigationBar
+import BottomNavigation
+import androidx.compose.ui.draw.clip
+import com.airbnb.lottie.model.content.CircleShape
+import com.google.gson.Gson
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
+import java.net.URLEncoder
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController) {
-    // Cores e estilos personalizados
-    val backgroundColor = Color(0xFFECECEC) // Cinza claro
-    val headerBackgroundColor = Color(0xFF3B5998) // Azul
-    val white = Color.White
+fun SettingsScreen(navController: NavController, shared: SharedModel) {
+var user = shared.selectedUser
+    val headerBackgroundColor = Color(0xFF3B5998)
 
     Scaffold(
         topBar = {
@@ -49,20 +53,11 @@ fun SettingsScreen(navController: NavController) {
                         fontWeight = FontWeight.Bold
                     )
                 },
-                navigationIcon = {
-                    IconButton(onClick = { /* Ação ao voltar */ }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.voltar,"Voltar"),
-                            tint =MaterialTheme.colorScheme. onSecondaryContainer
-                        )
-                    }
-                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = headerBackgroundColor)
             )
         },
         bottomBar = {
-            navigationBar(navController)
+            BottomNavigation(navController, user)
         },
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) { padding ->
@@ -73,7 +68,7 @@ fun SettingsScreen(navController: NavController) {
         ) {
             // Header
             item {
-                HeaderSection(navController)
+                HeaderSection(navController, user, shared)
             }
             item {
                 Spacer(modifier = Modifier.height(16.dp))
@@ -96,7 +91,7 @@ fun SettingsScreen(navController: NavController) {
                     label =stringResource(R.string.viagens, "Viagens"),
                     image = painterResource(id = R.drawable.malaviagem),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "TravelHistoryScreen"
                 )
             }
             item {
@@ -104,7 +99,7 @@ fun SettingsScreen(navController: NavController) {
                     label =stringResource(R.string.ajustes, "Ajustes"),
                     image = painterResource(id = R.drawable.adjustsicon),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "AdjustsScreen"
                 )
             }
             item {
@@ -134,7 +129,7 @@ fun SettingsScreen(navController: NavController) {
                     label = stringResource(R.string.ajuda,"Central de ajuda"),
                     image = painterResource(id = R.drawable.sinalinterrogacao),
                     navigation = navController,
-                    navroute = "ForgotPasswordPin"
+                    navroute = "HelpCenterScreen"
                 )
             }
             item {
@@ -152,23 +147,25 @@ fun SettingsScreen(navController: NavController) {
 }
 
 @Composable
-fun HeaderSection(navController: NavController) {
+fun HeaderSection(navController: NavController, user: User?, shared: SharedModel) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth().clickable {
+
+                navController.navigate("ProfileScreen")
+            }
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Imagem do perfil
 
-            // Substitua por um ImageLoader ou Coil para imagens reais
+
             Image(
                 modifier = Modifier
-                    .width(87.dp)
+                    .width(87.dp).clip(shape = RoundedCornerShape(200.dp))
                     .height(87.dp),
-                painter = painterResource(id = R.drawable.examplepeopleprofile),
+                painter = painterResource(user?.imageRes?: R.drawable.personicon),
 
-                contentDescription = stringResource(R.string.imagem,"image description"),
+                contentDescription = stringResource(R.string.imagem,"Imagem do usuario"),
 
                 contentScale = ContentScale.FillBounds
             )
@@ -176,11 +173,9 @@ fun HeaderSection(navController: NavController) {
         Spacer(modifier = Modifier.width(12.dp))
 
         // Nome e botão
-        Column(modifier = Modifier.weight(1f).clickable {
-navController.navigate("ProfileScreen")
-        }) {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = stringResource(R.string.nome,"Lais Ribeiro"),
+                text = stringResource(R.string.nome,user?.name ?: "Nome padrao"),
                 color = MaterialTheme.colorScheme.onSecondary,
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 20.sp,
@@ -229,7 +224,7 @@ fun SectionTitle(title: String) {
 fun SettingsOption(label: String, image: Painter, navigation: NavController, navroute: String) {
     Row(
         Modifier
-            .width(350.dp)
+            .width(330.dp)
             .padding(start = 30.dp, top = 10.dp)
             .height(70.dp)
             .background(color = MaterialTheme.colorScheme.onBackground , shape = RoundedCornerShape(size = 15.dp)).clickable {
@@ -248,7 +243,7 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
 
             )
         }
-        Spacer(modifier = Modifier.width(30.dp))
+        Spacer(modifier = Modifier.width(20.dp))
         Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
             Text(
                 text = label,
@@ -260,11 +255,9 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
 
                     ),
             )
+
         }
+        Spacer(modifier = Modifier.height(10.dp))
+
     }
-}
-@Composable
-@Preview
-fun SettingsScreenPreview(){
-    SettingsScreen(rememberNavController())
 }

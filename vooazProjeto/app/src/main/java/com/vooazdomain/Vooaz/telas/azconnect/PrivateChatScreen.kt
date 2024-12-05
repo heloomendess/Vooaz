@@ -22,11 +22,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
-fun ChatScreen() {
+fun PrivateChatScreen(navController: NavController, shared:SharedModel) {
     var message by remember { mutableStateOf(TextFieldValue("")) }
     val messages = remember { mutableStateListOf<Pair<String, Boolean>>() } // Lista de mensagens
     Scaffold(
@@ -214,8 +216,3 @@ fun OtherUserMessage(message: String) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewChatScreen() {
-    ChatScreen()
-}

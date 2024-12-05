@@ -1,10 +1,11 @@
+package com.vooazdomain.Vooaz.telas.profile
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,7 +13,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -25,34 +25,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+
 import com.vooazdomain.Vooaz.R
-import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
-fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismGuide) {
-
-    val backgroundColor = Color(0xFFF4B942) // Amarelo para o fundo do cabeçalho
-    val whatsappIcon = painterResource(R.drawable.ic_whatsapp) // Ícone WhatsApp substituível
-    val instagramIcon = painterResource(R.drawable.instagram) // Ícone Instagram substituível
-    val facebookIcon = painterResource(R.drawable.facebook) // Ícone Facebook substituível
-    val containerColor = Color(0xFFF5F5F5) // Fundo da tela (cinza claro)
-
-
+fun OthersProfile(navController: NavHostController, shared:SharedModel) {
+    val backgroundColor = Color(0xFF4059AD)
+    val flagIcon = painterResource(R.drawable.ic_flag_brazil)
+    val whatsappIcon = painterResource(R.drawable.ic_whatsapp)
+    val instagramIcon = painterResource(R.drawable.instagram)
+    val facebookIcon = painterResource(R.drawable.facebook)
+    val containerColor = Color(0xFFF5F5F5)
+    var user = shared.selectedUser
     Scaffold(
-        bottomBar = {navigationBar(navController)},
-        containerColor = backgroundColor  ,
         topBar = {
             Row(modifier = Modifier.background(containerColor).padding(top=20.dp)) {
 
 
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(R.string.voltar),
+                    contentDescription = "Voltar",
                     modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint =MaterialTheme.colorScheme.onSecondary
+                    tint = MaterialTheme.colorScheme.onSecondary
                 )
 
 
@@ -63,7 +62,7 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                     Box(modifier = Modifier.padding(end = 60.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = stringResource(R.string.LogoAz),
+                            contentDescription = "image description",
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
                                 .width(75.dp)
@@ -85,7 +84,7 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight()
+                            .height(170.dp)
                             .background(backgroundColor,shape = RoundedCornerShape(
                                 topStart = 16.dp,
                                 topEnd = 16.dp,
@@ -97,20 +96,20 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                         ) {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                             // Imagem de perfil
+                            val imageRes = user?.imageRes ?: R.drawable.ico_profileblue
                             Image(
-                                painter = painterResource(guideinfo.imageRes),
-                                contentDescription = stringResource(R.string.imagem_usuario),
-                                contentScale = ContentScale.Crop,
+                                painter = painterResource(imageRes),
+                                contentDescription = stringResource(R.string.imagem,"image description"),
+                                contentScale = ContentScale.FillBounds,
                                 modifier = Modifier
-                                    .size(128.dp)
-                                    .clip(CircleShape)
+                                    .width(128.dp)
+                                    .height(120.dp)
                                     .border(
-                                        width = 1.dp,
-                                        color = MaterialTheme.colorScheme.onBackground,
-                                        shape = CircleShape
+                                        width = 2.dp,
+                                        color = MaterialTheme.colorScheme. onBackground,
+                                        shape = RoundedCornerShape(size = 158.dp)
                                     )
                             )
-
 
                             Spacer(modifier = Modifier.width(16.dp))
 
@@ -118,47 +117,39 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                             Column(modifier = Modifier.width(210.dp)) {
                                 Row() {
                                     Text(
-                                        text = guideinfo.name,
+                                        text = stringResource(R.string.nome, user?.name ?: "UserInfo"),
                                         style = TextStyle(
-                                            fontFamily =poppinsFontFamily,
+                                            fontFamily = poppinsFontFamily,
                                             fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color =MaterialTheme.colorScheme.onSecondaryContainer
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Image(painterResource(R.drawable.hearingaidicon),
-                                        contentDescription = stringResource(R.string.icone),
-                                        modifier =Modifier.size(30.dp))
+                                    Image(painterResource(R.drawable.walking_stick_white
+                                    ), contentDescription = "walkingstick" ,modifier =Modifier.size(30.dp))
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
-                                        painter = painterResource(guideinfo.flagCountry),
-                                        contentDescription = stringResource(R.string.local),
+                                        painter = painterResource(user?.flagCountry ?: R.drawable.ic_flag_brazil),
+                                        contentDescription = stringResource(R.string.localização,"Localização"),
                                         modifier = Modifier.size(30.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = guideinfo.country,
-                                        fontFamily =poppinsFontFamily,
-                                        style = TextStyle(fontSize = 14.sp,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
+                                        text = stringResource(R.string.localização,user?.country?:"Brasil"),
+                                        style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 14.sp, color =MaterialTheme.colorScheme.onSecondaryContainer)
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Button(
                                     onClick = { /* Ação conectar */ },
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(
-                                            0xFF3366FF
-                                        )
+                                        containerColor = MaterialTheme.colorScheme.onTertiary
                                     ),
                                     modifier = Modifier.padding(start = 20.dp)
                                 ) {
-                                    Text(text = "Conectar",
-                                        fontFamily = poppinsFontFamily,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer)
+                                    Text(text = stringResource(R.string.conexões,"Conexões"), color = MaterialTheme.colorScheme.onSecondaryContainer)
                                 }
                             }
 
@@ -170,32 +161,31 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                     }
                 }
 
-                // Seção "Sobre Fabio"
+
                 item {
 
                     Column(
                         modifier = Modifier
                             .width(411.dp)
-                            .heightIn(453.dp)
+                            .height(453.dp)
                             .background(
-                                color = MaterialTheme.colorScheme.  tertiary,
+                                color = MaterialTheme.colorScheme.surfaceContainerHighest,
                                 shape = RoundedCornerShape(size = 3.dp)
                             ),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text ="Sobre ${guideinfo.name}:",
-                            fontFamily = poppinsFontFamily,
+                            text = "Sobre mim:",
                             style = TextStyle(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                color =MaterialTheme.colorScheme.onSecondary
+                                color = MaterialTheme.colorScheme.onSecondary
                             )
                         )
                         Spacer(modifier = Modifier.height(28.dp))
                         Text(
-                            text = guideinfo.AboutGuide,
+                            text = stringResource(R.string.apresentação,user?.AboutUser?: "Sobre mim"),
                             style = TextStyle(
                                 fontFamily = poppinsFontFamily,
                                 fontSize = 19.sp,
@@ -207,9 +197,8 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                                 ),
                             modifier = Modifier
                                 .width(270.dp)
-                                .heightIn(351.dp, 900.dp)
+                                .height(351.dp)
                         )
-                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
 
@@ -220,13 +209,13 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
 
-                                text = stringResource(R.string.contato,"Entre em contato"),
-                                fontFamily = poppinsFontFamily,
+                                text = stringResource(R.string.mensagem,"Entre em contato"),
                                 style = TextStyle(
+                                    fontFamily = poppinsFontFamily,
                                     fontSize = 21.sp,
                                     lineHeight = 17.28.sp,
                                     fontWeight = FontWeight(700),
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     textAlign = TextAlign.Justify,
                                 )
                             )
@@ -248,7 +237,7 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
                                 IconButton(onClick = { /* Ação Instagram */ }) {
                                     Icon(
                                         painter = instagramIcon,
-                                        contentDescription = stringResource(R.string.instagram,"Instagram"),
+                                        contentDescription =stringResource(R.string.instagram, "Instagram"),
                                         modifier = Modifier.size(55.dp),
                                         tint = Color.Unspecified
                                     )
@@ -271,4 +260,4 @@ fun AzConnectProfileScreen(navController: NavHostController, guideinfo: TourismG
         }
 
     )
-} 
+}
