@@ -92,7 +92,9 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 ---
 ## Identidade Visual
 ---
-Nossa identidade visual é o equilíbrio perfeito entre paz e segurança, combinando um design minimalista com uma abordagem moderna e sofisticada.
+
+Noosa identidade visual é o equilíbrio perfeito entre paz e segurança, combinando um design minimalista com uma abordagem moderna e sofisticada.
+
 **Cores**
 ---
 | Cor           | Código HEX | Exemplo    |
