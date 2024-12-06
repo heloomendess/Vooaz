@@ -93,7 +93,7 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 ## Identidade Visual
 ---
 
-Noosa identidade visual é o equilíbrio perfeito entre paz e segurança, combinando um design minimalista com uma abordagem moderna e sofisticada.
+Noosa identidade visual é o equilíbrio perfeito entre *paz e segurança*, combinando um design minimalista com uma abordagem moderna e sofisticada.
 
 **Cores**
 ---
@@ -104,6 +104,15 @@ Noosa identidade visual é o equilíbrio perfeito entre paz e segurança, combin
 | Button Blue   | #2D98E3    | ![#2D98E3](https://via.placeholder.com/15/2D98E3/2D98E3)|
 | Bright Yellow | #FDB618    | ![#FDB618](https://via.placeholder.com/15/FDB618/FDB618) |
 | Yellow Orange | #FFBC45    | ![#FFBC45](https://via.placeholder.com/15/FFBC45/FFBC45) |
+---
+**Tipografia**
+---
+Em nossa tipografia usamos as fontes:
+
+* Bubbleboddy: Para nossa logo;
+* Poppins: Corpo do texto e títulos.
+  
+Essas fontes foram cuidadosamente selecionadas por sua alta legibilidade, garantindo uma experiência de leitura clara e confortável. Além disso, elas foram escolhidas pensando em acessibilidade, sendo especialmente adequadas para usuários que utilizam recursos de acessibilidade em dispositivos móveis, como leitores de tela e ajustes de contraste.
 ---
 
 # Equipe 
