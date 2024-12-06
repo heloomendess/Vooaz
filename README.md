@@ -148,7 +148,7 @@ Conheça os reponsáveis pelo projeto:
 
 ## Nossas redes e contatos 
 [![Instagram](https://img.icons8.com/fluency/48/instagram-new.png)](https://www.instagram.com/vooaz_)
-[![LinkedIn](https://img.icons8.com/fluency/48/linkedin.png)](https://www.linkedin.com/company/vooaz})
+[![LinkedIn](https://img.icons8.com/fluency/48/linkedin.png)](https://www.linkedin.com/company/vooaz/)
 [![E-mail](https://img.icons8.com/fluency/48/email.png)](mailto:vooaz.mpt@gmail.com)
 ---
 
