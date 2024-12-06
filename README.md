@@ -109,9 +109,19 @@ Noosa identidade visual é o equilíbrio perfeito entre *paz e segurança*, comb
 ---
 Em nossa tipografia usamos as fontes:
 
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Bubbleboddy+Rounded&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
 * Bubbleboddy: Para nossa logo;
+  <p style="font-family: 'Bubbleboddy Rounded', cursive; font-size: 24px; font-weight: normal;">
+  Este é um exemplo de texto usando a fonte Bubbleboddy.
+</p>
 * Poppins: Corpo do texto e títulos.
-  
+<p style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: normal;">
+  Este é um exemplo de texto usando a fonte Poppins.
+</p>
+
 Essas fontes foram selecionadas por sua alta legibilidade, garantindo uma experiência de leitura clara e confortável. Além disso, elas foram escolhidas pensando em acessibilidade, sendo especialemnte adequadas para usuários que utilizam recursos "TalkBack" em dispositivos móveis, como leitores de tela e ajustes de constraste.
 
 ---
