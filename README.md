@@ -67,7 +67,7 @@ Conheça os reponsáveis pelo projeto:
 	</div>
 
  <div style="text-align: center;">
-  <img src="equipe/rota_avião.png" alt="Rota">
+  <img src="equipe/Avião_rota.png" alt="Rota">
 </div>
 
 
