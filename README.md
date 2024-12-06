@@ -6,6 +6,9 @@
 
 ## Índice
 
+<details>
+  <summary><strong>Índice</strong></summary>
+	
 1. [Objetivo do projeto](#objetivo-do-projeto)
 2. [Tecnologias usadas](#tecnologias-usadas)
 3. [Funcionalidades](#funcionalidades)
@@ -18,6 +21,8 @@
 10. [Nossas redes e contatos](#nossas-redes-e-contatos)
 11. [Licença](#licença)
 12. [Agradecimentos](#agradecimentos)
+
+</details>
 
 ---
 
