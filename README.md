@@ -112,7 +112,7 @@ Em nossa tipografia usamos as fontes:
 * Bubbleboddy: Para nossa logo;
 * Poppins: Corpo do texto e títulos.
   
-Essas fontes foram selecinadas por sua alta legibilidade, garantindo uma experiência de leitura clara e confortável. Além disso, elas foram escolhidas pensando em acessibilidade, sendo especialemnte adequadas para usuários que utilizam recursos como "TalkBack" em dispositivos móveis, como leitores de tela e ajustes de constraste.
+Essas fontes foram selecionadas por sua alta legibilidade, garantindo uma experiência de leitura clara e confortável. Além disso, elas foram escolhidas pensando em acessibilidade, sendo especialemnte adequadas para usuários que utilizam recursos "TalkBack" em dispositivos móveis, como leitores de tela e ajustes de constraste.
 
 ---
 
