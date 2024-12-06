@@ -3,9 +3,29 @@
 
 ![logo do vooaz](equipe/abertura.png)
 
+
+## Índice
+
+1. [Objetivo do projeto](#objetivo-do-projeto)
+2. [Tecnologias usadas](#tecnologias-usadas)
+3. [Funcionalidades](#funcionalidades)
+4. [Missão](#missão)
+5. [Visão](#visão)
+6. [Valores](#valores)
+7. [Próximos passos](#próximos-passos)
+8. [Equipe](#equipe)
+9. [Links Úteis](#links-úteis)
+10. [Nossas redes e contatos](#nossas-redes-e-contatos)
+11. [Licença](#licença)
+12. [Agradecimentos](#agradecimentos)
+
+---
+
 ## Objetivo do projeto 
 
 VOOAZ é um aplicativo mobile que visa facilitar viagens para pessoas com deficiência auditiva ou visual. Através de guias personalizados e uma comunidade inclusiva, buscamos tornar a experiência de viajar mais acessível e prazerosa.
+
+---
 
 ### Tecnologias usadas
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
@@ -15,17 +35,25 @@ VOOAZ é um aplicativo mobile que visa facilitar viagens para pessoas com defici
 ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=flat&logo=android-studio&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white)
 
+---
+
 ## Funcionalidades 
 
 * **Guias personalizados:** Criação de guias turísticos adaptados às necessidades de cada usuário.
 * **Comunidade:** Espaço para interação entre usuários, troca de experiências e dicas de viagem.
 * **Acessibilidade:** Interface intuitiva e recursos de acessibilidade para garantir uma experiência fluida.
 
+  ---
+
 ## Missão
 Nós temos como missão, tornar as viagens mais inclusivas e acessíveis, para pessoas com deficiência visual ou auditiva. Atrvés dos nossos recusos, queremos que o nosso público viva novas experiências e sinta-se independente.
 
+---
+
 ## Visão
 Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comdeficiência visual e auditiva, reconhecida por oferecer experiências enriquecedoras, acessíveis e inovadoras, que promovem a inclusão e a diversidade no setor de viagens.
+
+---
 
 ## Valores
 **Inclusão**: Assegurar acesso igualitário a experiências culturais e turísticas para pessoas cegas e surdas.
@@ -38,7 +66,11 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 
 **Respeito à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
 
+---
+
 ## Próximos passos 
+
+---
 
 ### Curto prazo
 
@@ -50,6 +82,8 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 ### Longo Prazo
 
 - [ ] Expandir a acessibilidade a outros públicos, começando com a inclusão de pessoas em cadeira de rodas.
+
+---
 
 # Equipe 
 
@@ -70,6 +104,7 @@ Conheça os reponsáveis pelo projeto:
   <img src="equipe/Avião_rota.png" alt="Rota">
 </div>
 
+---
 
 ## Links Úteis 
 
@@ -77,15 +112,21 @@ Conheça os reponsáveis pelo projeto:
 * [Dossiê] (https://heyzine.com/flip-book/9dae345013.html)
 * [Trello] (https://trello.com/b/PBJrBp4h/equipe-3-vooaz-demoday)
 
+---
+
 ## Nossas redes e contatos 
 
 * [LinkedIn](https://www.linkedin.com/company/vooaz})
 * [Instagram](https://www.instagram.com/vooaz_)
 * [E-mail](mailto:vooaz.mpt@gmail.com)
 
+---
+
 ## Licença 
 
 Este projeto está licenciado sob a licença MIT.
+
+---
 
 ## Agradecimentos 
 
