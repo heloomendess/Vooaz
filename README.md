@@ -44,9 +44,14 @@ VOOAZ é um aplicativo mobile que visa facilitar viagens para pessoas com defici
 
 ## Funcionalidades 
 
-* **Guias personalizados:** Criação de guias turísticos adaptados às necessidades de cada usuário.
-* **Comunidade:** Espaço para interação entre usuários, troca de experiências e dicas de viagem.
-* **Acessibilidade:** Interface intuitiva e recursos de acessibilidade para garantir uma experiência fluida.
+ **Guias personalizados:**
+ Criação de guias turísticos adaptados às necessidades de cada usuário.
+
+ **Comunidade:** 
+ Espaço para interação entre usuários, troca de experiências e dicas de viagem.
+
+ **Acessibilidade:** 
+ Interface intuitiva e recursos de acessibilidade para garantir uma experiência fluida.
 
   ---
 
@@ -61,15 +66,11 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 ---
 
 ## Valores
-**Inclusão**: Assegurar acesso igualitário a experiências culturais e turísticas para pessoas cegas e surdas.
-
-**Autonomia**: Promover a independência dos usuários com recursos que garantem viagens seguras e enriquecedoras.
-
-**Acessibilidade**: Criar uma plataforma intuitiva e adaptada às necessidades de viajantes com deficiência.
-
-**Conexão**: Estabelecer uma rede de apoio entre viajantes e guias especializados para experiências personalizadas.
-
-**Respeito à Diversidade**: Valorizar e celebrar as diferenças, promovendo respeito e inclusão em todas as interações do app.
+* Inclusão;
+* Acessibilidade;
+* Autonomia;
+* Conexão;
+* Respeito à diversidade;
 
 ---
 
@@ -88,6 +89,20 @@ Ser a principal plataforma de turismo cultural e intercâmbio para pessoas comde
 
 - [ ] Expandir a acessibilidade a outros públicos, começando com a inclusão de pessoas em cadeira de rodas.
 
+---
+## Identidade Visual
+---
+Nossa identidade visual é o equilíbrio perfeito entre paz e segurança, combinando um design minimalista com uma abordagem moderna e sofisticada.
+---
+**Cores**
+---
+| Cor           | Código HEX | Exemplo    |
+|---------------|------------|------------|
+| Prussian Blue | #102B48    | ![#102B48](https://via.placeholder.com/15/102B48/102B48) |
+| Yale Blue     | #4059AD    | ![#4059AD](https://via.placeholder.com/15/4059AD/4059AD) |
+| Button Blue   | #2D98E3    | ![#2D98E3](https://via.placeholder.com/15/2D98E3/2D98E3) |
+| Bright Yellow | #FDB618    | ![#FDB618](https://via.placeholder.com/15/FDB618/FDB618) |
+| Yellow Orange | #FFBC45    | ![#FFBC45](https://via.placeholder.com/15/FFBC45/FFBC45) |
 ---
 
 # Equipe 
@@ -120,20 +135,12 @@ Conheça os reponsáveis pelo projeto:
 ---
 
 ## Nossas redes e contatos 
-
-* [LinkedIn](https://www.linkedin.com/company/vooaz})
-* [Instagram](https://www.instagram.com/vooaz_)
-* [E-mail](mailto:vooaz.mpt@gmail.com)
-
+[![Instagram](https://img.icons8.com/fluency/48/instagram-new.png)](https://www.instagram.com/vooaz_)
+[![LinkedIn](https://img.icons8.com/fluency/48/linkedin.png)](https://www.linkedin.com/company/vooaz})
+[![E-mail](https://img.icons8.com/fluency/48/email.png)](mailto:vooaz.mpt@gmail.com)
 ---
 
 ## Licença 
 
 Este projeto está licenciado sob a licença MIT.
 
----
-
-## Agradecimentos 
-
-[Instituto Proa](https://www.instagram.com/instituto.proa/)
-[Senac](https://www.instagram.com/senactito/)
