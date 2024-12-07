@@ -164,7 +164,7 @@ fun ConnectionsGrid(user: User?, shared:SharedModel, primaryColor: Color, contro
 }
 
 @Composable
-fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, controller: NavController) {
+fun ConnectionsCard(otherUsers: User?,shared:SharedModel, primaryColor: Color, controller: NavController) {
     Column(
         modifier = Modifier
             .width(158.dp).height(191.dp)
@@ -172,7 +172,7 @@ fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, co
             .background(primaryColor)
             .clickable {
                 shared.setSelectedOtherUser(otherUsers)
-                controller.navigate("OtherProfile")
+                controller.navigate("OthersProfile")
             }
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -186,7 +186,7 @@ fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, co
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = otherUsers.imageRes),
+                painter = painterResource(id = otherUsers?.imageRes ?: 1),
                 contentDescription = stringResource(R.string.imagem,"image description"),
                 contentScale = ContentScale.FillBounds
             , modifier = Modifier
@@ -199,7 +199,7 @@ fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, co
 
         // Nome do destino
         Text(
-            text = otherUsers.name,
+            text = otherUsers?.name?:" nome default",
             fontFamily = poppinsFontFamily,
             style = TextStyle(
                 fontSize = 16.sp,
@@ -217,7 +217,7 @@ fun ConnectionsCard(otherUsers: User,shared:SharedModel, primaryColor: Color, co
         Spacer(modifier = Modifier.height(4.dp))
         // Localização do destino
         Text(
-            text = otherUsers.country,
+            text = otherUsers?.country?:"Mexico",
             fontFamily = poppinsFontFamily,
             color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
             style = MaterialTheme.typography.bodySmall,

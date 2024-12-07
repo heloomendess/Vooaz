@@ -4,10 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -15,7 +13,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,31 +32,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.Comments
 import com.vooazdomain.Vooaz.telas.destinationsScreen.TravelItineraryScreen
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
+
 @Composable
 fun DestinationDetailsScreen(
-    imageRes: Int,
-    title: String,
-    website: String,
-    address: String,
-    phone: String,
-    hours: String,
-    rating: Float,
-    reviewsCount: Int,
-    description: String,
-    userComments: List<UserComment>,
-    onVisitClick: () -> Unit,
+    navController: NavController,
+    sharedModel: SharedModel,
     expandRouteTravel: MutableState<Boolean> = remember { mutableStateOf(false) },
-            expanded_hours: MutableState<Boolean> = remember { mutableStateOf(false) },
+    expanded_hours: MutableState<Boolean> = remember { mutableStateOf(false) },
 ) {
+var destination = sharedModel.selectedDestination
     Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.onTertiaryContainer)) {
         Box() {
             Image(
-                painter = painterResource(imageRes),
+                painter = painterResource(destination?.imageRes ?: R.drawable.ic_flag_brazil),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -82,7 +74,7 @@ fun DestinationDetailsScreen(
                 .background(color = MaterialTheme.colorScheme.onTertiary, shape = RoundedCornerShape(size = 20.dp)).clickable {
                 }, contentAlignment = Alignment.Center) {
                 Text(
-                    text = title,
+                    text = destination?.name ?: "Name default",
                     style = TextStyle(
                         fontFamily = poppinsFontFamily,
                         fontSize = 24.sp,
@@ -102,13 +94,13 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorSchem
         Column {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = website,
+                text = "Tripdivisor",
                 color = MaterialTheme.colorScheme.scrim,
             )
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = address)
-            Text(text = stringResource(R.string.telefone,"Telefone: $phone"))
-            Text(text = stringResource(R.string.horários, "Horários: $hours"))
+            Text(text = destination?.location ?:"Localiza")
+            Text(text = stringResource(R.string.telefone,"Telefone: ${destination?.phone}"))
+            Text(text = stringResource(R.string.horários, "Horários: ${destination?.schedules}"))
             Box(modifier = Modifier.fillMaxWidth().clickable {
                 expanded_hours.value =!expanded_hours.value
             }, contentAlignment = Alignment.Center) {
@@ -175,7 +167,7 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorSchem
 
 
                         Text(
-                            text = description,
+                            text = destination?.description ?: "Sobre",
                             modifier =Modifier.padding(10.dp),
                             style = TextStyle(
                                 fontFamily = poppinsFontFamily,
@@ -194,7 +186,7 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorSchem
 
             // Comentários dos usuários
             Spacer(modifier = Modifier.height(24.dp))
-            UserCommentsSection(userComments)
+            UserCommentsSection(destination?.userComments ?: listOf(Comments("Dan", "12345", 5)))
 
             // Botão para ação
             Spacer(modifier = Modifier.height(24.dp))
@@ -215,7 +207,9 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorSchem
             Spacer(modifier = Modifier.height(14.dp))
 
             Button(
-                onClick = onVisitClick,
+                onClick = {
+
+                },
                 modifier = Modifier
                     .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 20.dp))
                 .width(272.dp)
@@ -257,7 +251,7 @@ fun RatingSection(rating: Float, reviewsCount: Int) {
 }
 
 @Composable
-fun UserCommentsSection(comments: List<UserComment>) {
+fun UserCommentsSection(comments: List<Comments>) {
     Text(
         text = stringResource(R.string.comentário,"Comentario dos Usuarios"),
         style = TextStyle(
@@ -277,7 +271,7 @@ fun UserCommentsSection(comments: List<UserComment>) {
 }
 
 @Composable
-fun UserCommentItem(comment: UserComment) {
+fun UserCommentItem(comment: Comments) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -295,7 +289,7 @@ fun UserCommentItem(comment: UserComment) {
         Spacer(modifier = Modifier.width(12.dp))
         Column {
             Text(
-                text = comment.userName
+                text = comment.nome
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
@@ -306,53 +300,15 @@ fun UserCommentItem(comment: UserComment) {
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = comment.rating.toString(),
+                    text = comment.Rating.toString(),
                     color =  MaterialTheme.colorScheme.tertiary
                 )
             }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = comment.comment,
+                text = comment.Comment,
                 color =MaterialTheme.colorScheme.secondaryContainer )
 
         }
     }
 }
-
-// Modelo de dados para comentários
-data class UserComment(
-    val userName: String,
-    val rating: Float,
-    val comment: String
-)
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewDestinationDetails() {
-    DestinationDetailsScreen(
-        imageRes = R.drawable.museuimg,
-        title = stringResource(R.string.destination,"Museu do Ipiranga"),
-        website =stringResource(R.string.site,"museudoipiranga.org.br"),
-        address = stringResource(R.string.endereço,"Parque da Independência - Ipiranga, São Paulo - SP, 04263-000"),
-        phone = stringResource(R.string.telefone,"(11) 2065-8000"),
-        hours = stringResource(R.string.horários,"10:00 – 17:00"),
-        rating = 4.8f,
-        reviewsCount = 512,
-        description = stringResource(R.string.informação,"O Museu do Ipiranga em São Paulo reabriu recentemente após uma reforma, apresentando artefatos que narram a história do Brasil, com ênfase na Independência. A arquitetura grandiosa, inspirada no Palácio de Versalhes, é uma atração imperdível."),
-        userComments = listOf(
-            UserComment(
-                userName = stringResource(R.string.nome,"Caroline Amaral"),
-                rating = 4.5f,
-                comment = stringResource(R.string.comentário,"Visitei o Museu do Ipiranga e adorei! O acervo é muito interessante e a estrutura está linda após a reforma. Recomendo a todos que gostam de história!"),
-            ),
-            UserComment(
-                userName = stringResource(R.string.nome,"José Ferreira"),
-                rating = 4.0f,
-                comment =stringResource(R.string.comentário, "Excelente visita ao Museu do Ipiranga! As exposições são bem organizadas e a história do Brasil ganha vida ali. Vale a pena conhecer!")
-            )
-        ),
-        onVisitClick = { /* Ação para realizar a visita */ }
-    )
-}
-
-

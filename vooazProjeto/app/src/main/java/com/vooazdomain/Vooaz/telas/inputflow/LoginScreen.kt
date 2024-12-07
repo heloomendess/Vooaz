@@ -142,7 +142,7 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
 
         Button(
             onClick = {
-                val user = UsersConts.users.find { it.email == email && it.password == senha }
+                val user = UsersConts().getAllUsers().find { it.email == email && it.password == senha }
                 if (user != null) {
                     shared.setSelectedUser(user)
                     navController.navigate(route = "LoadingScreen/HomePageScreen")

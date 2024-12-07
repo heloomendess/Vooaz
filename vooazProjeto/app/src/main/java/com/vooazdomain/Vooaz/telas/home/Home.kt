@@ -35,13 +35,16 @@ import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 import BottomNavigation
+import ObjectDestination
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import com.vooazdomain.Vooaz.modelsData.datas.User
 
 
 @Composable
 fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
     var user = sharedModel.selectedUser
+
     Scaffold(
         topBar = {
             // Cabeçalho com logo e notificações
@@ -51,11 +54,11 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
             BottomNavigation(navController, user)
         },
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
-    ) {
-        innerpadding ->
+    ) { innerpadding ->
         Column(
             modifier = Modifier
-                .fillMaxSize().padding(innerpadding)
+                .fillMaxSize()
+                .padding(innerpadding)
                 .verticalScroll(rememberScrollState())
 
         ) {
@@ -65,17 +68,17 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
             SectionTitle("Qual será sua próxima aventura?")
 
             // Carrossel horizontal para viagens em destaque
-            HighlightedTripsSection()
+            HighlightedTripsSection(navController,sharedModel)
 
             // Turismo perto de você
             SectionTitle("Turismo perto de você: São Paulo Capital:")
-            NearbyPlacesSection()
+            NearbyPlacesSection(navController, sharedModel)
 
             // Praias perto de você
             SectionTitle("Praias:")
-            BeachSection()
+            BeachSection(navController, sharedModel)
             //Spacer(modifier = Modifier.height(72.dp))
-            
+
         }
     }
 }
@@ -84,7 +87,8 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
 fun HeaderSection(user: User?) {
     Row(
         modifier = Modifier
-            .fillMaxWidth().background(MaterialTheme.colorScheme.tertiary)
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.tertiary)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -94,7 +98,7 @@ fun HeaderSection(user: User?) {
             painter = painterResource(id = R.drawable.logoaz),
             contentDescription = "Logo",
             modifier = Modifier.size(50.dp),
-                    contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Crop,
         )
 
         // Notificações e avatar
@@ -121,14 +125,18 @@ fun HeaderSection(user: User?) {
 fun SectionTitle(title: String) {
     Text(
         text = title,
-        style = TextStyle(fontSize = 19.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSecondary ),
+        style = TextStyle(
+            fontSize = 19.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSecondary
+        ),
         modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp),
         fontFamily = poppinsFontFamily
     )
 }
 
 @Composable
-fun HighlightedTripsSection() {
+fun HighlightedTripsSection(navController: NavController, sharedModel: SharedModel) {
 
     Row(
         modifier = Modifier
@@ -136,128 +144,157 @@ fun HighlightedTripsSection() {
             .horizontalScroll(rememberScrollState())
             .padding(vertical = 30.dp)
     ) {
+
         repeat(5) { // Simulação de múltiplos cartões
             Spacer(modifier = Modifier.width(36.dp))
-
-            HighlightedTripCard(
-                imageRes = R.drawable.museuimg,
-                title = "Veneza - Itália",
-                subtitle = "Viaje por 90 dias"
-            )
-            Spacer(modifier = Modifier.width(36.dp))
+            ObjectDestination().getAllDestination().forEach { destination ->
+                HighlightedTripCard(
+                    navController = navController,
+                    destination, sharedModel
+                )
+                Spacer(modifier = Modifier.width(36.dp))
+            }
         }
     }
 }
 
 @Composable
-fun HighlightedTripCard(imageRes: Int, title: String, subtitle: String) {
-        Card(
-            modifier = Modifier
-                .width(300.dp).background(MaterialTheme.colorScheme.onBackground, RoundedCornerShape(19.dp)).shadow(12.dp, RoundedCornerShape(19.dp))
-                .clip(RoundedCornerShape(12.dp))
-                .clickable { /* Handle click */ },
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground),
+fun HighlightedTripCard(navController: NavController,destinations: Destinations, sharedModel: SharedModel) {
+
+    Card(
+        modifier = Modifier
+            .width(300.dp)
+            .background(MaterialTheme.colorScheme.onBackground, RoundedCornerShape(19.dp))
+            .shadow(12.dp, RoundedCornerShape(19.dp))
+            .clip(RoundedCornerShape(12.dp))
+            .clickable {
+            sharedModel.setSelectedDestinationuser(destinations)
+                navController.navigate("DestinationDetailsScreen")  },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground),
+    ) {
+
+        Column(
+
         ) {
-
-            Column(
-
-            ) {
-                Image(
-                    painter = painterResource(id = imageRes),
-                    contentDescription = title,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .fillMaxWidth()
-                        .height(180.dp)
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-
-                Text(
-                    text = title,
-                    style = TextStyle(
-                        fontSize = 17.sp,
-                        lineHeight = 19.48.sp,
-                        fontWeight = FontWeight(600),
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        textAlign = TextAlign.Center,
-
-                        ),
-                    maxLines = 1,
-                    modifier = Modifier
-                        .width(301.dp)
-                        .height(19.dp)
-                )
-
-
-            }
+            Image(
+                painter = painterResource(destinations.imageRes),
+                contentDescription = destinations.name,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .padding(0.dp)
+                    .fillMaxWidth()
+                    .height(180.dp)
+            )
             Spacer(modifier = Modifier.height(15.dp))
 
+            Text(
+                text = destinations.name,
+                style = TextStyle(
+                    fontSize = 17.sp,
+                    lineHeight = 19.48.sp,
+                    fontWeight = FontWeight(600),
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    textAlign = TextAlign.Center,
+
+                    ),
+                maxLines = 1,
+                modifier = Modifier
+                    .width(301.dp)
+                    .height(19.dp)
+            )
+
 
         }
+        Spacer(modifier = Modifier.height(15.dp))
+
 
     }
 
-
-
-@Composable
-fun NearbyPlacesSection() {
-    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(containerColor =MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier.align(Alignment.End).width(90.dp)
-                .height(34.dp)
-        ) {
-            Text("Ver mais", fontFamily = poppinsFontFamily,color = Color.White, fontWeight = FontWeight.Bold, fontSize = 9.sp)
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.SpaceBetween) {
-            repeat(20) { // Simulação de múltiplos cartões
-                Spacer(modifier = Modifier.width(8.dp))
-                PlaceCard(imageRes = R.drawable.museuimg, title = "Museu do Ipiranga")
-                Spacer(modifier = Modifier.width(8.dp))
-            }
-
-        }
-
-
-    }
 }
 
+
 @Composable
-fun BeachSection() {
+fun NearbyPlacesSection(navController: NavController, sharedModel: SharedModel) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         Spacer(modifier = Modifier.height(8.dp))
         Button(
             onClick = {},
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier.align(Alignment.End).width(90.dp)
+            modifier = Modifier
+                .align(Alignment.End)
+                .width(90.dp)
                 .height(34.dp)
         ) {
-            Text("Ver mais", fontFamily = poppinsFontFamily,color = MaterialTheme.colorScheme.onSecondaryContainer, fontWeight = FontWeight.Bold, fontSize = 9.sp)
+            Text(
+                "Ver mais",
+                fontFamily = poppinsFontFamily,
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 9.sp
+            )
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            ObjectDestination().getAllDestination().forEach { destination ->
+                    Spacer(modifier = Modifier.width(8.dp))
+                    PlaceCard(destination, navController =navController, sharedModel = sharedModel )
+                    Spacer(modifier = Modifier.width(8.dp))
+            }
+        }
+
+    }
+}
+
+
+@Composable
+fun BeachSection(navController: NavController, sharedModel: SharedModel) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = {},
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
+            modifier = Modifier
+                .align(Alignment.End)
+                .width(90.dp)
+                .height(34.dp)
+        ) {
+            Text(
+                "Ver mais",
+                fontFamily = poppinsFontFamily,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                fontWeight = FontWeight.Bold,
+                fontSize = 9.sp
+            )
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row(
-            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+            ObjectDestination().getAllDestination().forEach { destination ->
+                if (destination.category == "Praia") {
 
-            repeat(20) { // Simulação de múltiplos cartões
-                Spacer(modifier = Modifier.width(8.dp))
-                PlaceCard(imageRes = R.drawable.museuimg, title = "Museu do Ipiranga")
-                Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
+                    PlaceCard(destination, navController = navController, sharedModel = sharedModel)
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                }
             }
-
         }
         Spacer(modifier = Modifier.height(8.dp))
     }
 }
 
 @Composable
-fun PlaceCard(imageRes: Int, title: String) {
+fun PlaceCard(destinations: Destinations, sharedModel: SharedModel, navController: NavController) {
     Card(
         modifier = Modifier
             .width(160.dp)
@@ -271,8 +308,8 @@ fun PlaceCard(imageRes: Int, title: String) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = imageRes),
-                contentDescription = title,
+                painter = painterResource(destinations.imageRes),
+                contentDescription = destinations.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -283,7 +320,7 @@ fun PlaceCard(imageRes: Int, title: String) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = title,
+                text = destinations.name,
                 style = TextStyle(
                     fontSize = 12.sp,
                     lineHeight = 19.48.sp,
@@ -292,7 +329,7 @@ fun PlaceCard(imageRes: Int, title: String) {
                     textAlign = TextAlign.Center,
                     fontFamily = poppinsFontFamily
 
-                    ),
+                ),
                 maxLines = 1,
                 modifier = Modifier
                     .fillMaxWidth()

@@ -17,11 +17,12 @@ data class User(
     val languages: List<String>,
     val email: String,
     val password: String,
+    val historicTravels: List<Destinations>,
     val disabilityType: String,
     val birthDate: Date,
     val gender: String,
     val userPlans: Plans,
-    val conected_users: List<User>,
+    val conected_users: List<User?>?,
 )
 
 data class Plans(
