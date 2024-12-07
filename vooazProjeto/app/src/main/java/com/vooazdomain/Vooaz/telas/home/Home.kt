@@ -48,7 +48,7 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
     Scaffold(
         topBar = {
             // Cabeçalho com logo e notificações
-            HeaderSection(user)
+            HeaderSection(user, navController)
         },
         bottomBar = {
             BottomNavigation(navController, user)
@@ -84,7 +84,7 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
 }
 
 @Composable
-fun HeaderSection(user: User?) {
+fun HeaderSection(user: User?, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +115,9 @@ fun HeaderSection(user: User?) {
                 contentDescription = "Avatar",
                 modifier = Modifier
                     .size(40.dp)
-                    .clip(CircleShape)
+                    .clip(CircleShape).clickable {
+                        navController.navigate("ProfileScreen")
+                    }
             )
         }
     }

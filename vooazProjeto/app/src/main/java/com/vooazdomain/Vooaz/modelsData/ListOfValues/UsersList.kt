@@ -3,7 +3,7 @@ package com.vooazdomain.Vooaz.modelsData.ListOfValues
 import ObjectDestination
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.constantsData.PlansConstant
-import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
+
 import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts2
 import com.vooazdomain.Vooaz.modelsData.datas.Acessibilidade
 import com.vooazdomain.Vooaz.modelsData.datas.Comments

@@ -140,6 +140,9 @@ var user = shared.selectedUser
                     navroute = "FeedbackScreen"
                 )
             }
+            item {
+                Spacer(modifier = Modifier.height(40.dp))
+            }
 
         }
 

@@ -87,7 +87,9 @@ fun TopBar(navController: NavController,shared: SharedModel) {
             contentDescription = "Avatar",
             modifier = Modifier
                 .size(40.dp)
-                .clip(CircleShape)
+                .clip(CircleShape).clickable {
+                    navController.navigate("OthersProfile")
+                }
         )
         Spacer(modifier = Modifier.width(12.dp))
         Text(

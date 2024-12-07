@@ -32,24 +32,6 @@ fun FeedbackConfirmScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text( stringResource(R.string.feedback,"Feedback"), color = MaterialTheme.colorScheme.onSecondaryContainer, fontWeight = FontWeight.Bold, fontFamily = poppinsFontFamily) },
-                navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Voltar",
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /* Fechar ação */ }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.close), // Substitua pelo seu ícone de fechar
-                            contentDescription = stringResource(R.string.fechar,"Fechar"),
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    }
-                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(containerColor =MaterialTheme.colorScheme.onBackground )
             )
         },
@@ -115,10 +97,4 @@ fun FeedbackConfirmScreen(navController: NavController) {
             }
         }
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FeedbackConfirmPreview() {
-    FeedbackScreen(rememberNavController())
 }

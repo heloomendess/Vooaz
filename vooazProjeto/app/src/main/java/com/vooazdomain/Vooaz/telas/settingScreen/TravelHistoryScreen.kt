@@ -78,7 +78,7 @@ fun TravelList(navController: NavController, sharedModel: SharedModel) {
 }
 
 @Composable
-fun TravelCard(travel: Destinations, navController: NavController,  sharedModel: SharedModel) {
+fun TravelCard(travel: Destinations?, navController: NavController,  sharedModel: SharedModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -92,7 +92,7 @@ fun TravelCard(travel: Destinations, navController: NavController,  sharedModel:
         Box {
             // Background Image
             Image(
-                painter = painterResource(id = travel.imageRes),
+                painter = painterResource(id = travel?.imageRes?: R.drawable.ico_flag_brasil),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -107,13 +107,13 @@ fun TravelCard(travel: Destinations, navController: NavController,  sharedModel:
             ) {
                 Column {
                     Text(
-                        text = travel.name,
+                        text = travel?.name?:"Default",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
                     Text(
-                        text = travel.description,
+                        text = travel?.description?:"Defaul",
                         fontSize = 14.sp,
                         color = Color.White
                     )
