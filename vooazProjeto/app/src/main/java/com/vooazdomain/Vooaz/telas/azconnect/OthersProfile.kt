@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -39,7 +41,7 @@ fun OthersProfile(navController: NavHostController, shared:SharedModel) {
     val instagramIcon = painterResource(R.drawable.instagram)
     val facebookIcon = painterResource(R.drawable.facebook)
     val containerColor = Color(0xFFF5F5F5)
-    var user = shared.selectedUser
+    var user = shared.selectedOtherUsers
     Scaffold(
         topBar = {
             Row(modifier = Modifier.background(containerColor).padding(top=20.dp)) {
@@ -101,9 +103,10 @@ fun OthersProfile(navController: NavHostController, shared:SharedModel) {
                                 painter = painterResource(imageRes),
                                 contentDescription = stringResource(R.string.imagem,"image description"),
                                 contentScale = ContentScale.FillBounds,
+
                                 modifier = Modifier
                                     .width(128.dp)
-                                    .height(120.dp)
+                                    .height(120.dp).clip(CircleShape)
                                     .border(
                                         width = 2.dp,
                                         color = MaterialTheme.colorScheme. onBackground,

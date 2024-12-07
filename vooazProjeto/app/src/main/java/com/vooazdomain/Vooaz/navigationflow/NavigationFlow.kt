@@ -1,6 +1,7 @@
 package com.vooazdomain.Vooaz.navigationflow
 
 
+import DestinationDetailsScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 
@@ -16,6 +17,7 @@ import androidx.navigation.navArgument
 import com.example.feedbackscreen.FeedbackScreen
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
 import com.vooazdomain.Vooaz.telas.aboutus.AboutUsScreen
 import com.vooazdomain.Vooaz.telas.azchat.PrivateChatScreen
 import com.vooazdomain.Vooaz.telas.azconnect.Conexoes
@@ -50,13 +52,16 @@ import com.vooazdomain.Vooaz.telas.splashpage.addSplashPage
 fun NavigationFlowSettings() {
     val navController = rememberNavController()
 
-    val userAutentic = false // caso true usuario esta autenticado, aso false não esta
+    val userAutentic = true // caso true usuario esta autenticado, aso false não esta
     val destination = if (userAutentic) "HomePageScreen" else "InputScreen"
+
     val sharedViewModelUser: SharedModel = viewModel()
 
 
     val selectedModel = sharedViewModelUser
-
+if (userAutentic){
+    UsersConts().getUserById(1)?.let { selectedModel.setSelectedUser(it) }
+}
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -72,11 +77,20 @@ fun NavigationFlowSettings() {
                     HelpCenterScreen(navController, onEmailClick = {help_funcs.openEmail()}, onChatClick = {help_funcs.openChat()}, onFAQClick = {help_funcs.openFAQ()})
                 }
 
-//
+
                 composable("GuidesScreen"){
 
                     GuideSearch(navController, selectedModel)
                 }
+                composable("OthersProfile"){
+
+                    OthersProfile(navController, selectedModel)
+                }
+                composable("DestinationDetailsScreen"){
+
+                    DestinationDetailsScreen(navController = navController, sharedModel= selectedModel)
+                }
+
                 composable("TravelHistoryScreen") {
                     TravelHistoryScreen(navController)
                 }
