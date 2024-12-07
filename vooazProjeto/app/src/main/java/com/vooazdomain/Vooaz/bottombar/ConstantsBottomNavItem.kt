@@ -24,9 +24,9 @@ object ConstantsBottomNavItem {
 
         ),
         BottomNavItem(
-            label = "Tour guides",
+            label = "Guides",
             icon = R.drawable.tourguides,
-            route = "GuidesScreen",
+            route = "GuideSearch",
             size = 32
 
         ),

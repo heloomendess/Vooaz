@@ -2,6 +2,7 @@ package com.vooazdomain.Vooaz.navigationflow
 
 
 import DestinationDetailsScreen
+import ObjectDestination
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 
@@ -15,19 +16,19 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.feedbackscreen.FeedbackScreen
-import com.vooazdomain.Vooaz.R
+
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
 import com.vooazdomain.Vooaz.telas.aboutus.AboutUsScreen
-import com.vooazdomain.Vooaz.telas.azchat.PrivateChatScreen
-import com.vooazdomain.Vooaz.telas.azconnect.Conexoes
-import com.vooazdomain.Vooaz.telas.azconnect.ChatSearchConectsScreen
-import com.vooazdomain.Vooaz.telas.azconnect.GuidesProfile
-import com.vooazdomain.Vooaz.telas.destinationsScreen.CapitalScreen
-import com.vooazdomain.Vooaz.telas.destinationsScreen.DestinationCard
+import com.vooazdomain.Vooaz.telas.chat.PrivateChatScreen
+import com.vooazdomain.Vooaz.telas.connectPeoples.Conexoes
+import com.vooazdomain.Vooaz.telas.connectPeoples.ChatSearchConectsScreen
+import com.vooazdomain.Vooaz.telas.guidesScreens.GuidesProfile
+import com.vooazdomain.Vooaz.telas.destinationsScreen.DestinationsScreen
+
 import com.vooazdomain.Vooaz.telas.feedbackscreens.FeedbackConfirmScreen
-import com.vooazdomain.Vooaz.telas.guidesSearch.GuideSearch
-//import com.vooazdomain.Vooaz.telas.guidesSearch.GuidesScreen
+import com.vooazdomain.Vooaz.telas.guidesScreens.GuideSearch
+
 import com.vooazdomain.Vooaz.telas.home.HomePageScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputFullRegisterScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputScreen
@@ -78,7 +79,7 @@ if (userAutentic){
                 }
 
 
-                composable("GuidesScreen"){
+                composable("GuideSearch"){
 
                     GuideSearch(navController, selectedModel)
                 }
@@ -90,9 +91,13 @@ if (userAutentic){
 
                     DestinationDetailsScreen(navController = navController, sharedModel= selectedModel)
                 }
+                composable("PrivateChatScreen"){
+
+                    PrivateChatScreen(navController = navController, selectedModel)
+                }
 
                 composable("TravelHistoryScreen") {
-                    TravelHistoryScreen(navController)
+                    TravelHistoryScreen(navController, selectedModel)
                 }
                 composable("AdjustsScreen") {
                     AdjustsScreen(navController)
@@ -117,17 +122,6 @@ if (userAutentic){
                     LoadingScreen(navController, route)  // Passando os argumentos para a tela
                 }
 
-                val sampleDestinations = listOf(
-                    DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-                    DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                    DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-                    DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                    DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-                    DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                    DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-                    DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                )
-
                 composable("addSplashPage") {
 
                     addSplashPage(navController, destination)
@@ -136,7 +130,8 @@ if (userAutentic){
                     AboutUsScreen(navController)
                 }
                 composable("CapitalScreen") {
-                    CapitalScreen(navController, sampleDestinations)
+
+                    DestinationsScreen(navController, ObjectDestination().getAllDestination())
                 }
                 composable("HomePageScreen") {
 

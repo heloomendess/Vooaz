@@ -1,4 +1,4 @@
-package com.vooazdomain.Vooaz.telas.azconnect
+package com.vooazdomain.Vooaz.telas.connectPeoples
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

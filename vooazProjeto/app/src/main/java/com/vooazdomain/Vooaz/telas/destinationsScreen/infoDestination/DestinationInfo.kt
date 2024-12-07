@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Star
@@ -36,7 +37,7 @@ import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.Comments
-import com.vooazdomain.Vooaz.telas.destinationsScreen.TravelItineraryScreen
+import com.vooazdomain.Vooaz.telas.destinationsScreen.infoDestination.TravelItineraryScreen
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
@@ -48,8 +49,11 @@ fun DestinationDetailsScreen(
     expanded_hours: MutableState<Boolean> = remember { mutableStateOf(false) },
 ) {
 var destination = sharedModel.selectedDestination
+
     Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.onTertiaryContainer)) {
         Box() {
+
+
             Image(
                 painter = painterResource(destination?.imageRes ?: R.drawable.ic_flag_brazil),
                 contentDescription = null,
@@ -57,6 +61,14 @@ var destination = sharedModel.selectedDestination
                     .fillMaxWidth()
                     .height(250.dp),
                 contentScale = ContentScale.Crop
+            )
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Voltar",
+                modifier = Modifier.size(50.dp).padding(start = 3.dp, top= 15.dp).clickable {
+                    navController.popBackStack()
+                },
+                tint = MaterialTheme.colorScheme.onSecondary
             )
         }
         // Conteúdo principal
@@ -70,7 +82,7 @@ var destination = sharedModel.selectedDestination
 
             Box(modifier = Modifier
                 .width(240.dp)
-                .height(55.dp)
+                .height(65.dp).padding(top=10.dp)
                 .background(color = MaterialTheme.colorScheme.onTertiary, shape = RoundedCornerShape(size = 20.dp)).clickable {
                 }, contentAlignment = Alignment.Center) {
                 Text(
@@ -89,12 +101,12 @@ var destination = sharedModel.selectedDestination
                 )}
 
 
-Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorScheme.tertiary , shape = RoundedCornerShape(size = 20.dp)).fillMaxWidth()) {
+Box(modifier =Modifier.border(2.dp,MaterialTheme.colorScheme.tertiary , shape = RoundedCornerShape(size = 20.dp)).fillMaxWidth()) {
     Box(modifier = Modifier.padding(20.dp)) {
         Column {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Tripdivisor",
+                text = "Informações",
                 color = MaterialTheme.colorScheme.scrim,
             )
             Spacer(modifier = Modifier.height(4.dp))
@@ -202,7 +214,7 @@ Box(modifier =Modifier.padding(top = 10.dp).border(2.dp,MaterialTheme.colorSchem
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onPrimary),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                Text(stringResource(R.string.roteiro,"Roteiro"))
+                Text(stringResource(R.string.roteiro,"Roteiro"), fontSize =20.sp, color = Color.White)
             }
             Spacer(modifier = Modifier.height(14.dp))
 

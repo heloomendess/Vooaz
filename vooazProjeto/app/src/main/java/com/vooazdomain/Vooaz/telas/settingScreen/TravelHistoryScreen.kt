@@ -22,10 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TravelHistoryScreen(navController: NavController) {
+fun TravelHistoryScreen(navController: NavController, sharedModel: SharedModel) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -53,22 +55,22 @@ fun TravelHistoryScreen(navController: NavController) {
                     .background(Color(0xFFF5F5F5))
                     .padding(paddingValues)
             ) {
-                TravelList()
+                TravelList(navController,sharedModel)
             }
         }
     )
 }
 
 @Composable
-fun TravelList() {
+fun TravelList(navController: NavController, sharedModel: SharedModel) {
+
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-            var historico = getSampleTravels()
-            historico.forEach() { travel ->
-                TravelCard(travel)
+            sharedModel.selectedUser?.historicTravels?.forEach() { travel ->
+                TravelCard(travel, navController, sharedModel)
                 Spacer(modifier = Modifier.height(20.dp))
             }
         }
@@ -76,18 +78,21 @@ fun TravelList() {
 }
 
 @Composable
-fun TravelCard(travel: Travel) {
+fun TravelCard(travel: Destinations, navController: NavController,  sharedModel: SharedModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp),
+            .height(200.dp).clickable {
+                sharedModel.setSelectedDestination(travel)
+                navController.navigate("DestinationDetailsScreen")
+                                      },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Box {
             // Background Image
             Image(
-                painter = painterResource(id = travel.imageResId),
+                painter = painterResource(id = travel.imageRes),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -102,7 +107,7 @@ fun TravelCard(travel: Travel) {
             ) {
                 Column {
                     Text(
-                        text = travel.title,
+                        text = travel.name,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
@@ -116,35 +121,4 @@ fun TravelCard(travel: Travel) {
             }
         }
     }
-}
-
-data class Travel(
-    val title: String,
-    val description: String,
-    val imageResId: Int
-)
-
-fun getSampleTravels(): List<Travel> {
-    return listOf(
-        Travel(
-            title = "Avenida Paulista",
-            description = "O coração de São Paulo, repleto de cultura e história.",
-            imageResId = R.drawable.paulista
-        ),
-        Travel(
-            title = "Parque do Ibirapuera",
-            description = "Oásis verde no meio da cidade, ideal para relaxar e se conectar com a natureza.",
-            imageResId = R.drawable.ibirapuera
-        ),
-        Travel(
-            title = "Mercadão Municipal",
-            description = "Conheça o famoso pastel de bacalhau e outras delícias paulistas.",
-            imageResId = R.drawable.mercadao
-        ),
-        Travel(
-            title = "Liberdade",
-            description = "Explore a cultura japonesa e aproveite comidas típicas únicas.",
-            imageResId = R.drawable.liberdade
-        )
-    )
 }

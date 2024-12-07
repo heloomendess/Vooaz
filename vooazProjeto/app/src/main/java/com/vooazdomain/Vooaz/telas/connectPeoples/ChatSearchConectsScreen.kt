@@ -1,4 +1,4 @@
-package com.vooazdomain.Vooaz.telas.azconnect
+package com.vooazdomain.Vooaz.telas.connectPeoples
 
 import BottomNavigation
 import androidx.compose.foundation.Image
@@ -29,12 +29,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.gson.Gson
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.User
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
-import java.net.URLEncoder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -172,7 +170,7 @@ fun ConnectionsCard(otherUsers: User?,shared:SharedModel, primaryColor: Color, c
             .background(primaryColor)
             .clickable {
                 shared.setSelectedOtherUser(otherUsers)
-                controller.navigate("OthersProfile")
+                controller.navigate("PrivateChatScreen")
             }
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally

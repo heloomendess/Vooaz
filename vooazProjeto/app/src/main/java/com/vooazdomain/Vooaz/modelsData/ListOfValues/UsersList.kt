@@ -62,7 +62,7 @@ return listOf<User>(
  ?: emptyList()
 ,
             historicTravels = listOf<Destinations>(
-                ObjectDestination().getDestinationById(2)?: desfault_destination
+                ObjectDestination().getDestinationById(10)?: desfault_destination,  ObjectDestination().getDestinationById(3)?: desfault_destination, ObjectDestination().getDestinationById(5)?: desfault_destination
                 ,ObjectDestination().getDestinationById(1)?: desfault_destination ,ObjectDestination().getDestinationById(2)?: desfault_destination
             )
             // Será atualizado posteriormente
@@ -137,7 +137,7 @@ return listOf<User>(
             conected_users = UsersConts2().getAllUsers() ?: emptyList()
 ,
             historicTravels = listOf<Destinations>(
-                ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
+                ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(3)?: desfault_destination,ObjectDestination().getDestinationById(4)?: desfault_destination
             )
         ),
         User(

@@ -75,14 +75,15 @@ fun NavigationItem(item: BottomNavItem, isSelected: Boolean, onClick: () -> Unit
             painter = painterResource(id = item.icon),
             contentDescription = item.label,
             tint = if (isSelected) MaterialTheme.colorScheme.primary else Color.Gray,
-            modifier = if (isSelected) Modifier.size(29.dp) else Modifier.size(24.dp)
+            modifier = if (isSelected) Modifier.size(25.dp).offset(y=(-5).dp) else Modifier.size(24.dp)
         )
         if (isSelected) {
             Text(
                 text = item.label,
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.primary,
-                fontFamily = poppinsFontFamily
+                fontFamily = poppinsFontFamily,
+                modifier = Modifier.offset(y=(-6).dp)
             )
         }
     }

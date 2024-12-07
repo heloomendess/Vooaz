@@ -1,7 +1,8 @@
-package com.vooazdomain.Vooaz.telas.azchat
+package com.vooazdomain.Vooaz.telas.chat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.CircleShape
@@ -21,7 +22,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
@@ -34,7 +34,7 @@ fun PrivateChatScreen(navController: NavController, shared:SharedModel) {
     Scaffold(
         topBar = {
 
-            TopBar()
+            TopBar(navController, shared)
         },
         bottomBar = {
             InputBar(
@@ -67,7 +67,7 @@ fun PrivateChatScreen(navController: NavController, shared:SharedModel) {
     }
 }
 @Composable
-fun TopBar() {
+fun TopBar(navController: NavController,shared: SharedModel) {
 
     Row(
         modifier = Modifier
@@ -79,11 +79,11 @@ fun TopBar() {
         Icon(
             imageVector = Icons.Filled.ArrowBack, // Ícone de volta
             contentDescription = stringResource(R.string.voltar),
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp).clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.width(12.dp))
         Image(
-            painter = painterResource(id = R.drawable.ic_profile_placeholder), // Avatar do usuário
+            painter = painterResource(id = shared.selectedOtherUsers?.imageRes ?: R.drawable.personicon), // Avatar do usuário
             contentDescription = "Avatar",
             modifier = Modifier
                 .size(40.dp)
@@ -91,7 +91,7 @@ fun TopBar() {
         )
         Spacer(modifier = Modifier.width(12.dp))
         Text(
-            text = "Fabio Nascimento",
+            text = shared.selectedOtherUsers?.name ?: "Default User" ,
             fontFamily = poppinsFontFamily,
             style = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.onSecondaryContainer)
         )
