@@ -43,15 +43,6 @@ fun FeedbackScreen(navController: NavController) {
                         style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, fontFamily = poppinsFontFamily)
                     )
                 },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle back action */ }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.voltar, "Voltar"),
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    }
-                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = topBarColor)
             )
         },
@@ -166,10 +157,4 @@ fun FeedbackScreen(navController: NavController) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FeedbackScreenPreview() {
-    FeedbackScreen(rememberNavController())
 }

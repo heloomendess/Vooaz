@@ -18,7 +18,7 @@ class SharedModel : ViewModel() {
     fun setSelectedUser(user: User) {
         selectedUser = user
     }
-    fun setSelectedDestination(destinations: Destinations) {
+    fun setSelectedDestination(destinations: Destinations?) {
         selectedDestination = destinations
     }
 
