@@ -122,14 +122,14 @@ Essas fontes foram selecionadas por sua alta legibilidade, garantindo uma experi
 Conheça os reponsáveis pelo projeto:
 
 <div align="center">
-	<a href="https://www.linkedin.com/in/heloisamendess/" target="_blank"><img src="equipe/Heloo.png" height="200"></a>
-	<a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Daniloo.png" height="200"></a>
-	<a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavoo.png" height="200"></a>
-	<a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iuryy.png" height="200"></a>
-	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawann.png" alt='Kawan Turchiai' width="200"></a>
- 	<a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Celioo.png" alt='Célio Amorim' width="200"></a>
-        <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazii.png" alt='Grazielly Cavalcante' width="200"></a>
-        <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Marii.png" alt='Mariana Paiva' width="200"></a>
+	<a href="https://www.linkedin.com/in/heloisamendess/" target="_blank"><img src="equipe/Helo-PO.png" height="200"></a>
+	<a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Danilo-SC.png" height="200"></a>
+	<a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavo-FS.png" height="200"></a>
+	<a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iury-FS.png" height="200"></a>
+	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawan-FE.png" width="200"></a>
+ 	<a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Celio-FE.png" width="200"></a>
+        <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazy-BE.png" width="200"></a>
+        <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Mariana-BE.png" width="200"></a>
 	</div>
 
  <div style="text-align: center;">
