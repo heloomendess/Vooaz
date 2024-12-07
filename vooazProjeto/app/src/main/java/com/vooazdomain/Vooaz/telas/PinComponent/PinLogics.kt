@@ -1,4 +1,4 @@
-package com.vooazdomain.Vooaz.componentes
+package com.vooazdomain.Vooaz.telas.PinComponent
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background

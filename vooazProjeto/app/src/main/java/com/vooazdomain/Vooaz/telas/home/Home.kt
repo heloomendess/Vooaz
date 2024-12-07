@@ -168,7 +168,7 @@ fun HighlightedTripCard(navController: NavController,destinations: Destinations,
             .shadow(12.dp, RoundedCornerShape(19.dp))
             .clip(RoundedCornerShape(12.dp))
             .clickable {
-            sharedModel.setSelectedDestinationuser(destinations)
+            sharedModel.setSelectedDestination(destinations)
                 navController.navigate("DestinationDetailsScreen")  },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground),
     ) {
@@ -301,7 +301,10 @@ fun PlaceCard(destinations: Destinations, sharedModel: SharedModel, navControlle
             .shadow(4.dp, RoundedCornerShape(12.dp))
             .clip(RoundedCornerShape(12.dp))
             .background(Color.White)
-            .clickable { /* Handle click */ },
+            .clickable {
+                sharedModel.setSelectedDestination(destinations)
+                navController.navigate("DestinationDetailsScreen")
+            },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground)
     ) {
         Column(

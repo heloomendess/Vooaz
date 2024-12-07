@@ -1,4 +1,4 @@
-package com.vooazdomain.Vooaz.telas.guidesSearch
+package com.vooazdomain.Vooaz.telas.guidesScreens
 
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.Image
@@ -34,9 +34,7 @@ import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 import BottomNavigation
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
-import com.vooazdomain.Vooaz.modelsData.datas.User
 
 @Composable
 fun GuideSearch(navController: NavController, shareModel: SharedModel) {

@@ -10,8 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -30,11 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 @Composable
-fun CapitalScreen(navController: NavController  ,destinations: List<DestinationCard>) {
+fun DestinationsScreen(navController: NavController, destinations: List<Destinations>) {
     val backgroundColor = Color(0xFFECECEC) // Light gray background
     val primaryColor = Color(0xFF0E2C8F) // Blue color for cards and header
     val textColor = Color(0xFFECECEC)
@@ -124,7 +122,7 @@ fun HeaderText(primaryColor: Color) {
     Spacer(modifier = Modifier.height(3.dp))
     Box(modifier = Modifier
         .width(240.dp)
-        .height(55.dp)
+        .height(65.dp)
         .background(color = MaterialTheme.colorScheme.tertiaryContainer, shape = RoundedCornerShape(size = 20.dp)), contentAlignment = Alignment.Center) {
         Text(
             text = "SP - Capital",
@@ -143,7 +141,7 @@ fun HeaderText(primaryColor: Color) {
 }
 
 @Composable
-fun CardItem(destination: DestinationCard, primaryColor: Color) {
+fun CardItem(destination: Destinations, primaryColor: Color) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -156,7 +154,7 @@ horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(id = destination.imageRes),
-                contentDescription = destination.title,
+                contentDescription = destination.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .padding(0.dp)
@@ -167,7 +165,7 @@ horizontalAlignment = Alignment.CenterHorizontally
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = destination.title,
+                text = destination.name,
                 style = TextStyle(
                     fontFamily = poppinsFontFamily,
                     fontSize = 24.sp,
@@ -188,20 +186,5 @@ horizontalAlignment = Alignment.CenterHorizontally
 }
 
 // Data class for destination items
-data class DestinationCard(val title: String, val imageRes: Int)
 
-@Preview(showBackground = true)
-@Composable
-fun CapitalScreenPreview() {
-    val sampleDestinations = listOf(
-        DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-        DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-        DestinationCard("Museu Catavento", R.drawable.museucatavento),
-        DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-        DestinationCard("Museu Catavento", R.drawable.museucatavento),
-                DestinationCard("Museu do Ipiranga", R.drawable.museuimg),
-        DestinationCard("Museu Catavento", R.drawable.museucatavento),
-    )
-    CapitalScreen(rememberNavController(),destinations = sampleDestinations)
-}
+

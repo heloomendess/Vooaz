@@ -41,8 +41,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
-import com.vooazdomain.Vooaz.componentes.ComposePinInput
-import com.vooazdomain.Vooaz.componentes.ComposePinInputStyle
+import com.vooazdomain.Vooaz.telas.PinComponent.ComposePinInput
+import com.vooazdomain.Vooaz.telas.PinComponent.ComposePinInputStyle
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
