@@ -21,4 +21,9 @@ class ObjectDestination {
     fun getAllDestination(): List<Destinations> {
         return destinations
     }
+    fun getDestinationsByCategory(category: String): List<Destinations> {
+
+        // Filtra os destinos pela categoria fornecida
+        return destinations.filter { it.category == category }
+    }
 }

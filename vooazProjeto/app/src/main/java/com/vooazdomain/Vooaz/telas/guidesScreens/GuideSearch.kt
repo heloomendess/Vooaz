@@ -52,7 +52,10 @@ fun GuideSearch(navController: NavController, shareModel: SharedModel) {
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) { innerpadding ->
         Box(
-            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme. outlineVariant).padding(innerpadding),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.outlineVariant)
+                .padding(innerpadding),
         ) {
             Column(
                 modifier = Modifier
@@ -130,9 +133,13 @@ fun HeaderGuidesFilter(primaryColor: Color, expanded:MutableState<Boolean>, sele
     Box(modifier = Modifier
         .width(240.dp)
         .height(55.dp)
-        .background(color= MaterialTheme.colorScheme.onSurface, shape = RoundedCornerShape(size = 20.dp)).clickable {
+        .background(
+            color = MaterialTheme.colorScheme.onSurface,
+            shape = RoundedCornerShape(size = 20.dp)
+        )
+        .clickable {
 
-            expanded.value= !expanded.value
+            expanded.value = !expanded.value
         }, contentAlignment = Alignment.Center) {
         Text(
             text = stringResource(R.string.guias,"Guias"),
@@ -150,9 +157,14 @@ fun HeaderGuidesFilter(primaryColor: Color, expanded:MutableState<Boolean>, sele
         DropdownMenu(
             expanded = expanded.value,
             onDismissRequest = { expanded.value = false },
-            modifier = Modifier.width(240.dp).padding(start = 20.dp)
+            modifier = Modifier
+                .width(240.dp)
+                .padding(start = 20.dp)
                 .height(90.dp)
-                .background(color = MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(size = 15.dp))
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                    shape = RoundedCornerShape(size = 15.dp)
+                )
         ) {
             listOf("Masculino", "Feminino", "Outro").forEach { gender ->
                 DropdownMenuItem(
@@ -171,7 +183,8 @@ fun TopBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp).height(80.dp),
+            .padding(horizontal = 16.dp)
+            .height(80.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -185,17 +198,10 @@ fun TopBar() {
                 painter = painterResource(id = R.drawable.ico_bell_blue),
                 contentDescription = stringResource(R.string.iconNotificações ,"Notificações"),
                 tint = MaterialTheme.colorScheme.onSecondary,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.size(28.dp)
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Image(
-            painter = painterResource(id = R.drawable.ico_profile_blue),
-            contentDescription = stringResource(R.string.iconPerfil,"Perfil"),
-            modifier = Modifier
-                .size(30.dp)
-                .clip(CircleShape)
-        )
     }
 }
 
@@ -206,11 +212,13 @@ fun GuideCard(guide: TourismGuide,shared:SharedModel, navController: NavControll
 
     Row(
         modifier = Modifier
-            .fillMaxWidth().border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme. onSecondaryContainer, RoundedCornerShape(12.dp))
-            .padding(16.dp).clickable {
-            shared.setSelectedGuide(guide)
-                navController. navigate("GuidesProfile")
+            .fillMaxWidth()
+            .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.onSecondaryContainer, RoundedCornerShape(12.dp))
+            .padding(16.dp)
+            .clickable {
+                shared.setSelectedGuide(guide)
+                navController.navigate("GuidesProfile")
             },
 
         verticalAlignment = Alignment.CenterVertically

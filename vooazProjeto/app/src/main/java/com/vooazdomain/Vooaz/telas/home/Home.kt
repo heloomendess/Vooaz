@@ -36,6 +36,7 @@ import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 import BottomNavigation
 import ObjectDestination
+import androidx.compose.material3.Icon
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import com.vooazdomain.Vooaz.modelsData.datas.User
@@ -103,28 +104,20 @@ fun HeaderSection(user: User?, navController: NavController) {
 
         // Notificações e avatar
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ico_bell_blue),
                 contentDescription = "Notificações",
+                tint = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier.size(28.dp)
             )
-            Spacer(modifier = Modifier.width(12.dp))
-            val imageRes = user?.imageRes ?: R.drawable.ico_emoji
-            Image(
-                painter = painterResource(imageRes),
-                contentDescription = "Avatar",
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape).clickable {
-                        navController.navigate("ProfileScreen")
-                    }
-            )
+            Spacer(modifier = Modifier.width(8.dp))
         }
     }
 }
 
 @Composable
 fun SectionTitle(title: String) {
+    Spacer(modifier = Modifier.height(13.dp))
     Text(
         text = title,
         style = TextStyle(
@@ -147,7 +140,7 @@ fun HighlightedTripsSection(navController: NavController, sharedModel: SharedMod
             .padding(vertical = 30.dp)
     ) {
 
-        repeat(5) { // Simulação de múltiplos cartões
+
             Spacer(modifier = Modifier.width(36.dp))
             ObjectDestination().getAllDestination().forEach { destination ->
                 HighlightedTripCard(
@@ -155,7 +148,7 @@ fun HighlightedTripsSection(navController: NavController, sharedModel: SharedMod
                     destination, sharedModel
                 )
                 Spacer(modifier = Modifier.width(36.dp))
-            }
+
         }
     }
 }
@@ -165,7 +158,7 @@ fun HighlightedTripCard(navController: NavController,destinations: Destinations,
 
     Card(
         modifier = Modifier
-            .width(300.dp)
+            .width(300.dp).height(200.dp)
             .background(MaterialTheme.colorScheme.onBackground, RoundedCornerShape(19.dp))
             .shadow(12.dp, RoundedCornerShape(19.dp))
             .clip(RoundedCornerShape(12.dp))
@@ -175,66 +168,40 @@ fun HighlightedTripCard(navController: NavController,destinations: Destinations,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground),
     ) {
 
-        Column(
+        Box {
 
-        ) {
             Image(
-                painter = painterResource(destinations.imageRes),
-                contentDescription = destinations.name,
+                painter = painterResource(id = destinations?.imageRes ?: R.drawable.ico_flag_brasil),
+                contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .padding(0.dp)
-                    .fillMaxWidth()
-                    .height(180.dp)
+                modifier = Modifier.fillMaxSize()
             )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomStart)
+                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
+                    .padding(8.dp)
+            ) {
+                Column {
+                    Text(
+                        text = destinations.name ?: "Default",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+            }
             Spacer(modifier = Modifier.height(15.dp))
 
-            Text(
-                text = destinations.name,
-                style = TextStyle(
-                    fontSize = 17.sp,
-                    lineHeight = 19.48.sp,
-                    fontWeight = FontWeight(600),
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    textAlign = TextAlign.Center,
-
-                    ),
-                maxLines = 1,
-                modifier = Modifier
-                    .width(301.dp)
-                    .height(19.dp)
-            )
-
-
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-
-
+        }}
     }
-
-}
-
 
 @Composable
 fun NearbyPlacesSection(navController: NavController, sharedModel: SharedModel) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier
-                .align(Alignment.End)
-                .width(90.dp)
-                .height(34.dp)
-        ) {
-            Text(
-                "Ver mais",
-                fontFamily = poppinsFontFamily,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 9.sp
-            )
-        }
+
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(
@@ -244,9 +211,9 @@ fun NearbyPlacesSection(navController: NavController, sharedModel: SharedModel) 
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             ObjectDestination().getAllDestination().forEach { destination ->
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
                     PlaceCard(destination, navController =navController, sharedModel = sharedModel )
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
             }
         }
 
@@ -257,23 +224,7 @@ fun NearbyPlacesSection(navController: NavController, sharedModel: SharedModel) 
 @Composable
 fun BeachSection(navController: NavController, sharedModel: SharedModel) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier
-                .align(Alignment.End)
-                .width(90.dp)
-                .height(34.dp)
-        ) {
-            Text(
-                "Ver mais",
-                fontFamily = poppinsFontFamily,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                fontWeight = FontWeight.Bold,
-                fontSize = 9.sp
-            )
-        }
+
         Spacer(modifier = Modifier.height(12.dp))
         Row(
             modifier = Modifier
@@ -291,56 +242,46 @@ fun BeachSection(navController: NavController, sharedModel: SharedModel) {
                 }
             }
         }
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(15.dp))
     }
 }
-
 @Composable
-fun PlaceCard(destinations: Destinations, sharedModel: SharedModel, navController: NavController) {
+fun PlaceCard(destination: Destinations,sharedModel: SharedModel,  navController: NavController) {
     Card(
         modifier = Modifier
-            .width(160.dp)
-            .shadow(4.dp, RoundedCornerShape(12.dp))
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
-            .clickable {
-                sharedModel.setSelectedDestination(destinations)
+            .fillMaxWidth().width(190.dp).height(150.dp).clickable {
+                sharedModel.setSelectedDestination(destination)
                 navController.navigate("DestinationDetailsScreen")
             },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onBackground)
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Box {
+
             Image(
-                painter = painterResource(destinations.imageRes),
-                contentDescription = destinations.name,
+                painter = painterResource(id = destination?.imageRes?: R.drawable.ico_flag_brasil),
+                contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                modifier = Modifier.fillMaxSize()
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = destinations.name,
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    lineHeight = 19.48.sp,
-                    fontWeight = FontWeight(600),
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    textAlign = TextAlign.Center,
-                    fontFamily = poppinsFontFamily
-
-                ),
-                maxLines = 1,
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(19.dp)
-            )
-            Spacer(modifier = Modifier.height(15.dp))
+                    .align(Alignment.BottomStart)
+                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
+                    .padding(8.dp)
+            ) {
+                Column {
+                    Text(
+                        text = destination.name ?:"Default",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+            }
         }
     }
 }
+

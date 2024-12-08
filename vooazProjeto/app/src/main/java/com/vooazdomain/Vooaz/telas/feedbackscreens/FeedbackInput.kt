@@ -1,5 +1,6 @@
 package com.example.feedbackscreen
 
+import SendMailButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -121,22 +122,24 @@ fun FeedbackScreen(navController: NavController) {
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-
-            // Botão "Enviar"
-            Button(
-                onClick = { navController.navigate("FeedbackConfirmScreen")},
-                modifier =Modifier
-                    .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
-                    .width(223.dp)
-                    .height(39.dp)
-                    .background(color =MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(size = 28.dp))
-            ) {
-                Text(
-                    text = stringResource(R.string.enviar,"Enviar"),
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                )
+            SendMailButton("Vooaz@gmail.com",feedbackText,"Feedback App"){
+                navController.navigate("FeedbackConfirmScreen")
             }
+//            // Botão "Enviar"
+//            Button(
+//                onClick = { navController.navigate("FeedbackConfirmScreen")},
+//                modifier =Modifier
+//                    .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
+//                    .width(223.dp)
+//                    .height(39.dp)
+//                    .background(color =MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(size = 28.dp))
+//            ) {
+//                Text(
+//                    text = stringResource(R.string.enviar,"Enviar"),
+//                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+//                    style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+//                )
+//            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
