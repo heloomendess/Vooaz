@@ -15,7 +15,7 @@ class SharedModel : ViewModel() {
     var selectedDestination: Destinations? = null
         private set
 
-    fun setSelectedUser(user: User) {
+    fun setSelectedUser(user: User?) {
         selectedUser = user
     }
     fun setSelectedDestination(destinations: Destinations?) {
@@ -26,7 +26,7 @@ class SharedModel : ViewModel() {
         selectedOtherUsers = user
     }
 
-    fun setSelectedGuide(guide: TourismGuide) {
+    fun setSelectedGuide(guide: TourismGuide?) {
         selectedGuides = guide
     }
 }

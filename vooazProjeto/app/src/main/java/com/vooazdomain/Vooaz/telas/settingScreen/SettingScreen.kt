@@ -33,6 +33,7 @@ import com.airbnb.lottie.model.content.CircleShape
 import com.google.gson.Gson
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.User
+import com.vooazdomain.Vooaz.telas.inputflow.InputScreen
 import java.net.URLEncoder
 
 
@@ -82,7 +83,7 @@ var user = shared.selectedUser
                     label =stringResource(R.string.infoPessoais, "Informações pessoais"),
                     image = painterResource(id = R.drawable.profileicon),
                     navigation = navController,
-                    navroute = "PersonalInfoScreen"
+                    navroute = "PersonalInfoScreen",shared
                 )
             }
             // Ícone fictício substituído por outro válido
@@ -91,7 +92,7 @@ var user = shared.selectedUser
                     label =stringResource(R.string.viagens, "Viagens"),
                     image = painterResource(id = R.drawable.malaviagem),
                     navigation = navController,
-                    navroute = "TravelHistoryScreen"
+                    navroute = "TravelHistoryScreen",shared
                 )
             }
             item {
@@ -99,7 +100,7 @@ var user = shared.selectedUser
                     label =stringResource(R.string.ajustes, "Ajustes"),
                     image = painterResource(id = R.drawable.adjustsicon),
                     navigation = navController,
-                    navroute = "AdjustsScreen"
+                    navroute = "AdjustsScreen",shared
                 )
             }
             item {
@@ -114,7 +115,7 @@ var user = shared.selectedUser
                     label = stringResource(R.string.about_us),
                     image = painterResource(id = R.drawable.ico_check),
                     navigation = navController,
-                    navroute = "AboutUsScreen"
+                    navroute = "AboutUsScreen",shared
                 )
             }
             item {
@@ -129,7 +130,8 @@ var user = shared.selectedUser
                     label = stringResource(R.string.ajuda,"Central de ajuda"),
                     image = painterResource(id = R.drawable.sinalinterrogacao),
                     navigation = navController,
-                    navroute = "HelpCenterScreen"
+                    navroute = "HelpCenterScreen",
+                    shared
                 )
             }
             item {
@@ -137,7 +139,20 @@ var user = shared.selectedUser
                     label = stringResource(R.string.feedback,"Enviar seu feedback"),
                     image = painterResource(id = R.drawable.lapis),
                     navigation = navController,
-                    navroute = "FeedbackScreen"
+                    navroute = "FeedbackScreen",shared
+                )
+            }
+            item {
+                Spacer(modifier = Modifier.height(15.dp))
+                SectionTitle("Sair")
+            }
+            item {
+                SettingsOption(
+                    label = "Sair da conta",
+                    image = painterResource(id = R.drawable.close),
+                    navigation = navController,
+                    navroute = "InputScreen",
+                    shared = shared
                 )
             }
             item {
@@ -224,14 +239,20 @@ fun SectionTitle(title: String) {
 }
 
 @Composable
-fun SettingsOption(label: String, image: Painter, navigation: NavController, navroute: String) {
+fun SettingsOption(label: String, image: Painter, navigation: NavController, navroute: String,shared: SharedModel) {
     Row(
         Modifier
             .width(330.dp)
             .padding(start = 30.dp, top = 10.dp)
             .height(70.dp)
-            .background(color = MaterialTheme.colorScheme.onBackground , shape = RoundedCornerShape(size = 15.dp)).clickable {
-    navigation.navigate(navroute)
+            .background(color = if (label != "Sair da conta"){MaterialTheme.colorScheme.onBackground} else{Color.Red} , shape = RoundedCornerShape(size = 15.dp)).clickable {
+         if (navroute != "InputScreen"){ navigation.navigate(navroute)} else {
+
+             shared.setSelectedUser(null)
+             shared.setSelectedOtherUser(null)
+             shared.setSelectedDestination(null)
+             shared.setSelectedGuide(null)
+             navigation.popBackStack(route = navroute, inclusive = false)}
             },
         verticalAlignment = Alignment.CenterVertically
 
@@ -261,6 +282,5 @@ fun SettingsOption(label: String, image: Painter, navigation: NavController, nav
 
         }
         Spacer(modifier = Modifier.height(10.dp))
-
     }
 }
