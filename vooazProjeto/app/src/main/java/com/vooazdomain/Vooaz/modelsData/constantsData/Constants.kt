@@ -1,17 +1,11 @@
 package com.vooazdomain.Vooaz.modelsData.constantsData
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import com.vooazdomain.Vooaz.modelsData.ListOfValues.GetListUsers
 import com.vooazdomain.Vooaz.modelsData.ListOfValues.getOthersUsersList
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 
 import com.vooazdomain.Vooaz.modelsData.datas.User
-import java.util.Date
-import java.util.Objects
 
 class UsersConts {
     private val users: MutableList<User> = initializeUsers()

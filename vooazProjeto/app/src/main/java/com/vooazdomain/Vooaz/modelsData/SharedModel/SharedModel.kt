@@ -14,9 +14,14 @@ class SharedModel : ViewModel() {
         private set
     var selectedDestination: Destinations? = null
         private set
+var selectedRegisterUser: User? = null
+        private set
 
     fun setSelectedUser(user: User?) {
         selectedUser = user
+    }
+    fun setSelectedRegisterUser(user: User?) {
+        selectedRegisterUser = user
     }
     fun setSelectedDestination(destinations: Destinations?) {
         selectedDestination = destinations
