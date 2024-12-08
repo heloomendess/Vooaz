@@ -59,7 +59,8 @@ var user = shared.selectedUser
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
+                .padding(padding),
+
         ) {
             // Header
             item {
@@ -234,47 +235,58 @@ fun SectionTitle(title: String) {
 
 @Composable
 fun SettingsOption(label: String, image: Painter, navigation: NavController, navroute: String,shared: SharedModel) {
-    Row(
-        Modifier
-            .width(330.dp)
-            .padding(start = 30.dp, top = 10.dp)
-            .height(70.dp)
-            .background(color = if (label != "Sair da conta"){MaterialTheme.colorScheme.onBackground} else{Color.Red} , shape = RoundedCornerShape(size = 15.dp)).clickable {
-         if (navroute != "InputScreen"){ navigation.navigate(navroute)} else {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Row(
+            Modifier
+                .fillMaxWidth(0.9f)
+                .padding(top = 10.dp)
+                .height(70.dp)
+                .background(
+                    color = if (label != "Sair da conta") {
+                        MaterialTheme.colorScheme.onBackground
+                    } else {
+                        Color.Red
+                    }, shape = RoundedCornerShape(size = 15.dp)
+                ).clickable {
+                    if (navroute != "InputScreen") {
+                        navigation.navigate(navroute)
+                    } else {
 
-             shared.setSelectedUser(null)
-             shared.setSelectedOtherUser(null)
-             shared.setSelectedDestination(null)
-             shared.setSelectedGuide(null)
-             navigation.popBackStack(route = navroute, inclusive = false)}
-            },
-        verticalAlignment = Alignment.CenterVertically
+                        shared.setSelectedUser(null)
+                        shared.setSelectedOtherUser(null)
+                        shared.setSelectedDestination(null)
+                        shared.setSelectedGuide(null)
+                        navigation.popBackStack(route = navroute, inclusive = false)
+                    }
+                },
+            verticalAlignment = Alignment.CenterVertically
 
-    ) {
-        Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
-            Image(
-                painter = image,
-                contentDescription = stringResource(R.string.imagem, "image description"),
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier.padding(start = 20.dp)
-                    .size(30.dp).fillMaxHeight()
+        ) {
+            Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
+                Image(
+                    painter = image,
+                    contentDescription = stringResource(R.string.imagem, "image description"),
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier.padding(start = 20.dp)
+                        .size(30.dp).fillMaxHeight()
 
-            )
+                )
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = label,
+                    style = TextStyle(
+                        fontFamily = poppinsFontFamily,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight(500),
+                        color = MaterialTheme.colorScheme.inverseOnSurface,
+
+                        ),
+                )
+
+            }
+            Spacer(modifier = Modifier.height(10.dp))
         }
-        Spacer(modifier = Modifier.width(20.dp))
-        Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
-            Text(
-                text = label,
-                style = TextStyle(
-                    fontFamily = poppinsFontFamily,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight(500),
-                    color =MaterialTheme.colorScheme.inverseOnSurface,
-
-                    ),
-            )
-
-        }
-        Spacer(modifier = Modifier.height(10.dp))
     }
 }
