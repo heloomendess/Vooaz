@@ -30,7 +30,6 @@ import com.vooazdomain.Vooaz.telas.feedbackscreens.FeedbackConfirmScreen
 import com.vooazdomain.Vooaz.telas.guidesScreens.GuideSearch
 
 import com.vooazdomain.Vooaz.telas.home.HomePageScreen
-import com.vooazdomain.Vooaz.telas.inputflow.InputFullRegisterScreen
 import com.vooazdomain.Vooaz.telas.inputflow.InputScreen
 import com.vooazdomain.Vooaz.telas.inputflow.LoginScreen
 import com.vooazdomain.Vooaz.telas.plan.PlanSuggestionScreen
@@ -61,7 +60,9 @@ fun NavigationFlowSettings() {
 
     val selectedModel = sharedViewModelUser
 if (userAutentic){
-    UsersConts().getUserById(1)?.let { selectedModel.setSelectedUser(it) }
+    UsersConts().getUserById(1)?.let { selectedModel.setSelectedUser(
+        it,
+    ) }
 }
 
     Scaffold(
@@ -171,10 +172,6 @@ if (userAutentic){
 
                     GuidesProfile(navController, selectedModel)
                 }
-
-                composable("InputFullRegisterScreen") {
-                    InputFullRegisterScreen(navController)
-                }
                 composable("Plans") {
                     Plans(navController)
                 }
@@ -192,7 +189,7 @@ if (userAutentic){
                     LoginScreen(navController, selectedModel)
                 }
                 composable("RegisterAccountScreen") {
-                    RegisterAccountContent(navController)
+                    RegisterAccountContent(navController, selectedModel)
                 }
 
                 composable("InputScreen") {

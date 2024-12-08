@@ -28,16 +28,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.vooazdomain.Vooaz.R
-import com.vooazdomain.Vooaz.ui.theme.VooazTheme
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
@@ -146,6 +142,11 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
                 if (user != null) {
                     shared.setSelectedUser(user)
                     navController.navigate(route = "LoadingScreen/HomePageScreen")
+                } else {
+                    if (shared.selectedRegisterUser?.email == email && shared.selectedRegisterUser?.password==senha ){
+                        shared.setSelectedUser(shared.selectedRegisterUser)
+                        navController.navigate(route = "LoadingScreen/HomePageScreen")
+                        }
                 }
             },
             shape = RoundedCornerShape(10.dp),
