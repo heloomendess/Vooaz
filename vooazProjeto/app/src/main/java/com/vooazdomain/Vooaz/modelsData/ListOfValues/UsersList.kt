@@ -12,7 +12,7 @@ import com.vooazdomain.Vooaz.modelsData.datas.User
 
 import java.util.Date
 
-fun GetListUsers(): List<User>{
+fun GetListUsers(): MutableList<User>{
     var desfault_destination =  Destinations(
         destinationId = 1,
         name = "Avenida Paulista",
@@ -51,20 +51,19 @@ return listOf<User>(
             imageRes = R.drawable.daniloalcantara, // Substitua pelo recurso real
             AboutUser = "Amo explorar novos lugares e fazer trilhas.",
             neighborhood = "Vila Mariana",
-            languages = listOf("Português"),
+            languages = listOf("Português").toMutableList() ,
             email = "danilo.alcantara.2003y@email.com",
             password = "123456",
             disabilityType = "Nenhuma",
             birthDate = Date(1993 - 1900, 5, 15), // 15 de Junho de 1993
             gender = "Masculino",
             userPlans = initialFlightPlan,
-            conected_users = UsersConts2().getAllUsers() ?: emptyList()
- ?: emptyList()
-,
+            conected_users = UsersConts2().getAllUsers().toMutableList()
+            ,
             historicTravels = listOf<Destinations>(
-                ObjectDestination().getDestinationById(10)?: desfault_destination,  ObjectDestination().getDestinationById(3)?: desfault_destination, ObjectDestination().getDestinationById(5)?: desfault_destination
-                ,ObjectDestination().getDestinationById(1)?: desfault_destination ,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+                ObjectDestination().getDestinationById(10)?: desfault_destination
+
+            ).toMutableList()
             // Será atualizado posteriormente
         ),
         User(
@@ -78,18 +77,18 @@ return listOf<User>(
             imageRes = R.drawable.carlospereira,
             AboutUser = "Designer apaixonado por arte e fotografia.",
             neighborhood = "Copacabana",
-            languages = listOf("Português", "Inglês"),
+            languages = listOf("Português", "Inglês").toMutableList() ,
             email = "carlos.pereira@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
             birthDate = Date(1996 - 1900, 2, 20), // 20 de Março de 1996
             gender = "Masculino",
             userPlans = initialFlightPlan,
-            conected_users = UsersConts2().getAllUsers() ?: emptyList()
-,
+            conected_users = UsersConts2().getAllUsers().toMutableList()
+            ,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
         ),
         User(
             userId = 3,
@@ -102,18 +101,18 @@ return listOf<User>(
             imageRes = R.drawable.lucasalmeida,
             AboutUser = "Chef de cozinha especializado em comidas típicas.",
             neighborhood = "Barra",
-            languages = listOf("Português", "Espanhol"),
+            languages = listOf("Português", "Espanhol").toMutableList() ,
             email = "lucas.almeida@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
             birthDate = Date(1988 - 1900, 11, 10), // 10 de Dezembro de 1988
             gender = "Masculino",
             userPlans = initialFlightPlan,
-            conected_users = UsersConts2().getAllUsers() ?: emptyList()
-,
+            conected_users = UsersConts2().getAllUsers().toMutableList()
+            ,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
         ),
         // Mulheres
         User(
@@ -127,18 +126,18 @@ return listOf<User>(
             imageRes = R.drawable.mariaoliveira,
             AboutUser = "Engenheira de software e amante de tecnologia.",
             neighborhood = "Cambuí",
-            languages = listOf("Português", "Inglês"),
+            languages = listOf("Português", "Inglês").toMutableList() ,
             email = "maria.oliveira@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
             birthDate = Date(1995 - 1900, 7, 25), // 25 de Agosto de 1995
             gender = "Feminino",
             userPlans = initialFlightPlan,
-            conected_users = UsersConts2().getAllUsers() ?: emptyList()
-,
+            conected_users = UsersConts2().getAllUsers().toMutableList()
+            ,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(3)?: desfault_destination,ObjectDestination().getDestinationById(4)?: desfault_destination
-            )
+            ).toMutableList()
         ),
         User(
             userId = 5,
@@ -151,18 +150,18 @@ return listOf<User>(
             imageRes = R.drawable.anasouza,
             AboutUser = "Médica apaixonada por viagens culturais.",
             neighborhood = "Moinhos de Vento",
-            languages = listOf("Português", "Francês"),
+            languages = listOf("Português", "Francês").toMutableList() ,
             email = "ana.souza@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
             birthDate = Date(1992 - 1900, 9, 5), // 5 de Outubro de 1992
             gender = "Feminino",
             userPlans = initialFlightPlan,
-            conected_users = UsersConts2().getAllUsers() ?: emptyList()
-,
+            conected_users = UsersConts2().getAllUsers().toMutableList()
+            ,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
         )
-    )
+    ).toMutableList()
 }

@@ -53,7 +53,7 @@ import com.vooazdomain.Vooaz.telas.splashpage.addSplashPage
 fun NavigationFlowSettings() {
     val navController = rememberNavController()
 
-    val userAutentic = false // caso true usuario esta autenticado, aso false não esta
+    val userAutentic = true // caso true usuario esta autenticado, aso false não esta
     val destination = if (userAutentic) "HomePageScreen" else "InputScreen"
 
     val sharedViewModelUser: SharedModel = viewModel()
@@ -129,9 +129,9 @@ if (userAutentic){
                 composable("AboutUsScreen") {
                     AboutUsScreen(navController)
                 }
-                composable("CapitalScreen") {
+                composable("DestinationsScreen") {
 
-                    DestinationsScreen(navController, ObjectDestination().getAllDestination())
+                    DestinationsScreen(navController, ObjectDestination().getAllDestination(),selectedModel)
                 }
                 composable("HomePageScreen") {
 

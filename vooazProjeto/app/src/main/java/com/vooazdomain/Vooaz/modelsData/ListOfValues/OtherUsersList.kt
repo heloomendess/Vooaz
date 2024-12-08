@@ -14,7 +14,7 @@ import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import java.util.Objects
 
 
-fun getOthersUsersList(): List<User?>{
+fun getOthersUsersList(): MutableList<User?>{
     val desfault_destination by lazy {
         Destinations(
             destinationId = 1,
@@ -55,7 +55,7 @@ fun getOthersUsersList(): List<User?>{
             imageRes = R.drawable.lucasalmeida,
             AboutUser = "Chef de cozinha especializado em comidas típicas.",
             neighborhood = "Barra",
-            languages = listOf("Português", "Espanhol"),
+            languages = listOf("Português", "Espanhol").toMutableList() ,
             email = "lucas.almeida@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
@@ -65,7 +65,7 @@ fun getOthersUsersList(): List<User?>{
             conected_users = null,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
         ),
         // Mulheres
         User(
@@ -79,7 +79,7 @@ fun getOthersUsersList(): List<User?>{
             imageRes = R.drawable.mariaoliveira,
             AboutUser = "Engenheira de software e amante de tecnologia.",
             neighborhood = "Cambuí",
-            languages = listOf("Português", "Inglês"),
+            languages = listOf("Português", "Inglês").toMutableList() ,
             email = "maria.oliveira@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
@@ -89,7 +89,7 @@ fun getOthersUsersList(): List<User?>{
             conected_users = null,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
         ),
         User(
             userId = 5,
@@ -102,7 +102,7 @@ fun getOthersUsersList(): List<User?>{
             imageRes = R.drawable.anasouza,
             AboutUser = "Médica apaixonada por viagens culturais.",
             neighborhood = "Moinhos de Vento",
-            languages = listOf("Português", "Francês"),
+            languages = listOf("Português", "Francês").toMutableList() ,
             email = "ana.souza@gmail.com",
             password = "123456",
             disabilityType = "Nenhuma",
@@ -112,8 +112,8 @@ fun getOthersUsersList(): List<User?>{
             conected_users = null,
             historicTravels = listOf<Destinations>(
                 ObjectDestination().getDestinationById(2)?: desfault_destination,ObjectDestination().getDestinationById(1)?: desfault_destination,ObjectDestination().getDestinationById(2)?: desfault_destination
-            )
+            ).toMutableList()
 
-    )
-    )
+        )
+    ).toMutableList()
 }

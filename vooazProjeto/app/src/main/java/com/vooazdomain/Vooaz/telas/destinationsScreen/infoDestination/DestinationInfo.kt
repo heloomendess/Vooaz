@@ -36,7 +36,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.constantsData.UsersConts
 import com.vooazdomain.Vooaz.modelsData.datas.Comments
+import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import com.vooazdomain.Vooaz.telas.destinationsScreen.infoDestination.TravelItineraryScreen
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
@@ -220,8 +222,10 @@ Box(modifier =Modifier.border(2.dp,MaterialTheme.colorScheme.tertiary , shape = 
 
             Button(
                 onClick = {
+                    UsersConts().addNewDestination(sharedModel, destination)
+                    navController.popBackStack(route = "HomePageScreen", inclusive = false)
 
-                },
+                          },
                 modifier = Modifier
                     .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 20.dp))
                 .width(272.dp)
@@ -238,30 +242,6 @@ Box(modifier =Modifier.border(2.dp,MaterialTheme.colorScheme.tertiary , shape = 
 }
 }
 }
-@Composable
-fun RatingSection(rating: Float, reviewsCount: Int) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 8.dp)
-    ) {
-        Icon(
-            imageVector = Icons.Default.Star,
-            contentDescription = null,
-            modifier = Modifier.size(32.dp),
-            tint = MaterialTheme.colorScheme.onSurfaceVariant // Cor da estrela (amarela)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = "$rating/5"
-        )
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(
-            text = "($reviewsCount avaliações)",
-            color = MaterialTheme.colorScheme.tertiary
-        )
-    }
-}
-
 @Composable
 fun UserCommentsSection(comments: List<Comments>) {
     Text(

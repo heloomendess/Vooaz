@@ -1,10 +1,13 @@
 package com.vooazdomain.Vooaz.telas.destinationsScreen
 
+import BottomNavigation
+import ObjectDestination
 import com.vooazdomain.Vooaz.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,6 +15,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,24 +28,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
 import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 @Composable
-fun DestinationsScreen(navController: NavController, destinations: List<Destinations>) {
+fun DestinationsScreen(navController: NavController, destinations: List<Destinations>, sharedModel: SharedModel, category: String = "São Paulo") {
     val backgroundColor = Color(0xFFECECEC) // Light gray background
     val primaryColor = Color(0xFF0E2C8F) // Blue color for cards and header
     val textColor = Color(0xFFECECEC)
+    var expanded = remember { mutableStateOf(false) }
+    var selectDestination = remember { mutableStateOf(category) }
     Scaffold(
         topBar = {
-            TopBar(primaryColor = primaryColor)
+            TopBar()
         },
+        bottomBar ={BottomNavigation(navController, sharedModel.selectedUser)},
         containerColor = backgroundColor
     ) { padding ->
         Column(
@@ -48,143 +56,224 @@ fun DestinationsScreen(navController: NavController, destinations: List<Destinat
                 .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HeaderText(primaryColor = textColor)
+            Row(modifier = Modifier.padding(end = 30.dp)) {
+                Spacer(modifier = Modifier.width(20.dp))
+
+            }
 
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(destinations.size) { index ->
-                    CardItem(destination = destinations[index], primaryColor = primaryColor)
+                item {
+                    HeaderDestinationFilter(
+                        MaterialTheme.colorScheme.onTertiary,
+                        expanded,
+                        selectDestination
+                    )
+                }
+                if (selectDestination.value == "São Paulo") {
+                    destinations.forEach { destinations ->
+                        item {
+                            CardItem(destination = destinations, navController, sharedModel)
+                        }
+                    }
+                } else {
+                    ObjectDestination().getDestinationsByCategory(selectDestination.value)
+                        .forEach { destinations ->
+                            item {
+                                CardItem(destination = destinations, navController, sharedModel)
+                            }
+                        }
+
+                }
+            }
+            }
+        }
+    }
+
+
+@Composable
+    fun TopBar() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .height(80.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logoaz),
+                contentDescription = stringResource(R.string.logo,"Logo"),
+                modifier = Modifier.size(68.dp)
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(onClick = { /* Bell Action */ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ico_bell_blue),
+                    contentDescription = stringResource(R.string.iconNotificações ,"Notificações"),
+                    tint = MaterialTheme.colorScheme.onSecondary,
+                    modifier = Modifier.size(28.dp)
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+        }
+
+
+
+        Icon(
+           painter =  painterResource(R.drawable.ico_bell_blue),
+            contentDescription =stringResource(R.string.imagem, "image description"),
+            modifier = Modifier.padding()
+                .size(28.dp).fillMaxHeight(),
+            tint = MaterialTheme.colorScheme.onSecondary,
+        )
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+    }
+
+
+@Composable
+fun HeaderText(primaryColor: Color) {
+    Spacer(modifier = Modifier.height(3.dp))
+    Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+        Box(
+            modifier = Modifier
+                .width(240.dp)
+                .height(65.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.tertiaryContainer,
+                    shape = RoundedCornerShape(size = 20.dp)
+                ), contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "SP - Capital",
+                style = TextStyle(
+                    fontFamily = poppinsFontFamily,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = primaryColor
+                ),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
+            )
+        }
+    }
+}
+@Composable
+fun CardItem(destination: Destinations, navController: NavController,  sharedModel: SharedModel) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp).clickable {
+                sharedModel.setSelectedDestination(destination)
+                navController.navigate("DestinationDetailsScreen")
+            },
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Box {
+
+            Image(
+                painter = painterResource(id = destination?.imageRes?: R.drawable.ico_flag_brasil),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomStart)
+                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
+                    .padding(8.dp)
+            ) {
+                Column {
+                    Text(
+                        text = destination.name ?:"Default",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = destination.description ?:"Defaul",
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun TopBar(primaryColor: Color) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth().height(100.dp)
-            .background(MaterialTheme.colorScheme.onSecondaryContainer)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = stringResource(R.string.voltar,"Voltar"),
-            tint = MaterialTheme.colorScheme.onSecondary,
-            modifier = Modifier.size(35.dp).clickable {
-
-            }
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        Image(
-            painter = painterResource(id = R.drawable.logoaz),
-            contentDescription = stringResource(R.string.logo,"Logo"),
-            modifier = Modifier
-                .size(80.dp)
-                .clip(CircleShape)
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        Image(
-            painterResource(R.drawable.ico_bell_blue),
-            contentDescription =stringResource(R.string.imagem, "image description"),
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.padding()
-                .size(40.dp).fillMaxHeight()
-
-        )
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Box(modifier = Modifier.fillMaxHeight(), contentAlignment = Alignment.Center) {
-            Image(
-                painterResource(R.drawable.ico_profileblue),
-                contentDescription = stringResource(R.string.imagem,"image description"),
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier.padding()
-                    .size(40.dp).fillMaxHeight()
-
+fun HeaderDestinationFilter(primaryColor: Color, expanded: MutableState<Boolean>, selectedDestination: MutableState<String>) {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Spacer(modifier = Modifier.height(3.dp))
+        Box(modifier = Modifier
+            .width(240.dp)
+            .height(55.dp)
+            .background(
+                color = MaterialTheme.colorScheme.onSurface,
+                shape = RoundedCornerShape(size = 20.dp)
             )
-        }
-    }
-}
+            .clickable {
 
-@Composable
-fun HeaderText(primaryColor: Color) {
-    Spacer(modifier = Modifier.height(3.dp))
-    Box(modifier = Modifier
-        .width(240.dp)
-        .height(65.dp)
-        .background(color = MaterialTheme.colorScheme.tertiaryContainer, shape = RoundedCornerShape(size = 20.dp)), contentAlignment = Alignment.Center) {
-        Text(
-            text = "SP - Capital",
-            style = TextStyle(
-                fontFamily = poppinsFontFamily,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = primaryColor
-            ),
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp)
-        )
-    }
-}
-
-@Composable
-fun CardItem(destination: Destinations, primaryColor: Color) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .clickable { /* Handle click */ },
-        colors = CardDefaults.cardColors(containerColor = primaryColor)
-    ) {
-        Column(
-horizontalAlignment = Alignment.CenterHorizontally
+                expanded.value = !expanded.value
+            }, contentAlignment = Alignment.Center
         ) {
-            Image(
-                painter = painterResource(id = destination.imageRes),
-                contentDescription = destination.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .padding(0.dp)
-                    .fillMaxWidth()
-                    .height(280.dp)
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
             Text(
-                text = destination.name,
+                text = "Destination",
                 style = TextStyle(
                     fontFamily = poppinsFontFamily,
-                    fontSize = 24.sp,
-                    lineHeight = 19.48.sp,
-                    fontWeight = FontWeight(600),
-                    color =MaterialTheme.colorScheme.onPrimaryContainer,
-                    textAlign = TextAlign.Center,
-
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = primaryColor
                 ),
-                maxLines = 1,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
-                        .width(231.dp)
-                    .height(19.dp)
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            DropdownMenu(
+                expanded = expanded.value,
+                onDismissRequest = { expanded.value = false },
+                modifier = Modifier
+                    .width(240.dp)
+                    .padding(start = 20.dp)
+                    .height(90.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                        shape = RoundedCornerShape(size = 15.dp)
+                    )
+            ) {
+                listOf(
+                    "São Paulo",
+                    "Atração Urbana",
+                    "Parque",
+                    "Gastronomia",
+                    "Museu",
+                    "Arquitetura Religiosa",
+                    "Bairro Cultural",
+                    "Ponto Panorâmico",
+                    "Natureza",
+                    "Arte e Cultura",
+                    "Praia"
+                ).forEach { category ->
+                    DropdownMenuItem(
+                        text = { Text(category) },
+                        onClick = {
+                            selectedDestination.value = category
+                            expanded.value = false
+                        }
+                    )
+                }
+            }
         }
     }
 }
-
-// Data class for destination items
-
-

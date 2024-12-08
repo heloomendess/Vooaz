@@ -102,7 +102,7 @@ fun TravelCard(travel: Destinations?, navController: NavController,  sharedModel
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomStart)
-                    .background(Color.Black.copy(alpha = 0.6f))
+                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
                     .padding(8.dp)
             ) {
                 Column {

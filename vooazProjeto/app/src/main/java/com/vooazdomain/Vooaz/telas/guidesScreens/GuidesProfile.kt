@@ -27,33 +27,29 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.TourismGuide
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
-
 @Composable
-fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
 
-    val backgroundColor = Color(0xFFF4B942) // Amarelo para o fundo do cabeçalho
-    val whatsappIcon = painterResource(R.drawable.ic_whatsapp) // Ícone WhatsApp substituível
-    val instagramIcon = painterResource(R.drawable.instagram) // Ícone Instagram substituível
-    val facebookIcon = painterResource(R.drawable.facebook) // Ícone Facebook substituível
-    val containerColor = Color(0xFFF5F5F5) // Fundo da tela (cinza claro)
-    var guideinfo =shared.selectedGuides
-
+fun GuidesProfile(navController: NavHostController, selectedModel: SharedModel) {
+    val backgroundColor = Color(0xFFF4B942) // Fundo do cabeçalho
+    val containerColor = Color(0xFFF5F5F5) // Fundo geral da tela
+    val whatsappIcon = painterResource(R.drawable.ic_whatsapp)
+    val instagramIcon = painterResource(R.drawable.instagram)
+    val facebookIcon = painterResource(R.drawable.facebook)
+var guide = selectedModel.selectedGuides
     Scaffold(
-        containerColor = backgroundColor  ,
+        containerColor = backgroundColor,
         topBar = {
-            Row(modifier = Modifier.background(containerColor).padding(top=20.dp)) {
-
-
+            Row(modifier = Modifier.background(containerColor).padding(top = 20.dp)) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(R.string.voltar),
-                    modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
+                    contentDescription = "Voltar",
+                    modifier = Modifier.size(60.dp).padding(start = 20.dp, top = 15.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint =MaterialTheme.colorScheme.onSecondary
+                    tint = MaterialTheme.colorScheme.onSecondary
                 )
-
 
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -62,7 +58,7 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                     Box(modifier = Modifier.padding(end = 60.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = stringResource(R.string.LogoAz),
+                            contentDescription = "Logo VooAz",
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
                                 .width(75.dp)
@@ -70,10 +66,9 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                         )
                     }
                 }
-
             }
         },
-        content =  { padding ->
+        content = { padding ->
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -84,21 +79,17 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight()
-                            .background(backgroundColor,shape = RoundedCornerShape(
-                                topStart = 16.dp,
-                                topEnd = 16.dp,
-                                bottomStart = 0.dp,
-                                bottomEnd = 0.dp
-                            ))
+                            .background(backgroundColor)
                             .padding(15.dp),
-
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
                         ) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                             // Imagem de perfil
                             Image(
-                                painter = painterResource(guideinfo?.imageRes?: R.drawable.profileicon),
-                                contentDescription = stringResource(R.string.imagem_usuario),
+                                painter = painterResource(guide?.imageRes?: 1),
+                                contentDescription = "Imagem do Guia",
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
                                     .size(128.dp)
@@ -110,91 +101,89 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                                     )
                             )
 
-
                             Spacer(modifier = Modifier.width(16.dp))
 
-                            // Informações do usuário
+                            // Informações principais
                             Column(modifier = Modifier.width(210.dp)) {
-                                Row() {
+                                Row {
                                     Text(
-                                        text = guideinfo?.name ?: "Default1",
+                                        text = guide?.name ?: "Default",
                                         style = TextStyle(
-                                            fontFamily =poppinsFontFamily,
+                                            fontFamily = poppinsFontFamily,
                                             fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color =MaterialTheme.colorScheme.onSecondaryContainer
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Image(painterResource(R.drawable.hearingaidicon),
-                                        contentDescription = stringResource(R.string.icone),
-                                        modifier =Modifier.size(30.dp))
+                                    Image(
+                                        painter = painterResource(R.drawable.hearingaidicon),
+                                        contentDescription = "Ícone",
+                                        modifier = Modifier.size(30.dp)
+                                    )
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
-                                        painter = painterResource(guideinfo?.flagCountry?: R.drawable.ic_flag_brazil),
-                                        contentDescription = stringResource(R.string.local),
+                                        painter = painterResource(guide?.flagCountry?: 1),
+                                        contentDescription = "Bandeira do País",
                                         modifier = Modifier.size(30.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = guideinfo?.country ?:"Brasil",
-                                        fontFamily =poppinsFontFamily,
-                                        style = TextStyle(fontSize = 14.sp,
+                                        text = "${guide?.city}, ${guide?.country}",
+                                        fontFamily = poppinsFontFamily,
+                                        style = TextStyle(
+                                            fontSize = 14.sp,
                                             color = MaterialTheme.colorScheme.onSecondaryContainer
                                         )
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Button(
-                                    onClick = { /* Ação conectar */ },
+                                    onClick = { /* Ação de conectar */ },
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(
-                                            0xFF3366FF
-                                        )
+                                        containerColor = Color(0xFF3366FF)
                                     ),
                                     modifier = Modifier.padding(start = 20.dp)
                                 ) {
-                                    Text(text = "Conectar",
+                                    Text(
+                                        text = "Conectar",
                                         fontFamily = poppinsFontFamily,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer)
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
                                 }
                             }
 
                             Spacer(modifier = Modifier.weight(1f))
-
-                            // Botão conectar
-
                         }
                     }
                 }
 
-                // Seção "Sobre Fabio"
+                // Sobre o Guia
                 item {
-
                     Column(
                         modifier = Modifier
-                            .width(411.dp)
-                            .heightIn(453.dp)
+                            .fillMaxWidth()
                             .background(
-                                color = MaterialTheme.colorScheme.  tertiary,
+                                color = MaterialTheme.colorScheme.tertiary,
                                 shape = RoundedCornerShape(size = 3.dp)
-                            ),
+                            )
+                            .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text ="Sobre ${guideinfo?.name?: "Nomme Padrao"}:",
+                            text = "Sobre ${guide?.name}:",
                             fontFamily = poppinsFontFamily,
                             style = TextStyle(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                color =MaterialTheme.colorScheme.onSecondary
+                                color = MaterialTheme.colorScheme.onSecondary
                             )
                         )
                         Spacer(modifier = Modifier.height(28.dp))
                         Text(
-                            text = guideinfo?.AboutGuide ?: "Profissional dedicado",
+                            text = guide?.AboutGuide?: "Default",
                             style = TextStyle(
                                 fontFamily = poppinsFontFamily,
                                 fontSize = 19.sp,
@@ -202,8 +191,7 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                                 fontWeight = FontWeight(400),
                                 color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Justify,
-
-                                ),
+                            ),
                             modifier = Modifier
                                 .width(270.dp)
                                 .heightIn(351.dp, 900.dp)
@@ -212,62 +200,60 @@ fun GuidesProfile(navController: NavHostController, shared: SharedModel) {
                     }
                 }
 
-                // Ícones de contato
+                // Contatos
                 item {
-
-                    Box(modifier = Modifier.fillMaxSize().background(backgroundColor)) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-
-                                text = stringResource(R.string.contato,"Entre em contato"),
-                                fontFamily = poppinsFontFamily,
-                                style = TextStyle(
-                                    fontSize = 21.sp,
-                                    lineHeight = 17.28.sp,
-                                    fontWeight = FontWeight(700),
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                    textAlign = TextAlign.Justify,
-                                )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(backgroundColor)
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "Entre em contato",
+                            fontFamily = poppinsFontFamily,
+                            style = TextStyle(
+                                fontSize = 21.sp,
+                                fontWeight = FontWeight(700),
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                textAlign = TextAlign.Center
                             )
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 32.dp),
-                                horizontalArrangement = Arrangement.Center
-                            ) {
-                                IconButton(onClick = { /* Ação WhatsApp */ }) {
-                                    Icon(
-                                        painter = whatsappIcon,
-                                        contentDescription = stringResource(R.string.whatsApp,"WhatsApp"),
-                                        modifier = Modifier.size(30.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-                                IconButton(onClick = { /* Ação Instagram */ }) {
-                                    Icon(
-                                        painter = instagramIcon,
-                                        contentDescription = stringResource(R.string.instagram,"Instagram"),
-                                        modifier = Modifier.size(55.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-
-                                IconButton(onClick = { /* Ação Facebook */ }) {
-                                    Icon(
-                                        painter = facebookIcon,
-                                        contentDescription = stringResource(R.string.facebook,"Facebook"),
-                                        modifier = Modifier.size(30.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            IconButton(onClick = { /* Ação WhatsApp */ }) {
+                                Icon(
+                                    painter = whatsappIcon,
+                                    contentDescription = "WhatsApp",
+                                    modifier = Modifier.size(30.dp),
+                                    tint = Color.Unspecified
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            IconButton(onClick = { /* Ação Instagram */ }) {
+                                Icon(
+                                    painter = instagramIcon,
+                                    contentDescription = "Instagram",
+                                    modifier = Modifier.size(55.dp),
+                                    tint = Color.Unspecified
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            IconButton(onClick = { /* Ação Facebook */ }) {
+                                Icon(
+                                    painter = facebookIcon,
+                                    contentDescription = "Facebook",
+                                    modifier = Modifier.size(30.dp),
+                                    tint = Color.Unspecified
+                                )
                             }
                         }
                     }
                 }
             }
         }
-
     )
 }

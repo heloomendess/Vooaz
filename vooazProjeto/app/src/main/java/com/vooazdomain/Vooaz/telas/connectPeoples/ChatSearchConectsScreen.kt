@@ -165,7 +165,7 @@ fun ConnectionsGrid(user: User?, shared:SharedModel, primaryColor: Color, contro
 fun ConnectionsCard(otherUsers: User?,shared:SharedModel, primaryColor: Color, controller: NavController) {
     Column(
         modifier = Modifier
-            .width(158.dp).height(191.dp)
+            .width(158.dp).height(151.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(primaryColor)
             .clickable {
@@ -223,12 +223,3 @@ fun ConnectionsCard(otherUsers: User?,shared:SharedModel, primaryColor: Color, c
         )
     }
 }
-
-// Classe de dados para os destinos
-data class connections(
-    val name: String,
-    val location: String,
-    val img: Int,
-    val route: String
-)
-

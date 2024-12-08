@@ -12,7 +12,7 @@ object ConstantsBottomNavItem {
         BottomNavItem(
             label = "Destination",
             icon = R.drawable.destinationicon,
-            route = "test/Chat",
+            route = "DestinationsScreen",
             size = 32
 
         ),
@@ -34,7 +34,7 @@ object ConstantsBottomNavItem {
             label = "Settings",
             icon = R.drawable.settingsicon,
             route = "SettingsScreen",
-            size = 26
+            size = 23
 
         ),
     )

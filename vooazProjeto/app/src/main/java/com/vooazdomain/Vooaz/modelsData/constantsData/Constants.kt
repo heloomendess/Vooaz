@@ -7,15 +7,16 @@ import androidx.compose.runtime.setValue
 import com.vooazdomain.Vooaz.modelsData.ListOfValues.GetListUsers
 import com.vooazdomain.Vooaz.modelsData.ListOfValues.getOthersUsersList
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.Destinations
 
 import com.vooazdomain.Vooaz.modelsData.datas.User
 import java.util.Date
 import java.util.Objects
 
 class UsersConts {
-    private val users: List<User> = initializeUsers()
+    private val users: MutableList<User> = initializeUsers()
 
-    private fun initializeUsers(): List<User> {
+    private fun initializeUsers(): MutableList<User> {
         return GetListUsers()
 
     }
@@ -26,10 +27,16 @@ class UsersConts {
     }
 
     // Método para obter todos os usuários
-    fun getAllUsers(): List<User> {
+    fun getAllUsers(): MutableList<User> {
         return users
     }
+    fun addNewUser(user: User){
+        users.add(user)
+    }
 
+    fun addNewDestination(sharedModel: SharedModel, destinations: Destinations?){
+            sharedModel.selectedUser?.historicTravels?.add(destinations)
+    }
     // Função para atualizar as informações de um usuário
     fun setUserInformations(
         nome: String?,
@@ -68,10 +75,12 @@ class UsersConts {
         }
     }
 }
-class UsersConts2 {
-    private val users: List<User?> = initializeUsers()
 
-    private fun initializeUsers(): List<User?> {
+
+class UsersConts2 {
+    private val users: MutableList<User?> = initializeUsers()
+
+    private fun initializeUsers(): MutableList<User?> {
         return getOthersUsersList()
 
     }
@@ -82,8 +91,14 @@ class UsersConts2 {
     }
 
     // Método para obter todos os usuários
-    fun getAllUsers(): List<User?> {
+    fun getAllUsers(): MutableList<User?> {
         return users
+    }
+    fun addNewUser(user: User){
+        users.add(user)
+    }
+    fun addNewDestination(sharedModel: SharedModel, destinations: Destinations){
+        users.find { it?.userId == sharedModel.selectedUser?.userId }?.historicTravels?.add(destinations)
     }
 }
 

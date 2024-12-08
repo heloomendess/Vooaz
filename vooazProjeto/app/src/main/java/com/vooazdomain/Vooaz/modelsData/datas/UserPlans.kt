@@ -14,15 +14,15 @@ data class User(
     val imageRes: Int?,
     var AboutUser: String?,
     var neighborhood: String?,
-    val languages: List<String>?,
+    val languages: MutableList<String?>?,
     var email: String?,
     val password: String?,
-    val historicTravels: List<Destinations?>?,
+    var historicTravels: MutableList<Destinations?>?,
     var disabilityType: String?,
     var birthDate: Date?,
     var gender: String?,
     val userPlans: Plans?,
-    var conected_users: List<User?>?,
+    var conected_users: MutableList<User?>?,
 )
 
 data class Plans(
