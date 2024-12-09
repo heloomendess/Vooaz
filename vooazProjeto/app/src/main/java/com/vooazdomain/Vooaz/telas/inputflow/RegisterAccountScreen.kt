@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -65,7 +66,6 @@ fun RegisterAccountContent(navController: NavController, sharedModel: SharedMode
     var email = remember { mutableStateOf("") }
     var password = remember { mutableStateOf("") }
     var desability = remember { mutableStateOf("Selecione seu debilidade") }
-    var city = remember { mutableStateOf("") }
     var checked = remember { mutableStateOf(false) }
     var data = remember { mutableStateOf("") }
     var selectedGender = remember { mutableStateOf("Selecione seu gênero") }
@@ -73,6 +73,20 @@ fun RegisterAccountContent(navController: NavController, sharedModel: SharedMode
     BackgroundColorRegisterAccountScreen(someThemes)
 
     Column (modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+
+            ) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack, // Ícone de volta
+                contentDescription = stringResource(R.string.voltar),
+                modifier = Modifier.size(30.dp).clickable { navController.popBackStack() },
+                tint = Color.Black
+            )
+        }
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -206,7 +220,7 @@ fun RegisterAccountContent(navController: NavController, sharedModel: SharedMode
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 20.dp, start = 5.dp)
+                    modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, end = 20.dp).fillMaxWidth(0.9f)
                 ) {
                     Checkbox(
                         checked = checked.value,
@@ -236,7 +250,9 @@ fun RegisterAccountContent(navController: NavController, sharedModel: SharedMode
                                 append(stringResource(id = R.string.and_privacy_policy))
                             }
                         },
-                        fontFamily = poppinsFontFamily  // Aplicando a fonte Poppins
+                        fontFamily = poppinsFontFamily,  // Aplicando a fonte Poppins
+
+
                     )
                 }
 
@@ -271,7 +287,7 @@ fun RegisterAccountContent(navController: NavController, sharedModel: SharedMode
                         }
                     },
                     shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier.padding(top = 10.dp).width(310.dp).height(50.dp),
+                    modifier = Modifier.padding(top = 10.dp).fillMaxWidth(0.8f).height(50.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary),  // Usando a cor amarela do tema
                 ) {
                     Text(
@@ -297,7 +313,7 @@ fun TextFieldWithLabel(
 ) {
 
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(modifier = Modifier.fillMaxWidth()) {
+        Box(modifier = Modifier.fillMaxWidth(0.8f)) {
             Text(
                 text = label,
                 style = TextStyle(
@@ -308,8 +324,8 @@ fun TextFieldWithLabel(
                     textAlign = TextAlign.Start,
                 ),
                 modifier = Modifier
-                    .width(170.dp)
-                    .height(24.dp).padding(start = 10.dp)
+                    .widthIn(170.dp)
+                    .heightIn(24.dp).padding(start = 10.dp)
 
             )
         }
@@ -323,7 +339,7 @@ fun TextFieldWithLabel(
 
             singleLine = true,
             modifier =Modifier
-                .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 5.dp)).width(330.dp)
+                .border(width = 1.dp, color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(size = 5.dp)).fillMaxWidth(0.9f)
                 .height(60.dp)
                 .background(color =MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(size = 5.dp)))
         Spacer(modifier = Modifier.height(10.dp))
@@ -339,8 +355,8 @@ fun DropdownField(
 
     Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+            .fillMaxWidth(0.9f)
+            .padding(1.dp)
             .background(Color.White, RoundedCornerShape(8.dp))
             .clickable { expanded.value = true } // Abre o menu ao clicar
             .border(1.dp, Color.Black, RoundedCornerShape(8.dp))

@@ -36,14 +36,13 @@ class HelpCenterActivity : ComponentActivity() {
     }
 
      fun openChat() {
-        // Exemplo: abrir URL ou implementar lógica do chat
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://yourapp.com/chat"))
-        startActivity(intent)
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=0kdUxgmDci0&list=RDMM0kdUxgmDci0&start_radio=1"))
+        //startActivity(intent)
     }
 
      fun openFAQ() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://yourapp.com/faq"))
-        startActivity(intent)
+        //startActivity(intent)
     }
 }
 
