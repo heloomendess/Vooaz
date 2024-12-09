@@ -85,7 +85,7 @@ Planos!</string>
     <string name="register">Cadastro</string>
     <string name="login">Login</string>
     <string name="know_more">Conheça um pouco mais </string>
-    <string name="about_us">sobre nós.</string>
+    <string name="about_us">Sobre nós.</string>
 
     <!--  RegisterAccountScreen -->
 
@@ -134,12 +134,12 @@ Planos!</string>
     <string name="informação">descrição do destino</string>
     <string name="duração">duração</string>
     <string name="titulo">%s</string>
-    <string name="feedback">feedback</string>
+    <string name="feedback">Feedback</string>
     <string name="emoji">%s</string>
     <string name="pergunta">%s</string>
     <string name="enviar">enviar</string>
     <string name="back">back</string>
-    <string name="guias">guias</string>
+    <string name="guias">%s</string>
     <string name="iconNotificações">icone de notificações</string>
     <string name="iconPerfil">icone de perfil</string>
     <string name="genero">pesquisa genero</string>
@@ -147,13 +147,13 @@ Planos!</string>
     <string name="localização">%s</string>
     <string name="conexões">conexões</string>
     <string name="apresentação">%s</string>
-    <string name="editar">editar</string>
-    <string name="configurações">configurações</string>
-    <string name="infoPessoais">informações pessoais</string>
-    <string name="viagens">viagens</string>
-    <string name="ajustes">ajustes</string>
-    <string name="ajuda">central de ajuda</string>
-    <string name="perfil">perfil</string>
+    <string name="editar">Editar</string>
+    <string name="configurações">Configurações</string>
+    <string name="infoPessoais">Informações pessoais</string>
+    <string name="viagens">Viagens</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="ajuda">Central de ajuda</string>
+    <string name="perfil">Perfil</string>
 
 
 
