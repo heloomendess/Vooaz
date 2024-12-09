@@ -126,8 +126,8 @@ Conheça os reponsáveis pelo projeto:
 	<a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank"><img src="equipe/Danilo-SC.png" height="300"></a>
 	<a href="https://www.linkedin.com/in/gustavo-cunha-aa9175239/" target="_blank"><img src="equipe/Gustavo-FS.png" height="300"></a>
 	<a href="https://www.linkedin.com/in/iury-sven-costa/" target="_blank"><img src="equipe/Iury-FS.png" height="300"></a>
-	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Kawan-FE.png" width="300"></a>
- 	<a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Celio-FE.png" width="300"></a>
+	<a href="https://www.linkedin.com/in/kawan-barbosa-turchiai-aa9a52202/" target="_blank"><img src="equipe/Kawan-FE.png" width="300"></a>
+ 	<a href="https://www.linkedin.com/in/celio-amorim/" target="_blank"><img src="equipe/Celio-FE.png" width="300"></a>
         <a href="https://www.linkedin.com/in/grazy-coliveira/" target="_blank"><img src="equipe/Grazy-BE.png" width="300"></a>
         <a href="https://www.linkedin.com/in/mariana-paiva-013ba7287/" target="_blank"><img src="equipe/Mariana-BE.png" width="300"></a>
 	</div>
