@@ -48,6 +48,8 @@ fun DestinationsScreen(navController: NavController, destinations: List<Destinat
             TopBar()
         },
         bottomBar ={BottomNavigation(navController, sharedModel.selectedUser)},
+        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
+        contentWindowInsets = WindowInsets.safeDrawing,
         containerColor = backgroundColor
     ) { padding ->
         Column(
@@ -119,16 +121,6 @@ fun DestinationsScreen(navController: NavController, destinations: List<Destinat
             }
             Spacer(modifier = Modifier.width(8.dp))
         }
-
-
-
-        Icon(
-           painter =  painterResource(R.drawable.ico_bell_blue),
-            contentDescription =stringResource(R.string.imagem, "image description"),
-            modifier = Modifier.padding()
-                .size(28.dp).fillMaxHeight(),
-            tint = MaterialTheme.colorScheme.onSecondary,
-        )
 
         Spacer(modifier = Modifier.width(8.dp))
 
@@ -228,7 +220,7 @@ fun HeaderDestinationFilter(primaryColor: Color, expanded: MutableState<Boolean>
             }, contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Destination",
+                text = selectedDestination.value,
                 style = TextStyle(
                     fontFamily = poppinsFontFamily,
                     fontSize = 17.sp,

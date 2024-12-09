@@ -43,7 +43,8 @@ var user = shareModel.selectedUser
 
     Scaffold(
         bottomBar ={BottomNavigation(navController, user)},
-
+        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
+        contentWindowInsets = WindowInsets.safeDrawing,
         topBar = {
             Row(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer).padding(top=20.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
 

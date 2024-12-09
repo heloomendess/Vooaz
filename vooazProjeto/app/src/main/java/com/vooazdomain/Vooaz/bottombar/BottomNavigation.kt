@@ -31,7 +31,7 @@ fun BottomNavigation(navController: NavController, user: User?) {
             .height(80.dp)
             .background(
                 color = MaterialTheme.colorScheme.onBackground,
-                shape = RoundedCornerShape(topStart = 55.dp, topEnd = 55.dp)
+                shape = RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp)
             )
             .padding(10.dp)
     ) {

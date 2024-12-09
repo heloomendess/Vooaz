@@ -23,7 +23,6 @@ import com.vooazdomain.Vooaz.telas.aboutus.AboutUsScreen
 import com.vooazdomain.Vooaz.telas.chat.PrivateChatScreen
 import com.vooazdomain.Vooaz.telas.connectPeoples.Conexoes
 import com.vooazdomain.Vooaz.telas.connectPeoples.ChatSearchConectsScreen
-import com.vooazdomain.Vooaz.telas.guidesScreens.GuidesProfile
 import com.vooazdomain.Vooaz.telas.destinationsScreen.DestinationsScreen
 
 import com.vooazdomain.Vooaz.telas.feedbackscreens.FeedbackConfirmScreen
@@ -35,6 +34,7 @@ import com.vooazdomain.Vooaz.telas.inputflow.LoginScreen
 import com.vooazdomain.Vooaz.telas.plan.PlanSuggestionScreen
 import com.vooazdomain.Vooaz.telas.inputflow.RegisterAccountContent
 import com.vooazdomain.Vooaz.telas.plan.Plans
+import com.vooazdomain.Vooaz.telas.profile.GuidesProfile
 import com.vooazdomain.Vooaz.telas.profile.OthersProfile
 import com.vooazdomain.Vooaz.telas.profile.ProfileScreen
 import com.vooazdomain.Vooaz.telas.resetpassword.ChangePasswordScreen

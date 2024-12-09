@@ -6,8 +6,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -22,242 +24,168 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 import com.vooazdomain.Vooaz.R
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
-fun OthersProfile(navController: NavHostController, shared:SharedModel) {
-    val backgroundColor = Color(0xFF4059AD)
-    val flagIcon = painterResource(R.drawable.ic_flag_brazil)
-    val whatsappIcon = painterResource(R.drawable.ic_whatsapp)
-    val instagramIcon = painterResource(R.drawable.instagram)
-    val facebookIcon = painterResource(R.drawable.facebook)
-    val containerColor = Color(0xFFF5F5F5)
-    var user = shared.selectedOtherUsers
-    Scaffold(
-        topBar = {
-            Row(modifier = Modifier.background(containerColor).padding(top=20.dp)) {
+fun OthersProfile(navController: NavController, sharedModel: SharedModel) {
+    val user = sharedModel.selectedOtherUsers
 
-
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Voltar",
-                    modifier = Modifier.size(60.dp).padding(start = 20.dp, top= 15.dp).clickable {
-                        navController.popBackStack()
-                    },
-                    tint = MaterialTheme.colorScheme.onSecondary
-                )
-
-
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+    Box(
+        modifier = Modifier
+            .fillMaxSize() // Faz com que o Box ocupe toda a tela
+            .padding(10.dp)
+    ) {
+        // Conteúdo principal
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 20.dp)
+                .verticalScroll(rememberScrollState())
+                .background(Color.White, shape = RoundedCornerShape(13.dp))
+        ) {
+            Column(modifier = Modifier.heightIn(150.dp).padding(10.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().background(Color.White),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box(modifier = Modifier.padding(end = 60.dp)) {
-                        Image(
-                            painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = "image description",
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .width(75.dp)
-                                .height(73.dp)
-                        )
-                    }
-                }
-
-            }
-        },
-        content =  { padding ->
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-            ) {
-                // Cabeçalho
-                item {
-                    Box(
+                    Image(
+                        painter = painterResource(id = user?.imageRes ?: R.drawable.personicon),
+                        contentDescription = "Foto de perfil de ${user?.name}",
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(170.dp)
-                            .background(backgroundColor,shape = RoundedCornerShape(
-                                topStart = 16.dp,
-                                topEnd = 16.dp,
-                                bottomStart = 0.dp,
-                                bottomEnd = 0.dp
-                            ))
-                            .padding(15.dp),
-
-                        ) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-                            // Imagem de perfil
-                            val imageRes = user?.imageRes ?: R.drawable.ico_profileblue
+                            .size(80.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column {
+                        Text(
+                            text = user?.name ?: "Default",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
-                                painter = painterResource(imageRes),
-                                contentDescription = stringResource(R.string.imagem,"image description"),
-                                contentScale = ContentScale.FillBounds,
-
-                                modifier = Modifier
-                                    .width(128.dp)
-                                    .height(120.dp).clip(CircleShape)
-                                    .border(
-                                        width = 2.dp,
-                                        color = MaterialTheme.colorScheme. onBackground,
-                                        shape = RoundedCornerShape(size = 158.dp)
-                                    )
+                                painter = painterResource(id = user?.flagCountry ?: R.drawable.ico_flag_brasil),
+                                contentDescription = "Bandeira do ${user?.country}",
+                                modifier = Modifier.size(24.dp)
                             )
-
-                            Spacer(modifier = Modifier.width(16.dp))
-
-                            // Informações do usuário
-                            Column(modifier = Modifier.width(210.dp)) {
-                                Row() {
-                                    Text(
-                                        text = stringResource(R.string.nome, user?.name ?: "UserInfo"),
-                                        style = TextStyle(
-                                            fontFamily = poppinsFontFamily,
-                                            fontSize = 20.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
-                                    )
-                                    Spacer(modifier = Modifier.width(4.dp))
-                                    Image(painterResource(R.drawable.walking_stick_white
-                                    ), contentDescription = "walkingstick" ,modifier =Modifier.size(30.dp))
-                                }
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Image(
-                                        painter = painterResource(user?.flagCountry ?: R.drawable.ic_flag_brazil),
-                                        contentDescription = stringResource(R.string.localização,"Localização"),
-                                        modifier = Modifier.size(30.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text(
-                                        text = stringResource(R.string.localização,user?.country?:"Brasil"),
-                                        style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 14.sp, color =MaterialTheme.colorScheme.onSecondaryContainer)
-                                    )
-                                }
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Button(
-                                    onClick = { /* Ação conectar */ },
-                                    colors = ButtonDefaults.buttonColors(
-                                        containerColor = MaterialTheme.colorScheme.onTertiary
-                                    ),
-                                    modifier = Modifier.padding(start = 20.dp)
-                                ) {
-                                    Text(text = stringResource(R.string.conexões,"Conexões"), color = MaterialTheme.colorScheme.onSecondaryContainer)
-                                }
-                            }
-
-                            Spacer(modifier = Modifier.weight(1f))
-
-                            // Botão conectar
-
-                        }
-                    }
-                }
-
-
-                item {
-
-                    Column(
-                        modifier = Modifier
-                            .width(411.dp)
-                            .height(453.dp)
-                            .background(
-                                color = MaterialTheme.colorScheme.surfaceContainerHighest,
-                                shape = RoundedCornerShape(size = 3.dp)
-                            ),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "Sobre mim:",
-                            style = TextStyle(
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSecondary
-                            )
-                        )
-                        Spacer(modifier = Modifier.height(28.dp))
-                        Text(
-                            text = stringResource(R.string.apresentação,user?.AboutUser?: "Sobre mim"),
-                            style = TextStyle(
-                                fontFamily = poppinsFontFamily,
-                                fontSize = 19.sp,
-                                lineHeight = 18.36.sp,
-                                fontWeight = FontWeight(400),
-                                color = MaterialTheme.colorScheme.onSecondary,
-                                textAlign = TextAlign.Justify,
-
-                                ),
-                            modifier = Modifier
-                                .width(270.dp)
-                                .height(351.dp)
-                        )
-                    }
-                }
-
-                // Ícones de contato
-                item {
-
-                    Box(modifier = Modifier.fillMaxSize().background(backgroundColor)) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text(
-
-                                text = stringResource(R.string.mensagem,"Entre em contato"),
-                                style = TextStyle(
-                                    fontFamily = poppinsFontFamily,
-                                    fontSize = 21.sp,
-                                    lineHeight = 17.28.sp,
-                                    fontWeight = FontWeight(700),
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                    textAlign = TextAlign.Justify,
-                                )
+                                text = "${user?.city}, ${user?.state}",
+                                style = MaterialTheme.typography.bodyMedium
                             )
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 32.dp),
-                                horizontalArrangement = Arrangement.Center
-                            ) {
-                                IconButton(onClick = { /* Ação WhatsApp */ }) {
-                                    Icon(
-                                        painter = whatsappIcon,
-                                        contentDescription = stringResource(R.string.whatsApp,"WhatsApp"),
-                                        modifier = Modifier.size(30.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-                                IconButton(onClick = { /* Ação Instagram */ }) {
-                                    Icon(
-                                        painter = instagramIcon,
-                                        contentDescription =stringResource(R.string.instagram, "Instagram"),
-                                        modifier = Modifier.size(55.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-
-                                IconButton(onClick = { /* Ação Facebook */ }) {
-                                    Icon(
-                                        painter = facebookIcon,
-                                        contentDescription = stringResource(R.string.facebook,"Facebook"),
-                                        modifier = Modifier.size(30.dp),
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                            }
                         }
                     }
                 }
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Informações adicionais
+                Text(
+                    text = "Sobre Mim",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = user?.AboutUser ?: "About Default",
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
             }
+            Divider()
+
+            // Dados pessoais
+            PersonalInfoOtherUserSection(user = user)
+
+            Divider()
+
+            // Histórico de viagens
+            Text(
+                text = "Histórico de Viagens",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 16.dp, start = 5.dp)
+            )
+
+            user?.historicTravels?.forEach { destination ->
+                Text(
+                    text = destination?.name ?: "Default",
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(start = 7.dp, top = 5.dp)
+                )
+            }
+
         }
 
-    )
+        // Botão fixo na parte inferior
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 16.dp), // Ajuste o espaçamento inferior se necessário
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth(0.5f)
+            ) {
+                Text(
+                    text = "Voltar",
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    fontSize = 16.sp,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        }
+    }
+}
+@Composable
+fun PersonalInfoOtherUserSection(user: User?) {
+    Column(modifier = Modifier.padding(vertical = 16.dp).padding(10.dp)) {
+        InfoRowOtherUser(label = "Idade", value = "${user?.age} anos")
+        InfoRowOtherUser(label = "Gênero", value = user?.gender)
+        InfoRowOtherUser(label = "Data de Nascimento", value = user?.birthDate?.toFormattedStringOtherUser())
+        InfoRowOtherUser(label = "E-mail", value = user?.email)
+        InfoRowOtherUser(label = "Bairro", value = user?.neighborhood)
+        InfoRowOtherUser(label = "Idiomas", value = user?.languages?.joinToString(", "))
+        InfoRowOtherUser(label = "Tipo de Deficiência", value = user?.disabilityType ?: "Nenhuma")
+        InfoRowOtherUser(label = "Quantidade de Conexões", value = user?.conected_users?.size.toString() ?: "Nenhuma")
+    }
+}
+
+@Composable
+fun InfoRowOtherUser(label: String, value: String?) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.Bold
+        )
+        Text(text = value?:"Default", style = MaterialTheme.typography.bodySmall)
+    }
+}
+
+
+fun Date.toFormattedStringOtherUser(): String {
+    val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    return format.format(this)
 }

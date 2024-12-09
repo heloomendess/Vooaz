@@ -83,8 +83,8 @@ var destination = sharedModel.selectedDestination
         ) {
 
             Box(modifier = Modifier
-                .width(240.dp)
-                .height(65.dp).padding(top=10.dp)
+                .widthIn(240.dp)
+                .heightIn(65.dp).padding(top=10.dp)
                 .background(color = MaterialTheme.colorScheme.onTertiary, shape = RoundedCornerShape(size = 20.dp)).clickable {
                 }, contentAlignment = Alignment.Center) {
                 Text(
@@ -98,8 +98,7 @@ var destination = sharedModel.selectedDestination
                     ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp)
+                        .padding(16.dp)
                 )}
 
 
