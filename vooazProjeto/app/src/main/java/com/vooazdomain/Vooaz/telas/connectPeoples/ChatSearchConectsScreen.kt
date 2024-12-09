@@ -46,24 +46,8 @@ var user = shareModel.selectedUser
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
         contentWindowInsets = WindowInsets.safeDrawing,
         topBar = {
-            Row(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer).padding(top=20.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Box {
-                        Image(
-                            painter = painterResource(id = R.drawable.logoaz),
-                            contentDescription = stringResource(R.string.logo_description,"image description"),
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .width(75.dp)
-                                .height(73.dp)
-                        )
-                    }
-                }
-            }}
+            HeaderSectionChat()
+        }
     ) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -222,5 +206,36 @@ fun ConnectionsCard(otherUsers: User?,shared:SharedModel, primaryColor: Color, c
             style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+fun HeaderSectionChat() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.tertiary)
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.logoaz),
+            contentDescription = "Logo",
+            modifier = Modifier.size(50.dp),
+            contentScale = ContentScale.Crop,
+        )
+
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                painter = painterResource(id = R.drawable.ico_bell_blue),
+                contentDescription = "Notificações",
+                tint = MaterialTheme.colorScheme.onSecondary,
+                modifier = Modifier.size(28.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+        }
     }
 }

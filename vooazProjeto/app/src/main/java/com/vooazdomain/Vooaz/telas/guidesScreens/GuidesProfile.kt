@@ -44,14 +44,14 @@ fun GuidesProfile(navController: NavController,sharedModel: SharedModel) {
         var somepadding = innerPadding
         Box(
             modifier = Modifier
-                .fillMaxSize() // Faz com que o Box ocupe toda a tela
+                .fillMaxSize()
                 .padding(10.dp)
         ) {
             //
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp)
+                    .padding(top = 10.dp)
                     .verticalScroll(rememberScrollState())
                     .background(Color.White, shape = RoundedCornerShape(13.dp))
             ) {

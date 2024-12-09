@@ -48,7 +48,7 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
 
     Scaffold(
         topBar = {
-            // Cabeçalho com logo e notificações
+
             HeaderSection(user, navController)
         },
         bottomBar = {
@@ -67,20 +67,19 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
         ) {
 
 
-            // Título principal
             SectionTitle("Qual será sua próxima aventura?")
 
-            // Carrossel horizontal para viagens em destaque
+
             HighlightedTripsSection(navController,sharedModel)
 
-            // Turismo perto de você
+
             SectionTitle("Turismo perto de você: São Paulo Capital:")
             NearbyPlacesSection(navController, sharedModel)
 
-            // Praias perto de você
+
             SectionTitle("Praias:")
             BeachSection(navController, sharedModel)
-            //Spacer(modifier = Modifier.height(72.dp))
+
 
         }
     }
@@ -96,7 +95,7 @@ fun HeaderSection(user: User?, navController: NavController) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        // Logo
+
         Image(
             painter = painterResource(id = R.drawable.logoaz),
             contentDescription = "Logo",
@@ -104,7 +103,7 @@ fun HeaderSection(user: User?, navController: NavController) {
             contentScale = ContentScale.Crop,
         )
 
-        // Notificações e avatar
+
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 painter = painterResource(id = R.drawable.ico_bell_blue),

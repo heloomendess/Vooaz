@@ -38,19 +38,17 @@ import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 @Composable
 fun DestinationsScreen(navController: NavController, destinations: List<Destinations>, sharedModel: SharedModel, category: String = "São Paulo") {
-    val backgroundColor = Color(0xFFECECEC) // Light gray background
-    val primaryColor = Color(0xFF0E2C8F) // Blue color for cards and header
-    val textColor = Color(0xFFECECEC)
     var expanded = remember { mutableStateOf(false) }
     var selectDestination = remember { mutableStateOf(category) }
     Scaffold(
         topBar = {
-            TopBar()
+            HeaderSectionDestinations()
         },
         bottomBar ={BottomNavigation(navController, sharedModel.selectedUser)},
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
         contentWindowInsets = WindowInsets.safeDrawing,
-        containerColor = backgroundColor
+        containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+
     ) { padding ->
         Column(
             modifier = Modifier
@@ -94,68 +92,6 @@ fun DestinationsScreen(navController: NavController, destinations: List<Destinat
             }
         }
     }
-
-
-@Composable
-    fun TopBar() {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .height(80.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.logoaz),
-                contentDescription = stringResource(R.string.logo,"Logo"),
-                modifier = Modifier.size(68.dp)
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { /* Bell Action */ }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ico_bell_blue),
-                    contentDescription = stringResource(R.string.iconNotificações ,"Notificações"),
-                    tint = MaterialTheme.colorScheme.onSecondary,
-                    modifier = Modifier.size(28.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-        }
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-    }
-
-
-@Composable
-fun HeaderText(primaryColor: Color) {
-    Spacer(modifier = Modifier.height(3.dp))
-    Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
-        Box(
-            modifier = Modifier
-                .width(240.dp)
-                .height(65.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.tertiaryContainer,
-                    shape = RoundedCornerShape(size = 20.dp)
-                ), contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "SP - Capital",
-                style = TextStyle(
-                    fontFamily = poppinsFontFamily,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = primaryColor
-                ),
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp)
-            )
-        }
-    }
-}
 @Composable
 fun CardItem(destination: Destinations, navController: NavController,  sharedModel: SharedModel) {
     Card(
@@ -266,6 +202,37 @@ fun HeaderDestinationFilter(primaryColor: Color, expanded: MutableState<Boolean>
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun HeaderSectionDestinations() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.tertiary)
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.logoaz),
+            contentDescription = "Logo",
+            modifier = Modifier.size(50.dp),
+            contentScale = ContentScale.Crop,
+        )
+
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                painter = painterResource(id = R.drawable.ico_bell_blue),
+                contentDescription = "Notificações",
+                tint = MaterialTheme.colorScheme.onSecondary,
+                modifier = Modifier.size(28.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
         }
     }
 }

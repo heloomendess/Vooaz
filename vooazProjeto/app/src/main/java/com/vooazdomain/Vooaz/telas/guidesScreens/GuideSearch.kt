@@ -34,7 +34,10 @@ import com.vooazdomain.Vooaz.ui.theme.poppinsFontFamily
 
 
 import BottomNavigation
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.ui.layout.ContentScale
 import com.vooazdomain.Vooaz.modelsData.SharedModel.SharedModel
+import com.vooazdomain.Vooaz.modelsData.datas.User
 
 @Composable
 fun GuideSearch(navController: NavController, shareModel: SharedModel) {
@@ -44,14 +47,14 @@ fun GuideSearch(navController: NavController, shareModel: SharedModel) {
     Scaffold(
 
         topBar = {
-            TopBar()
+            HeaderSectionGuides()
         },
         bottomBar = {
             BottomNavigation(navController, user)
         },
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
         contentWindowInsets = WindowInsets.safeDrawing,
-        containerColor = MaterialTheme.colorScheme.onSecondaryContainer
+        containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
     ) { innerpadding ->
         Box(
             modifier = Modifier
@@ -180,32 +183,6 @@ fun HeaderGuidesFilter(primaryColor: Color, expanded:MutableState<Boolean>, sele
         }
     }
 }
-@Composable
-fun TopBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .height(80.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.logoaz),
-            contentDescription = stringResource(R.string.logo,"Logo"),
-            modifier = Modifier.size(68.dp)
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        IconButton(onClick = { /* Bell Action */ }) {
-            Icon(
-                painter = painterResource(id = R.drawable.ico_bell_blue),
-                contentDescription = stringResource(R.string.iconNotificações ,"Notificações"),
-                tint = MaterialTheme.colorScheme.onSecondary,
-                modifier = Modifier.size(28.dp)
-            )
-        }
-        Spacer(modifier = Modifier.width(8.dp))
-    }
-}
 
 @Composable
 fun GuideCard(guide: TourismGuide,shared:SharedModel, navController: NavController) {
@@ -218,10 +195,14 @@ fun GuideCard(guide: TourismGuide,shared:SharedModel, navController: NavControll
             .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.onSecondaryContainer, RoundedCornerShape(12.dp))
             .padding(16.dp)
-            .clickable {
+
+            .clickable( indication = null, // Remove o ripple effect
+                interactionSource = remember { MutableInteractionSource() }) {
+
                 shared.setSelectedGuide(guide)
                 navController.navigate("GuidesProfile")
             },
+
 
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -270,6 +251,37 @@ fun GuideCard(guide: TourismGuide,shared:SharedModel, navController: NavControll
                 fontFamily = poppinsFontFamily,
                 color = MaterialTheme.colorScheme.onSecondary
             )
+        }
+    }
+}
+
+@Composable
+fun HeaderSectionGuides() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.tertiary)
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.logoaz),
+            contentDescription = "Logo",
+            modifier = Modifier.size(50.dp),
+            contentScale = ContentScale.Crop,
+        )
+
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                painter = painterResource(id = R.drawable.ico_bell_blue),
+                contentDescription = "Notificações",
+                tint = MaterialTheme.colorScheme.onSecondary,
+                modifier = Modifier.size(28.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
         }
     }
 }
