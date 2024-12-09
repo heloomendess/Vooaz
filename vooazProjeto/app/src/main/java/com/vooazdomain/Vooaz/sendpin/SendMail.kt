@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,8 +36,8 @@ fun SendMailButton(
             .background(
                 color = MaterialTheme.colorScheme.onBackground,
                 shape = RoundedCornerShape(size = 28.dp)
-            )
-    ) {
+            ),
+      ) {
         Text("Enviar Email")
     }
 }

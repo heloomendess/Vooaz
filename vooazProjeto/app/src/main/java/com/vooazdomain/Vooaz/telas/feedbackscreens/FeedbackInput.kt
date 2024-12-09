@@ -125,25 +125,9 @@ fun FeedbackScreen(navController: NavController) {
             SendMailButton("Vooaz@gmail.com",feedbackText,"Feedback App"){
                 navController.navigate("FeedbackConfirmScreen")
             }
-//            // Botão "Enviar"
-//            Button(
-//                onClick = { navController.navigate("FeedbackConfirmScreen")},
-//                modifier =Modifier
-//                    .shadow(elevation = 4.dp, spotColor = MaterialTheme.colorScheme.surfaceContainer, ambientColor = MaterialTheme.colorScheme.surfaceContainer)
-//                    .width(223.dp)
-//                    .height(39.dp)
-//                    .background(color =MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(size = 28.dp))
-//            ) {
-//                Text(
-//                    text = stringResource(R.string.enviar,"Enviar"),
-//                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-//                    style = TextStyle(fontFamily = poppinsFontFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-//                )
-//            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Botão "Voltar"
             Button(
                 onClick = { navController.popBackStack()},
                 modifier = Modifier

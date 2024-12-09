@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -70,12 +72,13 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
         modifier = Modifier.fillMaxSize(),
     ) {
         Icon(
-            Icons.Filled.Close,
+            Icons.Filled.ArrowBack,
             contentDescription = stringResource(id = R.string.voltar),
             modifier = Modifier
                 .size(50.dp)
-                .padding(top = 25.dp)
-                .clickable { navController.popBackStack() }
+                .padding(top = 20.dp)
+                .clickable { navController.popBackStack() },
+            tint = Color.Black
         )
     }
     Column(
@@ -91,7 +94,7 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
             value = email,
             onValueChange = { email = it },
             modifier = Modifier
-                .width(310.dp)
+                .fillMaxWidth(0.9f)
                 .height(90.dp)
                 .padding(top = 30.dp),
             shape = RoundedCornerShape(8.dp),
@@ -109,7 +112,7 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
             value = senha,
             onValueChange = { senha = it },
             modifier = Modifier
-                .width(310.dp)
+                .fillMaxWidth(0.9f)
                 .height(90.dp)
                 .padding(top = 30.dp),
             shape = RoundedCornerShape(8.dp),
@@ -152,7 +155,7 @@ fun LoginScreen(navController: NavController, shared:SharedModel) {
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .padding(top = 30.dp)
-                .width(310.dp)
+                .fillMaxWidth(0.8f)
                 .height(50.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiary),
         ) {
