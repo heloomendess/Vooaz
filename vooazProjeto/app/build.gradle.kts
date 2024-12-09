@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.vooazdomain.Vooaz"
-        minSdk = 30
+        minSdk = 33
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.material3:material3:1.0.0")
     implementation("com.google.code.gson:gson:2.10") // usado para serializar dados ao navegar no navigate
     implementation("com.google.accompanist:accompanist-navigation-animation:0.32.0")
     implementation("com.airbnb.android:lottie-compose:6.1.0")

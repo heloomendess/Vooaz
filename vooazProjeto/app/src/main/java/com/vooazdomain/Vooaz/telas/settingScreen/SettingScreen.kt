@@ -54,6 +54,8 @@ var user = shared.selectedUser
         bottomBar = {
             BottomNavigation(navController, user)
         },
+        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
+        contentWindowInsets = WindowInsets.safeDrawing,
         containerColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) { padding ->
         LazyColumn(

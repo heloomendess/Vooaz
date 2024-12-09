@@ -79,7 +79,7 @@ fun FeedbackConfirmScreen(navController: NavController) {
 
                     // Botão Voltar
                     Button(
-                        onClick = { navController.navigate("SettingsScreen") },
+                        onClick = { navController.popBackStack(route = "SettingsScreen", inclusive = false)},
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth(0.5f) // Botão ocupa metade da largura

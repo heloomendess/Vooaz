@@ -54,7 +54,9 @@ fun HomePageScreen(navController: NavController, sharedModel: SharedModel) {
         bottomBar = {
             BottomNavigation(navController, user)
         },
-        containerColor = MaterialTheme.colorScheme.onSecondaryContainer
+        containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
+        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
+                contentWindowInsets = WindowInsets.safeDrawing
     ) { innerpadding ->
         Column(
             modifier = Modifier
